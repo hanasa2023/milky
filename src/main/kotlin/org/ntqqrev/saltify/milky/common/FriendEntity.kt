@@ -4,7 +4,7 @@ import org.ntqqrev.saltify.composeidl.LongType
 import org.ntqqrev.saltify.composeidl.StringType
 import org.ntqqrev.saltify.composeidl.Struct
 
-val FriendEntity = Struct("friend") {
+val FriendEntity = Struct("Friend") {
     describe("好友")
     document()
 

@@ -5,7 +5,7 @@ import org.ntqqrev.saltify.composeidl.StringType
 import org.ntqqrev.saltify.composeidl.Struct
 import org.ntqqrev.saltify.composeidl.UIntType
 
-val GroupEntity = Struct("group") {
+val GroupEntity = Struct("Group") {
     describe("群聊")
     document()
 
