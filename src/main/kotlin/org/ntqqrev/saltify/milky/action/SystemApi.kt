@@ -7,8 +7,8 @@ import org.ntqqrev.saltify.milky.common.FriendEntity
 import org.ntqqrev.saltify.milky.common.GroupEntity
 import org.ntqqrev.saltify.milky.common.GroupMemberEntity
 
-val SystemCategory = Category("system") {
-    describe("系统相关接口")
+val SystemApi = Category("system") {
+    describe("系统 API")
 
     api("get_friend_list") {
         describe("获取好友列表")
