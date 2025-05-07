@@ -9,6 +9,5 @@ val FriendCategoryEntity = Struct("friend_category") {
     document()
 
     field("category_id", IntType, "好友分组 ID")
-
     field("category_name", StringType, "好友分组名称")
 }

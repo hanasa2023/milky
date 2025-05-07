@@ -10,10 +10,7 @@ val GroupEntity = Struct("group") {
     document()
 
     field("group_id", UIntType, "群号")
-
     field("name", StringType, "群名称")
-
     field("member_count", IntType, "群成员数量")
-
     field("max_member_count", IntType, "群容量")
 }
