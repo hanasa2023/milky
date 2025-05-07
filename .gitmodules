@@ -1,0 +1,3 @@
+[submodule "compose-idl"]
+	path = compose-idl
+	url = https://github.com/SaltifyDev/compose-idl.git

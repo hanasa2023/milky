@@ -10,6 +10,7 @@ repositories {
 }
 
 dependencies {
+    implementation("org.ntqqrev.saltify:compose-idl:1.0-SNAPSHOT")
     testImplementation(kotlin("test"))
 }
 
