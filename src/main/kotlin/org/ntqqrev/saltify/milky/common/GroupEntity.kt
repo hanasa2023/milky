@@ -7,7 +7,6 @@ import org.ntqqrev.saltify.composeidl.UIntType
 
 val GroupEntity = Struct("Group") {
     describe("群聊")
-    document()
 
     field("group_id", UIntType, "群号")
     field("name", StringType, "群名称")
