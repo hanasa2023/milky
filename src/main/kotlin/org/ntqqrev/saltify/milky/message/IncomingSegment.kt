@@ -6,7 +6,7 @@ import org.ntqqrev.saltify.composeidl.LongType
 import org.ntqqrev.saltify.composeidl.StringType
 import org.ntqqrev.saltify.composeidl.Struct
 
-val ResourceSegmentBase = Struct {
+val IncomingResourceSegmentBase = Struct {
     field("resource_id", StringType, "资源 ID")
 }
 
@@ -37,7 +37,7 @@ val IncomingSegment = DiscriminatedUnion("IncomingSegment", "type") {
 
     struct("image") {
         describe("图片消息段")
-        use(ResourceSegmentBase)
+        use(IncomingResourceSegmentBase)
         field("summary", StringType, "图片预览文本") { optional() }
         field("sub_type", StringType, "图片类型") {
             enum("normal", "sticker")
@@ -46,13 +46,13 @@ val IncomingSegment = DiscriminatedUnion("IncomingSegment", "type") {
 
     struct("record") {
         describe("语音消息段")
-        use(ResourceSegmentBase)
+        use(IncomingResourceSegmentBase)
         field("duration", IntType, "语音时长（秒）")
     }
 
     struct("video") {
         describe("视频消息段")
-        use(ResourceSegmentBase)
+        use(IncomingResourceSegmentBase)
     }
 
     struct("forward") {
