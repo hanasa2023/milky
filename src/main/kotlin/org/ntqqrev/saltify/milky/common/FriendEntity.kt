@@ -6,7 +6,6 @@ import org.ntqqrev.saltify.composeidl.Struct
 
 val FriendEntity = Struct("Friend") {
     describe("好友")
-
     field("user_id", LongType, "好友 QQ 号")
     field("qid", StringType, "好友 QID") { optional() }
     field("nickname", StringType, "好友昵称")
