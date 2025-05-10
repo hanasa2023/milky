@@ -9,7 +9,6 @@ import org.ntqqrev.saltify.milky.common.GroupFileEntity
 import org.ntqqrev.saltify.milky.common.GroupFolderEntity
 import org.ntqqrev.saltify.milky.common.GroupMemberEntity
 import org.ntqqrev.saltify.milky.event.Event
-import org.ntqqrev.saltify.milky.generator.markdown.CategoryMarkdownGenerator
 import org.ntqqrev.saltify.milky.generator.markdown.MarkdownGenerator
 import org.ntqqrev.saltify.milky.message.IncomingForwardedMessage
 import org.ntqqrev.saltify.milky.message.IncomingMessage
