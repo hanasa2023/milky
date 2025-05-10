@@ -133,7 +133,7 @@ val FileApi = Category("file") {
         input {
             field("group_id", LongType, "群号")
             field("folder_id", StringType, "文件夹 ID")
-            field("new_name", StringType, "新文件夹名���")
+            field("new_name", StringType, "新文件夹名")
         }
     }
 
