@@ -7,6 +7,7 @@ import org.ntqqrev.saltify.composeidl.Struct
 import org.ntqqrev.saltify.composeidl.UIntType
 
 val GroupFolderEntity = Struct("GroupFolder") {
+    describe("群文件夹")
     field("group_id", LongType, "群号")
     field("folder_id", StringType, "文件夹 ID")
     field("parent_folder_id", StringType, "父文件夹 ID") { optional() }
@@ -18,6 +19,7 @@ val GroupFolderEntity = Struct("GroupFolder") {
 }
 
 val GroupFileEntity = Struct("GroupFile") {
+    describe("群文件")
     field("group_id", LongType, "群号")
     field("file_id", StringType, "文件 ID")
     field("file_name", StringType, "文件名称")

@@ -6,6 +6,7 @@ import org.ntqqrev.saltify.composeidl.Struct
 import org.ntqqrev.saltify.composeidl.UIntType
 
 val GroupAnnouncementEntity = Struct("GroupAnnouncement") {
+    describe("群公告")
     field("group_id", LongType, "群号")
     field("announcement_id", StringType, "公告 ID")
     field("user_id", LongType, "发送者 QQ 号")

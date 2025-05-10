@@ -7,6 +7,8 @@ import org.ntqqrev.saltify.composeidl.StringType
 import org.ntqqrev.saltify.composeidl.UIntType
 
 val IncomingMessage = DiscriminatedUnion("IncomingMessage", "message_type") {
+    describe("接收消息")
+
     field("message_id", StringType, "消息 ID")
     field("time", UIntType, "消息 Unix 时间戳（秒）")
     field("user_id", LongType, "发送者 QQ 号")
