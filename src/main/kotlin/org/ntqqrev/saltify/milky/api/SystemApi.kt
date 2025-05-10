@@ -1,8 +1,8 @@
-package org.ntqqrev.saltify.milky.action
+package org.ntqqrev.saltify.milky.api
 
 import org.ntqqrev.saltify.composeidl.Category
 import org.ntqqrev.saltify.composeidl.UIntType
-import org.ntqqrev.saltify.milky.common.CachedActionBase
+import org.ntqqrev.saltify.milky.common.CachedApiBase
 import org.ntqqrev.saltify.milky.common.FriendEntity
 import org.ntqqrev.saltify.milky.common.GroupEntity
 import org.ntqqrev.saltify.milky.common.GroupMemberEntity
@@ -12,7 +12,7 @@ val SystemApi = Category("system") {
 
     api("get_friend_list") {
         describe("获取好友列表")
-        input(CachedActionBase)
+        input(CachedApiBase)
         outputArray(FriendEntity)
     }
 
@@ -20,14 +20,14 @@ val SystemApi = Category("system") {
         describe("获取好友信息")
         input {
             field("user_id", UIntType, "好友 QQ 号")
-            use(CachedActionBase)
+            use(CachedApiBase)
         }
         output(FriendEntity)
     }
 
     api("get_group_list") {
         describe("获取群列表")
-        input(CachedActionBase)
+        input(CachedApiBase)
         outputArray(GroupEntity)
     }
 
@@ -35,7 +35,7 @@ val SystemApi = Category("system") {
         describe("获取群信息")
         input {
             field("group_id", UIntType, "群号")
-            use(CachedActionBase)
+            use(CachedApiBase)
         }
         output(GroupEntity)
     }
@@ -44,7 +44,7 @@ val SystemApi = Category("system") {
         describe("获取群成员列表")
         input {
             field("group_id", UIntType, "群号")
-            use(CachedActionBase)
+            use(CachedApiBase)
         }
         outputArray(GroupMemberEntity)
     }
@@ -54,7 +54,7 @@ val SystemApi = Category("system") {
         input {
             field("group_id", UIntType, "群号")
             field("user_id", UIntType, "群成员 QQ 号")
-            use(CachedActionBase)
+            use(CachedApiBase)
         }
         output(GroupMemberEntity)
     }
