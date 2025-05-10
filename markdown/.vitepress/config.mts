@@ -12,7 +12,7 @@ export default defineConfig({
       {
         text: '指南',
         items: [
-          { text: '介绍' },
+          { text: '介绍', link: '/guide/introduction' },
           { text: '通信' },
           { text: '生态' },
         ]
