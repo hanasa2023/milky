@@ -47,6 +47,7 @@ val GroupMemberDecreaseEvent = GroupEventBase.extend {
 val GroupNameChangeEvent = GroupEventBase.extend {
     describe("群名称变更")
     field("name", StringType, "新的群名称")
+    field("operator_id", LongType, "操作者 QQ 号")
 }
 
 val GroupMessageReactionEvent = GroupEventBase.extend {
