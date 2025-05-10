@@ -1,5 +1,6 @@
 package org.ntqqrev.saltify.milky.api
 
+import org.ntqqrev.saltify.composeidl.Array
 import org.ntqqrev.saltify.composeidl.BooleanType
 import org.ntqqrev.saltify.composeidl.Category
 import org.ntqqrev.saltify.composeidl.LongType
@@ -106,7 +107,9 @@ val GroupApi = Category("group") {
         input {
             field("group_id", LongType, "群号")
         }
-        outputArray(GroupAnnouncementEntity)
+        output {
+            field("announcements", Array(GroupAnnouncementEntity), "群公告列表")
+        }
     }
 
     api("send_group_announcement") {

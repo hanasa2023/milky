@@ -112,16 +112,9 @@
 
 ### 返回值
 
-返回值为数组，元素类型如下：
-
 | 字段名 | 类型 | 描述 |
 | --- | --- | --- |
-| group_id | int64 | 群号 |
-| announcement_id | string | 公告 ID |
-| user_id | int64 | 发送者 QQ 号 |
-| time | uint32 | Unix 时间戳（秒） |
-| content | string | 公告内容 |
-| image_url | string | 公告图片 URL（**可选**） |
+| announcements | Array<[GroupAnnouncement](../struct/GroupAnnouncement.md)> | 群公告列表 |
 
 ## `send_group_announcement` 发送群公告
 

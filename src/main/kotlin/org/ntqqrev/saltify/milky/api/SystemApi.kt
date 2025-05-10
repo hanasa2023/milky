@@ -1,5 +1,6 @@
 package org.ntqqrev.saltify.milky.api
 
+import org.ntqqrev.saltify.composeidl.Array
 import org.ntqqrev.saltify.composeidl.BooleanType
 import org.ntqqrev.saltify.composeidl.Category
 import org.ntqqrev.saltify.composeidl.Struct
@@ -20,7 +21,9 @@ val SystemApi = Category("system") {
     api("get_friend_list") {
         describe("获取好友列表")
         input(cachedApiBase)
-        outputArray(FriendEntity)
+        output {
+            field("friends", Array(FriendEntity), "好友列表")
+        }
     }
 
     api("get_friend_info") {
@@ -35,7 +38,9 @@ val SystemApi = Category("system") {
     api("get_group_list") {
         describe("获取群列表")
         input(cachedApiBase)
-        outputArray(GroupEntity)
+        output {
+            field("groups", Array(GroupEntity), "群列表")
+        }
     }
 
     api("get_group_info") {
@@ -53,7 +58,9 @@ val SystemApi = Category("system") {
             field("group_id", UIntType, "群号")
             use(cachedApiBase)
         }
-        outputArray(GroupMemberEntity)
+        output {
+            field("members", Array(GroupMemberEntity), "群成员列表")
+        }
     }
 
     api("get_group_member_info") {
