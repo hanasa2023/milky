@@ -13,7 +13,7 @@ val OutgoingResourceSegmentBase = Struct {
 }
 
 val OutgoingSegment = DiscriminatedUnion("OutgoingSegment", "type") {
-    describe("接收消息段")
+    describe("发送消息段")
 
     structPlacedInto("data")
 
