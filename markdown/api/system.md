@@ -18,15 +18,7 @@
 | qid | string | 好友 QID（**可选**） |
 | nickname | string | 好友昵称 |
 | remark | string | 好友备注 |
-| category | FriendCategory | 好友分组（**可选**） |
-
-category 的具体定义如下：
-
-| 字段名 | 类型 | 描述 |
-| --- | --- | --- |
-| category_id | int32 | 好友分组 ID |
-| category_name | string | 好友分组名称 |
-
+| category | [FriendCategory](../struct/FriendCategory.md) | 好友分组（**可选**） |
 
 ## `get_friend_info` 获取好友信息
 
@@ -45,15 +37,7 @@ category 的具体定义如下：
 | qid | string | 好友 QID（**可选**） |
 | nickname | string | 好友昵称 |
 | remark | string | 好友备注 |
-| category | FriendCategory | 好友分组（**可选**） |
-
-category 的具体定义如下：
-
-| 字段名 | 类型 | 描述 |
-| --- | --- | --- |
-| category_id | int32 | 好友分组 ID |
-| category_name | string | 好友分组名称 |
-
+| category | [FriendCategory](../struct/FriendCategory.md) | 好友分组（**可选**） |
 
 ## `get_group_list` 获取群列表
 

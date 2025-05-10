@@ -1,6 +1,7 @@
 package org.ntqqrev.saltify.milky
 
 import org.ntqqrev.saltify.milky.api.*
+import org.ntqqrev.saltify.milky.common.FriendCategoryEntity
 import org.ntqqrev.saltify.milky.common.FriendEntity
 import org.ntqqrev.saltify.milky.common.GroupAnnouncementEntity
 import org.ntqqrev.saltify.milky.common.GroupEntity
@@ -21,6 +22,7 @@ suspend fun main() {
     println(MarkdownGenerator(
         documentedStructs = listOf(
             FriendEntity,
+            FriendCategoryEntity,
             GroupEntity,
             GroupMemberEntity,
             GroupAnnouncementEntity,
