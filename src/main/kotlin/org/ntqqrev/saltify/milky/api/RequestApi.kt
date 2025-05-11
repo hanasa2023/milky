@@ -9,14 +9,14 @@ val RequestApi = Category("request") {
     api("accept_request") {
         describe("同意请求")
         input {
-            field("flag", StringType, "请求标识")
+            field("request_id", StringType, "请求 ID")
         }
     }
 
     api("reject_request") {
         describe("拒绝请求")
         input {
-            field("flag", StringType, "请求标识")
+            field("request_id", StringType, "请求 ID")
             field("reason", StringType, "拒绝理由") { optional() }
         }
     }

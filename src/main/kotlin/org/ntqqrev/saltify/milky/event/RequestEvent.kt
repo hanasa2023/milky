@@ -5,7 +5,7 @@ import org.ntqqrev.saltify.composeidl.StringType
 import org.ntqqrev.saltify.composeidl.Struct
 
 val RequestEventBase = Struct {
-    field("flag", StringType, "请求标识，用于同意 / 拒绝请求")
+    field("request_id", StringType, "请求 ID，用于同意 / 拒绝请求")
     field("operator_id", LongType, "发起请求的用户 QQ 号")
 }
 

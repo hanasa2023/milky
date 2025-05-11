@@ -6,7 +6,7 @@
 
 | 字段名 | 类型 | 描述 |
 | --- | --- | --- |
-| flag | string | 请求标识 |
+| request_id | string | 请求 ID |
 
 ### 返回值
 
@@ -17,7 +17,7 @@
 
 | 字段名 | 类型 | 描述 |
 | --- | --- | --- |
-| flag | string | 请求标识 |
+| request_id | string | 请求 ID |
 | reason | string | 拒绝理由（**可选**） |
 
 ### 返回值
