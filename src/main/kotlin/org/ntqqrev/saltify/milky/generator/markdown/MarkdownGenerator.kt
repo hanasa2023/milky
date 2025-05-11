@@ -12,7 +12,7 @@ class MarkdownGenerator(
     val apiMarkdownGenerator = ApiMarkdownGenerator(this)
     val typeMarkdownGenerator = TypeMarkdownGenerator(this)
 
-    suspend fun generate(basePath: Path) {
+    fun generate(basePath: Path) {
         val apiCategoryDir = basePath.resolve("api")
         val structDir = basePath.resolve("struct")
 

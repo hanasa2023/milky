@@ -17,7 +17,7 @@ import org.ntqqrev.saltify.milky.message.OutgoingForwardedMessage
 import org.ntqqrev.saltify.milky.message.OutgoingSegment
 import kotlin.io.path.Path
 
-suspend fun main() {
+fun main() {
     println(MarkdownGenerator(
         documentedStructs = listOf(
             FriendEntity,
