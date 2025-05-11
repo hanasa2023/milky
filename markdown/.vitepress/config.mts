@@ -14,7 +14,7 @@ export default defineConfig({
         items: [
           { text: '介绍', link: '/guide/introduction' },
           { text: '通信', link: '/guide/communication' },
-          { text: '生态' },
+          { text: '生态', link: '/guide/ecosystem' },
         ]
       },
       {
