@@ -1,6 +1,6 @@
 # 好友 API
 
-## `send_api_poke` 发送好友戳一戳
+## `send_friend_poke` 发送好友戳一戳
 
 ### 参数
 
