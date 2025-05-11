@@ -27,6 +27,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
+          cache-dependency-path: markdown/package-lock.json
           node-version: 22
           cache: npm
       - name: Setup Pages
