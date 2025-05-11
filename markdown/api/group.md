@@ -46,7 +46,6 @@
 | group_id | int64 | 群号 |
 | user_id | int64 | 被设置的群成员 QQ 号 |
 | special_title | string | 新专属头衔 |
-| duration | int64 | 专属头衔持续时间，单位：秒（默认值：`0`） |
 
 ### 返回值
 

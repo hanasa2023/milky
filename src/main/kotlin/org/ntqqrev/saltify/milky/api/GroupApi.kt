@@ -48,10 +48,10 @@ val GroupApi = Category("group") {
             field("group_id", LongType, "群号")
             field("user_id", LongType, "被设置的群成员 QQ 号")
             field("special_title", StringType, "新专属头衔")
-            field("duration", LongType) {
-                describe("专属头衔持续时间，单位：秒")
-                default("0")
-            }
+//            field("duration", LongType) {
+//                describe("专属头衔持续时间，单位：秒")
+//                default("0")
+//            }
         }
     }
 

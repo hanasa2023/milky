@@ -118,10 +118,10 @@ val FileApi = Category("file") {
         input {
             field("group_id", LongType, "群号")
             field("folder_name", StringType, "文件夹名称")
-            field("parent_folder_id", StringType) {
-                describe("父文件夹 ID，默认为根目录")
-                optional()
-            }
+//            field("parent_folder_id", StringType) {
+//                describe("父文件夹 ID，默认为根目录")
+//                optional()
+//            }
         }
         output {
             field("folder_id", StringType, "文件夹 ID")

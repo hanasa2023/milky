@@ -122,7 +122,6 @@
 | --- | --- | --- |
 | group_id | int64 | 群号 |
 | folder_name | string | 文件夹名称 |
-| parent_folder_id | string | 父文件夹 ID，默认为根目录（**可选**） |
 
 ### 返回值
 
