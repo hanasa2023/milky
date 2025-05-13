@@ -95,7 +95,9 @@ class TypeMarkdownGenerator(val ctx: MarkdownGenerator) {
         data.structList.forEach { (key, struct) ->
             result.appendLine("## `${key}` ${struct.description}")
             result.appendLine()
-            result.append(generateStruct(struct))
+            result.append(if (struct in ctx.documentedStructs)
+                "见 [${struct.name}](../struct/${struct.name}.md)\n\n"
+            else generateStruct(struct))
         }
         return result.toString()
     }

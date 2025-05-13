@@ -11,12 +11,8 @@
 
 ## `message_receive` 接收消息
 
-| 字段名 | 类型 | 描述 |
-| --- | --- | --- |
-| message_id | string | 消息 ID |
-| time | uint32 | 消息 Unix 时间戳（秒） |
-| user_id | int64 | 发送者 QQ 号 |
-| segments | Array<[IncomingSegment](../struct/IncomingSegment.md)> | 消息段列表 |
+见 [IncomingMessage](../struct/IncomingMessage.md)
+
 ## `message_recall` 撤回消息
 
 | 字段名 | 类型 | 描述 |
