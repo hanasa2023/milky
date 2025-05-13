@@ -51,4 +51,21 @@
 | 字段名 | 类型 | 描述 |
 | --- | --- | --- |
 | forward_id | string | 合并转发 ID |
+## `market_face` 市场表情消息段
+
+| 字段名 | 类型 | 描述 |
+| --- | --- | --- |
+| url | string | 市场表情 URL |
+## `light_app` 小程序消息段
+
+| 字段名 | 类型 | 描述 |
+| --- | --- | --- |
+| app_name | string | 小程序名称 |
+| json_payload | string | 小程序 JSON 数据 |
+## `xml` XML 消息段
+
+| 字段名 | 类型 | 描述 |
+| --- | --- | --- |
+| service_id | int32 | 服务 ID |
+| xml_payload | string | XML 数据 |
 
