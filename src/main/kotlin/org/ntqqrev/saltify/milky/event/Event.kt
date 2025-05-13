@@ -30,12 +30,9 @@ val Event = DiscriminatedUnion("Event", "event_type") {
 
     struct("group_invitation_request", GroupInvitationRequestEvent)
 
-    struct("friend_poke") {
-        describe("好友戳一戳")
-        field("user_id", LongType, "戳一戳发生的好友 QQ 号")
-        field("is_self_send", BooleanType, "是否是自己发送的戳一戳")
-        field("is_self_receive", BooleanType, "是否是自己接收的戳一戳")
-    }
+    struct("friend_poke", FriendPokeEvent)
+
+    struct("friend_file_upload", FriendFileUploadEvent)
 
     struct("group_admin_change", GroupAdminChangeEvent)
 
@@ -54,4 +51,6 @@ val Event = DiscriminatedUnion("Event", "event_type") {
     struct("group_whole_mute", GroupWholeMuteEvent)
 
     struct("group_poke", GroupPokeEvent)
+
+    struct("group_file_upload", GroupFileUploadEvent)
 }

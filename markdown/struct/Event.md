@@ -54,9 +54,18 @@
 
 | 字段名 | 类型 | 描述 |
 | --- | --- | --- |
-| user_id | int64 | 戳一戳发生的好友 QQ 号 |
+| user_id | int64 | 好友 QQ 号 |
 | is_self_send | boolean | 是否是自己发送的戳一戳 |
 | is_self_receive | boolean | 是否是自己接收的戳一戳 |
+## `friend_file_upload` 好友文件上传
+
+| 字段名 | 类型 | 描述 |
+| --- | --- | --- |
+| user_id | int64 | 好友 QQ 号 |
+| file_id | string | 文件 ID |
+| file_name | string | 文件名称 |
+| file_size | int64 | 文件大小 |
+| is_self | boolean | 是否是自己发送的文件 |
 ## `group_admin_change` 群管理员变更
 
 | 字段名 | 类型 | 描述 |
@@ -123,4 +132,13 @@
 | group_id | int64 | 群号 |
 | sender_id | int64 | 发送者 QQ 号 |
 | receiver_id | int64 | 接收者 QQ 号 |
+## `group_file_upload` 群文件上传
+
+| 字段名 | 类型 | 描述 |
+| --- | --- | --- |
+| group_id | int64 | 群号 |
+| user_id | int64 | 发送者 QQ 号 |
+| file_id | string | 文件 ID |
+| file_name | string | 文件名称 |
+| file_size | int64 | 文件大小 |
 

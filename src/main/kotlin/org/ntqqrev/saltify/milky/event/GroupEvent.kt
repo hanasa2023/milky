@@ -75,3 +75,11 @@ val GroupPokeEvent = GroupEventBase.extend {
     field("sender_id", LongType, "发送者 QQ 号")
     field("receiver_id", LongType, "接收者 QQ 号")
 }
+
+val GroupFileUploadEvent = GroupEventBase.extend {
+    describe("群文件上传")
+    field("user_id", LongType, "发送者 QQ 号")
+    field("file_id", StringType, "文件 ID")
+    field("file_name", StringType, "文件名称")
+    field("file_size", LongType, "文件大小")
+}
