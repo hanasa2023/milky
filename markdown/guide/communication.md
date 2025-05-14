@@ -130,6 +130,7 @@ ws://{IP}:{端口}/?access_token=123456
 ```json
 {
   "post_type": "action_response",
+  "self_id": 123456789,
   "data": {
     // data 字段的格式与 HTTP Server 的响应一致（除 echo 字段外）
     "status": "ok",
@@ -148,6 +149,7 @@ ws://{IP}:{端口}/?access_token=123456
 ```json
 {
   "post_type": "event",
+  "self_id": 123456789,
   "data": {
     // data 字段的格式与 WebHook 的事件数据一致
     "time": 1234567890,
