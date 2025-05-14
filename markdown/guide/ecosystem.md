@@ -4,6 +4,8 @@
 
 ## 支持 Milky 的协议端
 
+- [Lagrange.Milky](https://github.com/LagrangeDev/LagrangeV2/) (In progress)
+
 ## 支持 Milky 的应用端
 
 ## Milky SDK
