@@ -2,9 +2,11 @@ package org.ntqqrev.saltify.milky.api
 
 import org.ntqqrev.saltify.composeidl.Array
 import org.ntqqrev.saltify.composeidl.Category
+import org.ntqqrev.saltify.composeidl.IntType
 import org.ntqqrev.saltify.composeidl.LongType
 import org.ntqqrev.saltify.composeidl.StringType
 import org.ntqqrev.saltify.composeidl.Struct
+import org.ntqqrev.saltify.milky.common.MessageIdentifier
 import org.ntqqrev.saltify.milky.message.IncomingMessage
 import org.ntqqrev.saltify.milky.message.OutgoingSegment
 
@@ -16,7 +18,7 @@ val MessageApi = Category("message") {
     }
 
     val sendMessageApiCommonOutput = Struct {
-        field("message_id", StringType, "消息 ID")
+        field("message_seq", LongType, "消息序列号")
         field("time", LongType, "消息发送时间")
     }
 
@@ -40,25 +42,23 @@ val MessageApi = Category("message") {
 
     api("get_message") {
         describe("获取消息")
-        input {
-            field("message_id", StringType, "消息 ID")
-        }
+        input(MessageIdentifier)
         output {
             field("message", IncomingMessage, "消息内容")
         }
     }
 
     val getHistoryMessageApiBase = Struct {
-        field("start_message_id", StringType) {
+        field("start_message_seq", LongType) {
             describe("起始消息 ID，不提供则从最新消息开始")
             optional()
         }
-        field("limit", LongType, "获取的消息数量") { default("20") }
+        field("limit", IntType, "获取的消息数量") { default("20") }
     }
 
     val getHistoryMessageApiCommonOutput = Struct {
         field("messages", Array(IncomingMessage), "消息列表")
-        field("next_start_message_id", StringType, "下一页起始消息 ID") { optional() }
+        field("next_start_message_seq", StringType, "下一页起始消息序列号")
     }
 
     api("get_history_private_message") {
@@ -102,7 +102,7 @@ val MessageApi = Category("message") {
     api("recall_message") {
         describe("撤回消息")
         input {
-            field("message_id", StringType, "消息 ID")
+            field("message_seq", LongType, "消息序列号")
         }
     }
 }

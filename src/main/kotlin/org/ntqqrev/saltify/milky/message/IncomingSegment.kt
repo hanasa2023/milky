@@ -32,7 +32,7 @@ val IncomingSegment = DiscriminatedUnion("IncomingSegment", "type") {
 
     struct("reply") {
         describe("回复消息段")
-        field("message_id", LongType, "被引用的消息 ID")
+        field("message_seq", LongType, "被引用的消息序列号")
     }
 
     struct("image") {

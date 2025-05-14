@@ -17,7 +17,9 @@
 
 | 字段名 | 类型 | 描述 |
 | --- | --- | --- |
-| message_id | string | 消息 ID |
+| message_scene | string | 消息场景（可能值：`friend`, `group`, `temp`） |
+| peer_id | int64 | 好友 QQ 号或群号 |
+| message_seq | int64 | 消息序列号 |
 | operator_id | int64 | 操作者 QQ 号（**可选**） |
 ## `friend_request` 好友请求
 
@@ -78,7 +80,7 @@
 | 字段名 | 类型 | 描述 |
 | --- | --- | --- |
 | group_id | int64 | 群号 |
-| message_id | int64 | 发生变更的消息 ID |
+| message_seq | int64 | 发生变更的消息序列号 |
 | is_set | boolean | 是否被设置为精华，`false` 表示被取消精华 |
 ## `group_member_increase` 群成员增加
 
@@ -108,7 +110,7 @@
 | --- | --- | --- |
 | group_id | int64 | 群号 |
 | user_id | int64 | 发送回应者 QQ 号 |
-| message_id | int64 | 消息 ID |
+| message_seq | int64 | 消息序列号 |
 | face_id | string | 表情 ID |
 | is_add | boolean | 是否为添加，`false` 表示取消回应（**可选**） |
 ## `group_mute` 群成员禁言状态变更

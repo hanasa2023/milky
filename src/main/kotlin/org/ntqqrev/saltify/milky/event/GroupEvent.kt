@@ -18,7 +18,7 @@ val GroupAdminChangeEvent = GroupEventBase.extend {
 
 val GroupEssenceMessageChangeEvent = GroupEventBase.extend {
     describe("群精华消息变更")
-    field("message_id", LongType, "发生变更的消息 ID")
+    field("message_seq", LongType, "发生变更的消息序列号")
     field("is_set", BooleanType, "是否被设置为精华，`false` 表示被取消精华")
 }
 
@@ -53,7 +53,7 @@ val GroupNameChangeEvent = GroupEventBase.extend {
 val GroupMessageReactionEvent = GroupEventBase.extend {
     describe("群消息表情回应")
     field("user_id", LongType, "发送回应者 QQ 号")
-    field("message_id", LongType, "消息 ID")
+    field("message_seq", LongType, "消息序列号")
     field("face_id", StringType, "表情 ID")
     field("is_add", BooleanType, "是否为添加，`false` 表示取消回应") { optional() }
 }

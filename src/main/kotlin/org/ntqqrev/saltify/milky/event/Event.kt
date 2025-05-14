@@ -5,6 +5,7 @@ import org.ntqqrev.saltify.composeidl.DiscriminatedUnion
 import org.ntqqrev.saltify.composeidl.LongType
 import org.ntqqrev.saltify.composeidl.StringType
 import org.ntqqrev.saltify.composeidl.UIntType
+import org.ntqqrev.saltify.milky.common.MessageIdentifier
 import org.ntqqrev.saltify.milky.message.IncomingMessage
 
 val Event = DiscriminatedUnion("Event", "event_type") {
@@ -18,7 +19,7 @@ val Event = DiscriminatedUnion("Event", "event_type") {
 
     struct("message_recall") {
         describe("撤回消息")
-        field("message_id", StringType, "消息 ID")
+        use(MessageIdentifier)
         field("operator_id", LongType, "操作者 QQ 号") { optional() }
     }
 

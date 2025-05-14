@@ -151,13 +151,13 @@
 ### 返回值
 
 此 API 无返回值。
-## `send_group_message_reaction` 发送群消息表情
+## `send_group_message_reaction` 发送群消息表情回应
 
 ### 参数
 
 | 字段名 | 类型 | 描述 |
 | --- | --- | --- |
-| message_id | string | 消息 ID |
+| message_seq | int64 | 要回应的消息序列号 |
 | reaction | string | 表情 ID |
 
 ### 返回值

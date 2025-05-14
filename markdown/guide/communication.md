@@ -49,7 +49,7 @@ Authorization: Bearer 123456
   "status": "ok",
   "retcode": 0, // 成功时的 retcode 为 0
   "data": {
-    "message_id": "Private:123456789:23333",
+    "message_seq": "23333",
     "time": 1234567890
   }
 }
@@ -80,9 +80,11 @@ X-Self-ID: 123456789
   "time": 1234567890,
   "event_type": "message_receive",
   "data": {
-    "message_id": "Private:123456789:23333",
+    "message_scene": "friend",
+    "peer_id": 123456789,
+    "message_seq": 23333,
+    "sender_id": 123456789,
     "time": 1234567890,
-    "user_id": 123456789,
     "segments": [
       {
         "type": "text",
@@ -119,7 +121,7 @@ ws://{IP}:{端口}/?access_token=123456
           "text": "Hello, world!"
         }
       }
-    ],
+    ]
   },
   "echo": "123456" // 可选，回调 ID，用于区分不同的请求
 }
@@ -136,7 +138,7 @@ ws://{IP}:{端口}/?access_token=123456
     "status": "ok",
     "retcode": 0,
     "data": {
-      "message_id": "Private:123456789:23333",
+      "message_seq": 23333,
       "time": 1234567890
     },
     "echo": "123456" // 请求时提供的回调 ID，若未提供则不包含此字段
@@ -155,9 +157,11 @@ ws://{IP}:{端口}/?access_token=123456
     "time": 1234567890,
     "event_type": "message_receive",
     "data": {
-      "message_id": "Private:123456789:23333",
+      "message_scene": "friend",
+      "peer_id": 123456789,
+      "message_seq": 23333,
       "time": 1234567890,
-      "user_id": 123456789,
+      "sender_id": 123456789,
       "segments": [
         {
           "type": "text",
