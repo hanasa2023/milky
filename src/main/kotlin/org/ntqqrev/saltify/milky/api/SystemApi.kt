@@ -6,7 +6,6 @@ import org.ntqqrev.saltify.composeidl.Category
 import org.ntqqrev.saltify.composeidl.LongType
 import org.ntqqrev.saltify.composeidl.StringType
 import org.ntqqrev.saltify.composeidl.Struct
-import org.ntqqrev.saltify.composeidl.UIntType
 import org.ntqqrev.saltify.milky.common.FriendEntity
 import org.ntqqrev.saltify.milky.common.GroupEntity
 import org.ntqqrev.saltify.milky.common.GroupMemberEntity
@@ -39,7 +38,7 @@ val SystemApi = Category("system") {
     api("get_friend_info") {
         describe("获取好友信息")
         input {
-            field("user_id", UIntType, "好友 QQ 号")
+            field("user_id", LongType, "好友 QQ 号")
             use(cachedApiBase)
         }
         output(FriendEntity)
@@ -56,7 +55,7 @@ val SystemApi = Category("system") {
     api("get_group_info") {
         describe("获取群信息")
         input {
-            field("group_id", UIntType, "群号")
+            field("group_id", LongType, "群号")
             use(cachedApiBase)
         }
         output(GroupEntity)
@@ -65,7 +64,7 @@ val SystemApi = Category("system") {
     api("get_group_member_list") {
         describe("获取群成员列表")
         input {
-            field("group_id", UIntType, "群号")
+            field("group_id", LongType, "群号")
             use(cachedApiBase)
         }
         output {
@@ -76,8 +75,8 @@ val SystemApi = Category("system") {
     api("get_group_member_info") {
         describe("获取群成员信息")
         input {
-            field("group_id", UIntType, "群号")
-            field("user_id", UIntType, "群成员 QQ 号")
+            field("group_id", LongType, "群号")
+            field("user_id", LongType, "群成员 QQ 号")
             use(cachedApiBase)
         }
         output(GroupMemberEntity)

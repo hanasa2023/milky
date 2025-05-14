@@ -1,5 +1,17 @@
 # 系统 API
 
+## `get_login_info` 获取登录信息
+
+### 参数
+
+此 API 无输入参数。
+### 返回值
+
+| 字段名 | 类型 | 描述 |
+| --- | --- | --- |
+| uin | int64 | 登录 QQ 号 |
+| nickname | string | 登录昵称 |
+
 ## `get_friend_list` 获取好友列表
 
 ### 参数
@@ -20,7 +32,7 @@
 
 | 字段名 | 类型 | 描述 |
 | --- | --- | --- |
-| user_id | uint32 | 好友 QQ 号 |
+| user_id | int64 | 好友 QQ 号 |
 | no_cache | boolean | 是否强制不使用缓存（默认值：`false`） |
 
 ### 返回值
@@ -47,7 +59,7 @@
 
 | 字段名 | 类型 | 描述 |
 | --- | --- | --- |
-| group_id | uint32 | 群号 |
+| group_id | int64 | 群号 |
 | no_cache | boolean | 是否强制不使用缓存（默认值：`false`） |
 
 ### 返回值
@@ -60,7 +72,7 @@
 
 | 字段名 | 类型 | 描述 |
 | --- | --- | --- |
-| group_id | uint32 | 群号 |
+| group_id | int64 | 群号 |
 | no_cache | boolean | 是否强制不使用缓存（默认值：`false`） |
 
 ### 返回值
@@ -75,8 +87,8 @@
 
 | 字段名 | 类型 | 描述 |
 | --- | --- | --- |
-| group_id | uint32 | 群号 |
-| user_id | uint32 | 群成员 QQ 号 |
+| group_id | int64 | 群号 |
+| user_id | int64 | 群成员 QQ 号 |
 | no_cache | boolean | 是否强制不使用缓存（默认值：`false`） |
 
 ### 返回值
