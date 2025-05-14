@@ -159,6 +159,7 @@
 | --- | --- | --- |
 | message_seq | int64 | 要回应的消息序列号 |
 | reaction | string | 表情 ID |
+| is_add | boolean | 是否添加表情，`false` 为取消（默认值：`true`） |
 
 ### 返回值
 

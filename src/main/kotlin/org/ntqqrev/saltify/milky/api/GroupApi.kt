@@ -141,6 +141,10 @@ val GroupApi = Category("group") {
         input {
             field("message_seq", LongType, "要回应的消息序列号")
             field("reaction", StringType, "表情 ID")
+            field("is_add", BooleanType) {
+                describe("是否添加表情，`false` 为取消")
+                default("true")
+            }
         }
     }
 
