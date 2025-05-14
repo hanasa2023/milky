@@ -1,9 +1,7 @@
 package org.ntqqrev.saltify.milky.message
 
 import org.ntqqrev.saltify.composeidl.Array
-import org.ntqqrev.saltify.composeidl.DiscriminatedUnion
 import org.ntqqrev.saltify.composeidl.LongType
-import org.ntqqrev.saltify.composeidl.StringType
 import org.ntqqrev.saltify.composeidl.Struct
 import org.ntqqrev.saltify.composeidl.UIntType
 import org.ntqqrev.saltify.milky.common.MessageIdentifier

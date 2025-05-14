@@ -1,11 +1,6 @@
 package org.ntqqrev.saltify.milky.api
 
-import org.ntqqrev.saltify.composeidl.Array
-import org.ntqqrev.saltify.composeidl.BooleanType
-import org.ntqqrev.saltify.composeidl.Category
-import org.ntqqrev.saltify.composeidl.LongType
-import org.ntqqrev.saltify.composeidl.StringType
-import org.ntqqrev.saltify.composeidl.Struct
+import org.ntqqrev.saltify.composeidl.*
 import org.ntqqrev.saltify.milky.common.FriendEntity
 import org.ntqqrev.saltify.milky.common.GroupEntity
 import org.ntqqrev.saltify.milky.common.GroupMemberEntity

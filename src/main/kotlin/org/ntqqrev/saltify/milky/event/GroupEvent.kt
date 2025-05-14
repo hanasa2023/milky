@@ -1,10 +1,6 @@
 package org.ntqqrev.saltify.milky.event
 
-import org.ntqqrev.saltify.composeidl.BooleanType
-import org.ntqqrev.saltify.composeidl.IntType
-import org.ntqqrev.saltify.composeidl.LongType
-import org.ntqqrev.saltify.composeidl.StringType
-import org.ntqqrev.saltify.composeidl.Struct
+import org.ntqqrev.saltify.composeidl.*
 
 val GroupEventBase = Struct {
     field("group_id", LongType, "群号")

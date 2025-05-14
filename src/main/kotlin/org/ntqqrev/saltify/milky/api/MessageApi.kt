@@ -1,11 +1,7 @@
 package org.ntqqrev.saltify.milky.api
 
+import org.ntqqrev.saltify.composeidl.*
 import org.ntqqrev.saltify.composeidl.Array
-import org.ntqqrev.saltify.composeidl.Category
-import org.ntqqrev.saltify.composeidl.IntType
-import org.ntqqrev.saltify.composeidl.LongType
-import org.ntqqrev.saltify.composeidl.StringType
-import org.ntqqrev.saltify.composeidl.Struct
 import org.ntqqrev.saltify.milky.common.MessageIdentifier
 import org.ntqqrev.saltify.milky.message.IncomingMessage
 import org.ntqqrev.saltify.milky.message.OutgoingSegment

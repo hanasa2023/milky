@@ -1,12 +1,7 @@
 package org.ntqqrev.saltify.milky.generator.markdown
 
+import org.ntqqrev.saltify.composeidl.*
 import org.ntqqrev.saltify.composeidl.Array
-import org.ntqqrev.saltify.composeidl.DiscriminatedUnion
-import org.ntqqrev.saltify.composeidl.Field
-import org.ntqqrev.saltify.composeidl.StringType
-import org.ntqqrev.saltify.composeidl.Struct
-import org.ntqqrev.saltify.composeidl.Type
-import org.ntqqrev.saltify.composeidl.TypeReference
 
 class TypeMarkdownGenerator(val ctx: MarkdownGenerator) {
     fun namedType(name: String): Type {
@@ -23,12 +18,14 @@ class TypeMarkdownGenerator(val ctx: MarkdownGenerator) {
                 result.appendLine(generateDiscriminatedUnion(data))
                 result.toString()
             }
+
             is Struct -> {
                 val result = StringBuilder("# ${data.description}")
                 result.appendLine()
                 result.appendLine(generateStruct(data))
                 result.toString()
             }
+
             else -> throw IllegalArgumentException("Unsupported type: ${data::class.simpleName}")
         }
     }
@@ -45,6 +42,7 @@ class TypeMarkdownGenerator(val ctx: MarkdownGenerator) {
                     this.name
                 }
             }
+
             is TypeReference -> "[${this.reference}](../struct/${this.reference}.md)"
             is Array -> "Array<${this.elementType.toBriefString(key)}>"
             else -> this.toString()
@@ -95,9 +93,11 @@ class TypeMarkdownGenerator(val ctx: MarkdownGenerator) {
         data.structList.forEach { (key, struct) ->
             result.appendLine("## `${key}` ${struct.description}")
             result.appendLine()
-            result.append(if (struct in ctx.documentedStructs)
-                "见 [${struct.name}](../struct/${struct.name}.md)\n\n"
-            else generateStruct(struct))
+            result.append(
+                if (struct in ctx.documentedStructs)
+                    "见 [${struct.name}](../struct/${struct.name}.md)\n\n"
+                else generateStruct(struct)
+            )
         }
         return result.toString()
     }

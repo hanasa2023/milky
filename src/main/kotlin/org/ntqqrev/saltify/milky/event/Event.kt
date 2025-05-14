@@ -1,9 +1,7 @@
 package org.ntqqrev.saltify.milky.event
 
-import org.ntqqrev.saltify.composeidl.BooleanType
 import org.ntqqrev.saltify.composeidl.DiscriminatedUnion
 import org.ntqqrev.saltify.composeidl.LongType
-import org.ntqqrev.saltify.composeidl.StringType
 import org.ntqqrev.saltify.composeidl.UIntType
 import org.ntqqrev.saltify.milky.common.MessageIdentifier
 import org.ntqqrev.saltify.milky.message.IncomingMessage

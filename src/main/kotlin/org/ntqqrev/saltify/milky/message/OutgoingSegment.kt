@@ -1,10 +1,7 @@
 package org.ntqqrev.saltify.milky.message
 
+import org.ntqqrev.saltify.composeidl.*
 import org.ntqqrev.saltify.composeidl.Array
-import org.ntqqrev.saltify.composeidl.DiscriminatedUnion
-import org.ntqqrev.saltify.composeidl.LongType
-import org.ntqqrev.saltify.composeidl.StringType
-import org.ntqqrev.saltify.composeidl.Struct
 
 val OutgoingResourceSegmentBase = Struct {
     field("uri", StringType) {

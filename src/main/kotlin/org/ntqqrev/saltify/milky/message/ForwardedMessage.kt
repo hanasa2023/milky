@@ -1,10 +1,7 @@
 package org.ntqqrev.saltify.milky.message
 
+import org.ntqqrev.saltify.composeidl.*
 import org.ntqqrev.saltify.composeidl.Array
-import org.ntqqrev.saltify.composeidl.TypeReference
-import org.ntqqrev.saltify.composeidl.LongType
-import org.ntqqrev.saltify.composeidl.StringType
-import org.ntqqrev.saltify.composeidl.Struct
 
 val IncomingForwardedMessage = Struct("IncomingForwardedMessage") {
     describe("接收转发消息")

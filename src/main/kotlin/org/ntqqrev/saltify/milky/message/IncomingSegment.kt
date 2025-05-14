@@ -1,10 +1,6 @@
 package org.ntqqrev.saltify.milky.message
 
-import org.ntqqrev.saltify.composeidl.DiscriminatedUnion
-import org.ntqqrev.saltify.composeidl.IntType
-import org.ntqqrev.saltify.composeidl.LongType
-import org.ntqqrev.saltify.composeidl.StringType
-import org.ntqqrev.saltify.composeidl.Struct
+import org.ntqqrev.saltify.composeidl.*
 
 val IncomingResourceSegmentBase = Struct {
     field("resource_id", StringType, "资源 ID")
