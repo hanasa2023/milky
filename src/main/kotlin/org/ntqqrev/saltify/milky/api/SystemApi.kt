@@ -3,6 +3,8 @@ package org.ntqqrev.saltify.milky.api
 import org.ntqqrev.saltify.composeidl.Array
 import org.ntqqrev.saltify.composeidl.BooleanType
 import org.ntqqrev.saltify.composeidl.Category
+import org.ntqqrev.saltify.composeidl.LongType
+import org.ntqqrev.saltify.composeidl.StringType
 import org.ntqqrev.saltify.composeidl.Struct
 import org.ntqqrev.saltify.composeidl.UIntType
 import org.ntqqrev.saltify.milky.common.FriendEntity
@@ -15,6 +17,14 @@ val SystemApi = Category("system") {
     val cachedApiBase = Struct {
         field("no_cache", BooleanType, "是否强制不使用缓存") {
             default("false")
+        }
+    }
+
+    api("get_login_info") {
+        describe("获取登录信息")
+        output {
+            field("uin", LongType, "登录 QQ 号")
+            field("nickname", StringType, "登录昵称")
         }
     }
 
