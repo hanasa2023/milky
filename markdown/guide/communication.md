@@ -1,15 +1,19 @@
 # 通信
 
-Milky 提供两种服务：API 调用，即应用端向协议端发起请求；事件推送，即协议端向应用端主动推送事件。所有服务传输的数据都使用 UTF-8 编码。
+Milky 的协议端实现需要开启一个 HTTP 服务器，在不同的端点提供两种网络服务：
+- `/api` 端点，提供 API 调用服务，应用端向协议端发起请求，协议端继而完成响应操作；
+- `/event` 端点，提供事件推送服务，协议端向应用端主动推送事件。
+
+所有服务传输的数据都应当使用 UTF-8 编码。
 
 ## API 调用
 
-协议端开启一个 HTTP 服务端，监听指定的 IP 和端口，接受路径为 `/:api` 的 API 请求。请求使用 POST 方法，在请求体中通过 JSON 传递参数。为保证安全性，可以在配置文件中设置 `access_token`，协议端需要在请求头中检查 `Authorization` 字段，格式为 `Bearer {access_token}`。
+接受路径为 `/api/:api` 的 API 请求。请求使用 POST 方法，在请求体中通过 JSON 传递参数。为保证安全性，可以在配置文件中设置 `access_token`，协议端需要在请求头中检查 `Authorization` 字段，格式为 `Bearer {access_token}`。
 
 示例如下：
 
 ```http
-POST /send_private_message
+POST /api/send_private_message
 Content-Type: application/json
 Authorization: Bearer 123456
 
@@ -26,7 +30,7 @@ Authorization: Bearer 123456
 }
 ```
 
-收到 API 请求并处理后，协议端会返回一个 HTTP 响应，根据具体错误类型不同，HTTP 状态码不同：
+协议端收到 API 请求并处理后，需要返回一个 HTTP 响应，根据具体错误类型不同，HTTP 状态码不同：
 
 - `401`：鉴权凭据未提供。
 - `403`：鉴权凭据不匹配。
@@ -36,7 +40,7 @@ Authorization: Bearer 123456
 
 剩下的所有情况，无论操作实际成功与否，状态码都是 `200`，同时返回 JSON 格式的响应，示例如下：
 
-```json
+```jsonc
 // 成功响应示例
 {
   "status": "ok",
@@ -48,7 +52,7 @@ Authorization: Bearer 123456
 }
 ```
 
-```json
+```jsonc
 // 失败响应示例
 {
   "status": "failed",
@@ -59,12 +63,12 @@ Authorization: Bearer 123456
 
 ## 事件推送
 
-协议端开启一个 WebSocket 服务器，监听配置文件指定的 IP 和端口，接受路径为 `/` 的用户连接，响应 API 请求**并且**推送事件。为保证安全性，可以在配置文件中设置 `access_token`，协议端需要检查连接时的 `query` 参数 `access_token`，如果不匹配则拒绝连接。
+接受路径为 `/event` 的用户连接，响应 API 请求**并且**推送事件。为保证安全性，可以在配置文件中设置 `access_token`，协议端需要检查连接时的 `query` 参数 `access_token`，如果不匹配则拒绝连接。
 
 例如，如果 `access_token` 配置为 `123456`，则连接 URL 为
 
 ```
-ws://{IP}:{端口}/?access_token=123456
+ws://{IP}:{端口}/event?access_token=123456
 ```
 
 产生事件时，协议端会推送一条 JSON 格式的消息，格式见 [Event](../struct/Event.md)。示例如下：
