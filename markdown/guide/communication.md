@@ -67,4 +67,27 @@ Authorization: Bearer 123456
 ws://{IP}:{端口}/?access_token=123456
 ```
 
-产生事件时，协议端会推送一条 JSON 格式的消息，格式见 [Event](../struct/Event.md)。
+产生事件时，协议端会推送一条 JSON 格式的消息，格式见 [Event](../struct/Event.md)。示例如下：
+
+```json
+{
+  "time": 1234567890,
+  "self_id": 123456789,
+  "event_type": "message_receive",
+  "data": {
+    "message_scene": "friend",
+    "peer_id": 123456789,
+    "message_seq": 23333,
+    "sender_id": 123456789,
+    "time": 1234567890,
+    "message": [
+      {
+        "type": "text",
+        "data": {
+          "text": "Hello, world!"
+        }
+      }
+    ]
+  }
+}
+```
