@@ -97,8 +97,6 @@ val MessageApi = Category("message") {
 
     api("recall_message") {
         describe("撤回消息")
-        input {
-            field("message_seq", LongType, "消息序列号")
-        }
+        input(MessageIdentifier)
     }
 }

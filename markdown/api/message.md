@@ -116,6 +116,8 @@
 
 | 字段名 | 类型 | 描述 |
 | --- | --- | --- |
+| message_scene | string | 消息场景（可能值：`friend`, `group`, `temp`） |
+| peer_id | int64 | 好友 QQ 号或群号 |
 | message_seq | int64 | 消息序列号 |
 
 ### 返回值
