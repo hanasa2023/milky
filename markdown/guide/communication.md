@@ -63,7 +63,7 @@ Authorization: Bearer 123456
 
 ## 事件推送
 
-接受路径为 `/event` 的用户连接，响应 API 请求**并且**推送事件。为保证安全性，可以在配置文件中设置 `access_token`，协议端需要检查连接时的 `query` 参数 `access_token`，如果不匹配则拒绝连接。
+接受路径为 `/event` 的 WebSocket 连接请求，在建立连接后推送事件。为保证安全性，可以在配置文件中设置 `access_token`，协议端需要检查连接时的 `query` 参数 `access_token`，如果不匹配则拒绝连接。
 
 例如，如果 `access_token` 配置为 `123456`，则连接 URL 为
 
