@@ -1,15 +1,8 @@
 # 通信
 
-Milky 的协议端实现应当支持以下四种通信方式：
+Milky 提供两种服务：API 调用，即应用端向协议端发起请求；事件推送，即协议端向应用端主动推送事件。所有服务传输的数据都使用 UTF-8 编码。
 
-- **HTTP 服务端**：协议端开启一个 HTTP 服务端，提供 API 调用服务。
-- **HTTP 客户端**：协议端作为 HTTP 客户端，主动向用户配置的 URL 发起请求，提供事件推送服务。
-- **WebSocket 服务端**：协议端开启一个 WebSocket 服务端，接受用户连接，提供 API 调用和事件推送服务。
-- **WebSocket 客户端**：协议端作为 WebSocket 客户端，主动连接用户配置的 URL，提供 API 调用和事件推送服务。
-
-所有通信方式传输的数据都使用 UTF-8 编码。
-
-## HTTP 服务端
+## API 调用
 
 协议端开启一个 HTTP 服务端，监听指定的 IP 和端口，接受路径为 `/:api` 的 API 请求。请求使用 POST 方法，在请求体中通过 JSON 传递参数。为保证安全性，可以在配置文件中设置 `access_token`，协议端需要在请求头中检查 `Authorization` 字段，格式为 `Bearer {access_token}`。
 
@@ -64,40 +57,7 @@ Authorization: Bearer 123456
 }
 ```
 
-## HTTP 客户端
-
-协议端作为 HTTP 客户端，产生事件后，向配置指定的事件上报 URL 通过 POST 请求发送事件数据，事件数据以 JSON 格式表示。每个 POST 请求都会携带 `X-Self-ID` 的请求头，内容是 Bot 自身的 QQ 号。为保证安全性，可以在配置文件中设置 `access_token`，协议端需要在请求头中加入 `Authorization` 字段，格式为 `Bearer {access_token}`。
-
-示例如下：
-
-```http
-POST /webhook-endpoint
-Content-Type: application/json
-Authorization: Bearer 123456
-X-Self-ID: 123456789
-
-{
-  "time": 1234567890,
-  "event_type": "message_receive",
-  "data": {
-    "message_scene": "friend",
-    "peer_id": 123456789,
-    "message_seq": 23333,
-    "sender_id": 123456789,
-    "time": 1234567890,
-    "segments": [
-      {
-        "type": "text",
-        "data": {
-          "text": "Hello, world!"
-        }
-      }
-    ]
-  }
-}
-```
-
-## WebSocket 服务端
+## 事件推送
 
 协议端开启一个 WebSocket 服务器，监听配置文件指定的 IP 和端口，接受路径为 `/` 的用户连接，响应 API 请求**并且**推送事件。为保证安全性，可以在配置文件中设置 `access_token`，协议端需要检查连接时的 `query` 参数 `access_token`，如果不匹配则拒绝连接。
 
@@ -107,76 +67,4 @@ X-Self-ID: 123456789
 ws://{IP}:{端口}/?access_token=123456
 ```
 
-客户端发送 API 请求时，采取以下格式：
-
-```json
-{
-  "action": "send_private_message",
-  "params": {
-    "user_id": 123456789,
-    "message": [
-      {
-        "type": "text",
-        "data": {
-          "text": "Hello, world!"
-        }
-      }
-    ]
-  },
-  "echo": "123456" // 可选，回调 ID，用于区分不同的请求
-}
-```
-
-处理 API 请求后，协议端会推送一条 JSON 格式的消息，示例如下：
-
-```json
-{
-  "post_type": "action_response",
-  "self_id": 123456789,
-  "data": {
-    // data 字段的格式与 HTTP Server 的响应一致（除 echo 字段外）
-    "status": "ok",
-    "retcode": 0,
-    "data": {
-      "message_seq": 23333,
-      "time": 1234567890
-    },
-    "echo": "123456" // 请求时提供的回调 ID，若未提供则不包含此字段
-  }
-}
-```
-
-产生事件时，协议端会推送一条 JSON 格式的消息，示例如下：
-
-```json
-{
-  "post_type": "event",
-  "self_id": 123456789,
-  "data": {
-    // data 字段的格式与 WebHook 的事件数据一致
-    "time": 1234567890,
-    "event_type": "message_receive",
-    "data": {
-      "message_scene": "friend",
-      "peer_id": 123456789,
-      "message_seq": 23333,
-      "time": 1234567890,
-      "sender_id": 123456789,
-      "segments": [
-        {
-          "type": "text",
-          "data": {
-            "text": "Hello, world!"
-          }
-        }
-      ]
-    }
-  }
-}
-```
-
-## WebSocket 客户端
-
-协议端作为 WebSocket 客户端，主动连接用户配置的 URL，响应 API 请求**并且**推送事件。为保证安全性，可以在配置文件中设置 `access_token`，协议端需要在连接时的 `query` 参数中包含 `access_token`。
-
-API 请求和事件推送的格式与 [WebSocket 服务端](#websocket-服务端)一致。
+产生事件时，协议端会推送一条 JSON 格式的消息，格式见 [Event](../struct/Event.md)。
