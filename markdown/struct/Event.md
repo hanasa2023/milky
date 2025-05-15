@@ -4,6 +4,7 @@
 | 字段名 | 类型 | 描述 |
 | --- | --- | --- |
 | time | uint32 | 事件 Unix 时间戳（秒） |
+| self_id | int64 | 机器人 QQ 号 |
 | event_type | string | 类型标识符 |
 | data | struct | 结构体 |
 

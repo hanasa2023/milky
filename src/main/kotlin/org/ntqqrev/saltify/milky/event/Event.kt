@@ -12,6 +12,7 @@ val Event = DiscriminatedUnion("Event", "event_type") {
     structPlacedInto("data")
 
     field("time", UIntType, "事件 Unix 时间戳（秒）")
+    field("self_id", LongType, "机器人 QQ 号")
 
     struct("message_receive", IncomingMessage)
 
