@@ -30,13 +30,23 @@ Authorization: Bearer 123456
 }
 ```
 
-协议端收到 API 请求并处理后，需要返回一个 HTTP 响应，根据具体错误类型不同，HTTP 状态码不同：
+注意，即使请求的 API 无输入参数，也必须传入一个空的 JSON 对象 `{}`，例如：
 
+```http
+POST /api/get_login_info
+Content-Type: application/json
+Authorization: Bearer 123456
+
+{}
+```
+
+收到 API 请求并处理后，协议端会返回一个 HTTP 响应，根据具体错误类型不同，HTTP 状态码不同：
+
+- `400`：参数格式不正确。
 - `401`：鉴权凭据未提供。
 - `403`：鉴权凭据不匹配。
-- `406`：POST 请求的 Content-Type 不支持。
-- `400`：参数格式不正确。
 - `404`：请求的 API 不存在。
+- `415`：POST 请求的 Content-Type 不支持。
 
 剩下的所有情况，无论操作实际成功与否，状态码都是 `200`，同时返回 JSON 格式的响应，示例如下：
 
