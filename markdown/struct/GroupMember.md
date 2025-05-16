@@ -1,8 +1,8 @@
 # 群成员
 | 字段名 | 类型 | 描述 |
 | --- | --- | --- |
-| group_id | uint32 | 群号 |
-| user_id | uint32 | 成员 QQ 号 |
+| group_id | int64 | 群号 |
+| user_id | int64 | 成员 QQ 号 |
 | nickname | string | 成员昵称 |
 | card | string | 成员备注 |
 | title | string | 专属头衔（**可选**） |

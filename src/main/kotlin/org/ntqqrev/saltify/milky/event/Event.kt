@@ -2,7 +2,6 @@ package org.ntqqrev.saltify.milky.event
 
 import org.ntqqrev.saltify.composeidl.DiscriminatedUnion
 import org.ntqqrev.saltify.composeidl.LongType
-import org.ntqqrev.saltify.composeidl.UIntType
 import org.ntqqrev.saltify.milky.common.MessageIdentifier
 import org.ntqqrev.saltify.milky.message.IncomingMessage
 
@@ -11,7 +10,7 @@ val Event = DiscriminatedUnion("Event", "event_type") {
 
     structPlacedInto("data")
 
-    field("time", UIntType, "事件 Unix 时间戳（秒）")
+    field("time", LongType, "事件 Unix 时间戳（秒）")
     field("self_id", LongType, "机器人 QQ 号")
 
     struct("message_receive", IncomingMessage)

@@ -4,8 +4,8 @@ import org.ntqqrev.saltify.composeidl.*
 
 val GroupMemberEntity = Struct("GroupMember") {
     describe("群成员")
-    field("group_id", UIntType, "群号")
-    field("user_id", UIntType, "成员 QQ 号")
+    field("group_id", LongType, "群号")
+    field("user_id", LongType, "成员 QQ 号")
     field("nickname", StringType, "成员昵称")
     field("card", StringType, "成员备注")
     field("title", StringType, "专属头衔") { optional() }

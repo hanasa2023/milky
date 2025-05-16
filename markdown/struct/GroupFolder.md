@@ -5,8 +5,8 @@
 | folder_id | string | 文件夹 ID |
 | parent_folder_id | string | 父文件夹 ID（**可选**） |
 | folder_name | string | 文件夹名称 |
-| created_time | uint32 | 创建时的 Unix 时间戳（秒） |
-| last_modified_time | uint32 | 最后修改时的 Unix 时间戳（秒） |
+| created_time | int64 | 创建时的 Unix 时间戳（秒） |
+| last_modified_time | int64 | 最后修改时的 Unix 时间戳（秒） |
 | creator_id | int64 | 创建者 QQ 号 |
 | file_count | int32 | 文件数量 |
 

@@ -5,6 +5,6 @@
 | peer_id | int64 | 好友 QQ 号或群号 |
 | message_seq | int64 | 消息序列号 |
 | sender_id | int64 | 发送者 QQ 号 |
-| time | uint32 | 消息 Unix 时间戳（秒） |
+| time | int64 | 消息 Unix 时间戳（秒） |
 | segments | Array<[IncomingSegment](../struct/IncomingSegment.md)> | 消息段列表 |
 
