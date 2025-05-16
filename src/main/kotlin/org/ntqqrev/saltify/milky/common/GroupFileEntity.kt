@@ -20,7 +20,7 @@ val GroupFileEntity = Struct("GroupFile") {
     field("file_id", StringType, "文件 ID")
     field("file_name", StringType, "文件名称")
     field("parent_folder_id", StringType, "父文件夹 ID") { optional() }
-    field("file_size", IntType, "文件大小（字节）")
+    field("file_size", LongType, "文件大小（字节）")
     field("uploaded_time", LongType, "上传时的 Unix 时间戳（秒）")
     field("expire_time", LongType, "过期时的 Unix 时间戳（秒）")
     field("uploader_id", LongType, "上传者 QQ 号")
