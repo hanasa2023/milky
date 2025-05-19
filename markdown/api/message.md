@@ -15,6 +15,7 @@
 | --- | --- | --- |
 | message_seq | int64 | 消息序列号 |
 | time | int64 | 消息发送时间 |
+| client_seq | int64 | 消息的客户端序列号 |
 
 ## `send_group_message` 发送群消息
 
@@ -110,14 +111,26 @@
 | --- | --- | --- |
 | messages | Array<[IncomingMessage](../struct/IncomingMessage.md)> | 转发消息内容 |
 
-## `recall_message` 撤回消息
+## `recall_private_message` 撤回私聊消息
 
 ### 参数
 
 | 字段名 | 类型 | 描述 |
 | --- | --- | --- |
-| message_scene | string | 消息场景（可能值：`friend`, `group`, `temp`） |
-| peer_id | int64 | 好友 QQ 号或群号 |
+| user_id | int64 | 好友 QQ 号 |
+| message_seq | int64 | 消息序列号 |
+| client_seq | int64 | 客户端序列号 |
+
+### 返回值
+
+此 API 无返回值。
+## `recall_group_message` 撤回群消息
+
+### 参数
+
+| 字段名 | 类型 | 描述 |
+| --- | --- | --- |
+| group_id | int64 | 群号 |
 | message_seq | int64 | 消息序列号 |
 
 ### 返回值

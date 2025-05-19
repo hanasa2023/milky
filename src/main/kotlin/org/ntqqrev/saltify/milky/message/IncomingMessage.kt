@@ -12,4 +12,5 @@ val IncomingMessage = Struct("IncomingMessage") {
     field("sender_id", LongType, "发送者 QQ 号")
     field("time", LongType, "消息 Unix 时间戳（秒）")
     field("segments", Array(IncomingSegment), "消息段列表")
+    field("client_seq", LongType, "私聊消息的客户端序列号") { optional() }
 }

@@ -24,7 +24,10 @@ val MessageApi = Category("message") {
             field("user_id", LongType, "好友 QQ 号")
             use(sendMessageApiBase)
         }
-        output(sendMessageApiCommonOutput)
+        output {
+            use(sendMessageApiCommonOutput)
+            field("client_seq", LongType, "消息的客户端序列号")
+        }
     }
 
     api("send_group_message") {
@@ -95,8 +98,20 @@ val MessageApi = Category("message") {
         }
     }
 
-    api("recall_message") {
-        describe("撤回消息")
-        input(MessageIdentifier)
+    api("recall_private_message") {
+        describe("撤回私聊消息")
+        input {
+            field("user_id", LongType, "好友 QQ 号")
+            field("message_seq", LongType, "消息序列号")
+            field("client_seq", LongType, "客户端序列号")
+        }
+    }
+
+    api("recall_group_message") {
+        describe("撤回群消息")
+        input {
+            field("group_id", LongType, "群号")
+            field("message_seq", LongType, "消息序列号")
+        }
     }
 }
