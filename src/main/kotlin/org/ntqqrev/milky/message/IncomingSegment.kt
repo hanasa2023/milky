@@ -16,9 +16,13 @@ val IncomingSegment = DiscriminatedUnion("IncomingSegment", "type") {
         field("text", StringType, "文本内容")
     }
 
-    struct("at") {
+    struct("mention") {
         describe("提及（@）消息段")
         field("user_id", LongType, "提及的 QQ 号")
+    }
+
+    struct("mention_all") {
+        describe("提及全体（@全体成员）消息段")
     }
 
     struct("face") {
