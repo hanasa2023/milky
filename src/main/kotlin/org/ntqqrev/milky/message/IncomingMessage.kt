@@ -30,6 +30,6 @@ val IncomingMessage = DiscriminatedUnion("IncomingMessage", "message_scene") {
 
     struct("temp") {
         describe("临时会话消息")
-        field("sender_group", GroupEntity, "临时会话发送者的所在的群信息") { optional() }
+        field("group", GroupEntity, "临时会话发送者的所在的群信息") { optional() }
     }
 }

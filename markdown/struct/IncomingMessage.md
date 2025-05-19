@@ -28,5 +28,5 @@
 
 | 字段名 | 类型 | 描述 |
 | --- | --- | --- |
-| sender_group | [Group](../struct/Group.md) | 临时会话发送者的所在的群信息（**可选**） |
+| group | [Group](../struct/Group.md) | 临时会话发送者的所在的群信息（**可选**） |
 
