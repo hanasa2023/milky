@@ -49,39 +49,23 @@
 | --- | --- | --- |
 | message | [IncomingMessage](../struct/IncomingMessage.md) | 消息内容 |
 
-## `get_history_private_message` 获取私聊消息历史
+## `get_history_message` 获取历史消息
 
 ### 参数
 
 | 字段名 | 类型 | 描述 |
 | --- | --- | --- |
-| user_id | int64 | 好友 QQ 号 |
-| start_message_seq | int64 | 起始消息 ID，不提供则从最新消息开始（**可选**） |
-| limit | int32 | 获取的消息数量（默认值：`20`） |
+| message_scene | string | 消息场景（可能值：`friend`, `group`, `temp`） |
+| peer_id | int64 | 好友 QQ 号或群号 |
+| start_message_seq | int64 | 起始消息序列号，不提供则从最新消息开始（**可选**） |
+| direction | string | 消息获取方向（可能值：`newer`, `older`） |
+| limit | int32 | 获取的最大消息数量（默认值：`20`） |
 
 ### 返回值
 
 | 字段名 | 类型 | 描述 |
 | --- | --- | --- |
-| messages | Array<[IncomingMessage](../struct/IncomingMessage.md)> | 消息列表 |
-| next_start_message_seq | string | 下一页起始消息序列号 |
-
-## `get_history_group_message` 获取群消息历史
-
-### 参数
-
-| 字段名 | 类型 | 描述 |
-| --- | --- | --- |
-| group_id | int64 | 群号 |
-| start_message_seq | int64 | 起始消息 ID，不提供则从最新消息开始（**可选**） |
-| limit | int32 | 获取的消息数量（默认值：`20`） |
-
-### 返回值
-
-| 字段名 | 类型 | 描述 |
-| --- | --- | --- |
-| messages | Array<[IncomingMessage](../struct/IncomingMessage.md)> | 消息列表 |
-| next_start_message_seq | string | 下一页起始消息序列号 |
+| messages | Array<[IncomingMessage](../struct/IncomingMessage.md)> | 获取到的消息，部分消息可能不存在，如撤回的消息 |
 
 ## `get_resource_temp_url` 获取临时资源链接
 

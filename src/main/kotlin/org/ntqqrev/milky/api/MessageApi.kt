@@ -47,35 +47,29 @@ val MessageApi = Category("message") {
         }
     }
 
-    val getHistoryMessageApiBase = Struct {
-        field("start_message_seq", LongType) {
-            describe("起始消息 ID，不提供则从最新消息开始")
-            optional()
-        }
-        field("limit", IntType, "获取的消息数量") { default("20") }
-    }
-
-    val getHistoryMessageApiCommonOutput = Struct {
-        field("messages", Array(IncomingMessage), "消息列表")
-        field("next_start_message_seq", StringType, "下一页起始消息序列号")
-    }
-
-    api("get_history_private_message") {
-        describe("获取私聊消息历史")
+    api("get_history_messages") {
+        describe("获取历史消息")
         input {
-            field("user_id", LongType, "好友 QQ 号")
-            use(getHistoryMessageApiBase)
+            field("message_scene", StringType) {
+                describe("消息场景")
+                enum("friend", "group", "temp")
+            }
+            field("peer_id", LongType, "好友 QQ 号或群号")
+            field("start_message_seq", LongType) {
+                describe("起始消息序列号，不提供则从最新消息开始")
+                optional()
+            }
+            field("direction", StringType) {
+                describe("消息获取方向")
+                enum("newer", "older")
+            }
+            field("limit", IntType, "获取的最大消息数量") { default("20") }
         }
-        output(getHistoryMessageApiCommonOutput)
-    }
-
-    api("get_history_group_message") {
-        describe("获取群消息历史")
-        input {
-            field("group_id", LongType, "群号")
-            use(getHistoryMessageApiBase)
+        output {
+            field("messages", Array(IncomingMessage)) {
+                describe("获取到的消息，部分消息可能不存在，如撤回的消息")
+            }
         }
-        output(getHistoryMessageApiCommonOutput)
     }
 
     api("get_resource_temp_url") {
