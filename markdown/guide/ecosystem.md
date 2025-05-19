@@ -8,4 +8,6 @@
 
 ## 支持 Milky 的应用端
 
+- [NoneBot](https://nonebot.dev/) - 通过 [adapter-milky](https://github.com/nonebot/adapter-milky) (In progress)
+
 ## Milky SDK
