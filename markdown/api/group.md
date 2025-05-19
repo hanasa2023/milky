@@ -164,7 +164,7 @@
 ### 返回值
 
 此 API 无返回值。
-## `send_group_poke` 发送群戳一戳
+## `send_group_nudge` 发送群戳一戳
 
 ### 参数
 

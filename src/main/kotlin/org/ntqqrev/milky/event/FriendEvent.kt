@@ -9,7 +9,7 @@ val FriendEventBase = Struct {
     field("user_id", LongType, "好友 QQ 号")
 }
 
-val FriendPokeEvent = FriendEventBase.extend {
+val FriendNudgeEvent = FriendEventBase.extend {
     describe("好友戳一戳")
     field("is_self_send", BooleanType, "是否是自己发送的戳一戳")
     field("is_self_receive", BooleanType, "是否是自己接收的戳一戳")

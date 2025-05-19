@@ -53,7 +53,7 @@
 | request_id | string | 请求 ID，用于同意 / 拒绝请求 |
 | operator_id | int64 | 发起请求的用户 QQ 号 |
 | group_id | int64 | 群号 |
-## `friend_poke` 好友戳一戳
+## `friend_nudge` 好友戳一戳
 
 | 字段名 | 类型 | 描述 |
 | --- | --- | --- |
@@ -128,7 +128,7 @@
 | group_id | int64 | 群号 |
 | operator_id | int64 | 操作者 QQ 号 |
 | is_mute | boolean | 是否全员禁言，`false` 表示取消全员禁言 |
-## `group_poke` 群戳一戳
+## `group_nudge` 群戳一戳
 
 | 字段名 | 类型 | 描述 |
 | --- | --- | --- |

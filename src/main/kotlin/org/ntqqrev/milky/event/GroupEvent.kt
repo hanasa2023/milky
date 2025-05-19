@@ -66,7 +66,7 @@ val GroupWholeMuteEvent = GroupEventBase.extend {
     field("is_mute", BooleanType, "是否全员禁言，`false` 表示取消全员禁言")
 }
 
-val GroupPokeEvent = GroupEventBase.extend {
+val GroupNudgeEvent = GroupEventBase.extend {
     describe("群戳一戳")
     field("sender_id", LongType, "发送者 QQ 号")
     field("receiver_id", LongType, "接收者 QQ 号")

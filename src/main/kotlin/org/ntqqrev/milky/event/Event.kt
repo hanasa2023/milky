@@ -29,7 +29,7 @@ val Event = DiscriminatedUnion("Event", "event_type") {
 
     struct("group_invitation_request", GroupInvitationRequestEvent)
 
-    struct("friend_poke", FriendPokeEvent)
+    struct("friend_nudge", FriendNudgeEvent)
 
     struct("friend_file_upload", FriendFileUploadEvent)
 
@@ -49,7 +49,7 @@ val Event = DiscriminatedUnion("Event", "event_type") {
 
     struct("group_whole_mute", GroupWholeMuteEvent)
 
-    struct("group_poke", GroupPokeEvent)
+    struct("group_nudge", GroupNudgeEvent)
 
     struct("group_file_upload", GroupFileUploadEvent)
 }

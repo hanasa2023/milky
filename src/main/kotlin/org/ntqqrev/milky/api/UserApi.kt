@@ -7,7 +7,7 @@ import org.ntqqrev.saltify.composeidl.LongType
 val UserApi = Category("friend") {
     describe("好友 API")
 
-    api("send_friend_poke") {
+    api("send_friend_nudge") {
         describe("发送好友戳一戳")
         input {
             field("user_id", LongType, "好友 QQ 号")

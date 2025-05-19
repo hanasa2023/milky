@@ -144,7 +144,7 @@ val GroupApi = Category("group") {
         }
     }
 
-    api("send_group_poke") {
+    api("send_group_nudge") {
         describe("发送群戳一戳")
         input {
             field("group_id", LongType, "群号")
