@@ -49,7 +49,7 @@
 | --- | --- | --- |
 | message | [IncomingMessage](../struct/IncomingMessage.md) | 消息内容 |
 
-## `get_history_message` 获取历史消息
+## `get_history_messages` 获取历史消息
 
 ### 参数
 
