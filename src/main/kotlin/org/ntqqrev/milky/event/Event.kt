@@ -18,7 +18,8 @@ val Event = DiscriminatedUnion("Event", "event_type") {
     struct("message_recall") {
         describe("撤回消息")
         use(MessageIdentifier)
-        field("operator_id", LongType, "操作者 QQ 号") { optional() }
+        field("sender_id", LongType, "被撤回的消息的发送者 QQ 号")
+        field("operator_id", LongType, "操作者 QQ 号")
     }
 
     struct("friend_request", FriendRequestEvent)

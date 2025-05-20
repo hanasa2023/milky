@@ -21,7 +21,8 @@
 | message_scene | string | 消息场景（可能值：`friend`, `group`, `temp`） |
 | peer_id | int64 | 好友 QQ 号或群号 |
 | message_seq | int64 | 消息序列号 |
-| operator_id | int64 | 操作者 QQ 号（**可选**） |
+| sender_id | int64 | 被撤回的消息的发送者 QQ 号 |
+| operator_id | int64 | 操作者 QQ 号 |
 ## `friend_request` 好友请求
 
 | 字段名 | 类型 | 描述 |
