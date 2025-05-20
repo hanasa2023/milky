@@ -46,7 +46,7 @@ Authorization: Bearer 123456
 - `404`：请求的 API 不存在。
 - `415`：POST 请求的 Content-Type 不支持。
 
-剩下的所有情况，无论操作实际成功与否，状态码都是 `200`，同时返回 JSON 格式的响应，示例如下：
+剩下的所有情况，无论操作实际成功与否，状态码**都是 `200`**，同时返回 JSON 格式的响应，示例如下：
 
 ```jsonc
 // 成功响应示例
@@ -61,10 +61,19 @@ Authorization: Bearer 123456
 ```
 
 ```jsonc
-// 失败响应示例
+// 失败响应示例 1
 {
   "status": "failed",
-  "retcode": -100, // 失败时的 retcode 为非 0
+  "retcode": -400, // 参数解析失败时，retcode 为 -400
+  "message": "user_id (-1) 不是一个合法的 QQ 号"
+}
+```
+
+```jsonc
+// 失败响应示例 2
+{
+  "status": "failed",
+  "retcode": -404, // 其余错误情况的 retcode 由协议端自行决定
   "message": "user_id 对应的好友不存在"
 }
 ```
