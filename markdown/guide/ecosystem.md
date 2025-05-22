@@ -11,3 +11,5 @@
 - [NoneBot](https://nonebot.dev/) - 通过 [adapter-milky](https://github.com/nonebot/adapter-milky)
 
 ## Milky SDK
+
+- Rust - [vivian-rs](https://crates.io/crates/vivian)
