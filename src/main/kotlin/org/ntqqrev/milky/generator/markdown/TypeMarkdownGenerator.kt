@@ -33,7 +33,7 @@ class TypeMarkdownGenerator(val ctx: MarkdownGenerator) {
     fun generateStruct(data: Struct): String {
         val unresolvedStructs = mutableListOf<Pair<String, Struct>>()
 
-        fun Type.toBriefString(key: String): String = when (this) {
+        fun Type.toBriefString(key: String, isEnum: Boolean): String = when (this) {
             is Struct -> {
                 if (this in ctx.documentedStructs)
                     "[${this.name}](../struct/${this.name}.md)"
@@ -44,8 +44,12 @@ class TypeMarkdownGenerator(val ctx: MarkdownGenerator) {
             }
 
             is TypeReference -> "[${this.reference}](../struct/${this.reference}.md)"
-            is Array -> "Array<${this.elementType.toBriefString(key)}>"
-            else -> this.toString()
+            is Array -> "Array<${this.elementType.toBriefString(key, isEnum)}>"
+            else -> if (isEnum) {
+                "Enum<${this}>"
+            } else {
+                this.toString()
+            }
         }
 
         val result = StringBuilder()
@@ -54,7 +58,7 @@ class TypeMarkdownGenerator(val ctx: MarkdownGenerator) {
             .apply {
                 data.fields.forEach { field ->
                     appendLine(
-                        "| ${field.name} | ${field.type.toBriefString(field.name)} | ${generateFieldDescription(field)} |"
+                        "| ${field.name} | ${field.type.toBriefString(field.name, field.enum != null)} | ${generateFieldDescription(field)} |"
                     )
                 }
             }
@@ -112,7 +116,7 @@ class TypeMarkdownGenerator(val ctx: MarkdownGenerator) {
             result.append("（**已弃用**：${field.deprecationMessage}）")
 
         if (field.enum != null)
-            result.append("（可能值：${field.enum!!.joinToString(", ") { "`${it}`" }}）")
+            result.append("，可能值：${field.enum!!.joinToString(", ") { "`${it}`" }}")
 
         if (field.defaultValue != null)
             result.append("（默认值：`${field.defaultValue}`）")

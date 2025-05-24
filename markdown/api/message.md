@@ -39,7 +39,7 @@
 
 | 字段名 | 类型 | 描述 |
 | --- | --- | --- |
-| message_scene | string | 消息场景（可能值：`friend`, `group`, `temp`） |
+| message_scene | Enum<string> | 消息场景，可能值：`friend`, `group`, `temp` |
 | peer_id | int64 | 好友 QQ 号或群号 |
 | message_seq | int64 | 消息序列号 |
 
@@ -55,10 +55,10 @@
 
 | 字段名 | 类型 | 描述 |
 | --- | --- | --- |
-| message_scene | string | 消息场景（可能值：`friend`, `group`, `temp`） |
+| message_scene | Enum<string> | 消息场景，可能值：`friend`, `group`, `temp` |
 | peer_id | int64 | 好友 QQ 号或群号 |
 | start_message_seq | int64 | 起始消息序列号，不提供则从最新消息开始（**可选**） |
-| direction | string | 消息获取方向（可能值：`newer`, `older`） |
+| direction | Enum<string> | 消息获取方向，可能值：`newer`, `older` |
 | limit | int32 | 获取的最大消息数量（默认值：`20`） |
 
 ### 返回值
