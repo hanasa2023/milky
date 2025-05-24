@@ -4,6 +4,8 @@ Milky 的协议端实现需要开启一个 HTTP 服务器，在不同的端点�
 - `/api` 端点，提供 API 调用服务，应用端向协议端发起请求，协议端继而完成响应操作；
 - `/event` 端点，提供事件推送服务，协议端向应用端主动推送事件。
 
+同时，如果用户配置了 WebHook 地址，协议端还会向配置的地址推送事件。可以给定多个 WebHook 地址。
+
 所有服务传输的数据都应当使用 UTF-8 编码。
 
 ## API 调用
@@ -80,6 +82,10 @@ Authorization: Bearer 123456
 
 ## 事件推送
 
+事件推送服务支持两种方式：WebSocket 和 WebHook。
+
+### WebSocket 连接
+
 接受路径为 `/event` 的 WebSocket 连接请求，在建立连接后推送事件。为保证安全性，可以在配置文件中设置 `access_token`，协议端需要检查连接时的 `query` 参数 `access_token`，如果不匹配则拒绝连接。
 
 例如，如果 `access_token` 配置为 `123456`，则连接 URL 为
@@ -91,6 +97,39 @@ ws://{IP}:{端口}/event?access_token=123456
 产生事件时，协议端会推送一条 JSON 格式的消息，格式见 [Event](../struct/Event.md)。示例如下：
 
 ```json
+{
+  "time": 1234567890,
+  "self_id": 123456789,
+  "event_type": "message_receive",
+  "data": {
+    "message_scene": "friend",
+    "peer_id": 123456789,
+    "message_seq": 23333,
+    "sender_id": 123456789,
+    "time": 1234567890,
+    "message": [
+      {
+        "type": "text",
+        "data": {
+          "text": "Hello, world!"
+        }
+      }
+    ]
+  }
+}
+```
+
+### WebHook 推送
+
+以 POST 方式向给定的 WebHook 地址推送事件。为保证安全性，可以在配置文件中设置 `access_token`，**接收推送的一方**可以在请求头中检查 `Authorization` 字段是否匹配，格式为 `Bearer {access_token}`。
+
+POST 请求的 body 与 WebSocket 推送的格式相同。示例如下：
+
+```http
+POST http://example.com/webhook
+Content-Type: application/json
+Authorization: Bearer 123456
+
 {
   "time": 1234567890,
   "self_id": 123456789,
