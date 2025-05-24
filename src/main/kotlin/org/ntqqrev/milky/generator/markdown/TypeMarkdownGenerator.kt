@@ -46,7 +46,7 @@ class TypeMarkdownGenerator(val ctx: MarkdownGenerator) {
             is TypeReference -> "[${this.reference}](../struct/${this.reference}.md)"
             is Array -> "Array<${this.elementType.toBriefString(key, isEnum)}>"
             else -> if (isEnum) {
-                "Enum<${this}>"
+                "enum (${this})"
             } else {
                 this.toString()
             }
