@@ -56,7 +56,7 @@ Authorization: Bearer 123456
   "status": "ok",
   "retcode": 0, // 成功时的 retcode 为 0
   "data": {
-    "message_seq": "23333",
+    "message_seq": 23333,
     "time": 1234567890
   }
 }
