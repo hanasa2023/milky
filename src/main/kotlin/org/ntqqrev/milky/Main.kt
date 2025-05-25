@@ -36,10 +36,8 @@ fun main() {
     )
     validator.validate()
 
-    println(
-        MarkdownGenerator(
-            documentedStructs = validator.documentedStructs,
-            apiCategories = validator.apiCategories
-        ).generate(Path("markdown"))
-    )
+    MarkdownGenerator(
+        documentedStructs = validator.documentedStructs,
+        apiCategories = validator.apiCategories
+    ).generate(Path("markdown"))
 }

@@ -4,7 +4,7 @@
 
 基于 HTTP / WebSocket 通信的新时代 QQ 机器人应用接口标准
 
-[开始阅读](http://milky.ntqqrev.org/)
+[开始阅读](http://milky.ntqqrev.org/) | [QQ 群](https://qm.qq.com/q/C04kPQzayk)
 
 </div>
 

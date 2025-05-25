@@ -6,6 +6,9 @@ export default defineConfig({
   themeConfig: {
     nav: [
       { text: '主页', link: '/' },
+      { text: '指南', link: '/guide/introduction' },
+      { text: '参考', link: '/api/system' },
+      { text: 'QQ 群', link: 'https://qm.qq.com/q/C04kPQzayk' },
     ],
 
     sidebar: [

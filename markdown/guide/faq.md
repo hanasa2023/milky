@@ -1,6 +1,6 @@
 # Q&A
 
-以下内容是针对一些问题的解答。
+以下内容是针对一些问题的解答。未尽之处，欢迎加入 [QQ 群](https://qm.qq.com/q/C04kPQzayk)讨论相关细节。
 
 ## `message_seq` 是否相当于 OneBot 11 标准中的 `message_id`？
 

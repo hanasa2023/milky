@@ -12,6 +12,9 @@ hero:
     - theme: alt
       text: GitHub
       link: https://github.com/SaltifyDev/milky
+    - theme: alt
+      text: QQ 群
+      link: https://qm.qq.com/q/C04kPQzayk
 
 features:
   - title: 全面兼容

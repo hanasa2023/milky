@@ -39,7 +39,7 @@
 | --- | --- | --- |
 | uri | string | 文件 URI，支持 `file://` `http(s)://` `base64://` 三种格式 |
 | summary | string | 图片预览文本（**可选**） |
-| sub_type | string | 图片类型（可能值：`normal`, `sticker`） |
+| sub_type | enum (string) | 图片类型，可能值：`normal`, `sticker` |
 ## `record` 语音消息段
 
 | 字段名 | 类型 | 描述 |

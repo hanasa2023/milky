@@ -1,17 +1,18 @@
 package org.ntqqrev.milky.api
 
+import org.ntqqrev.saltify.composeidl.BooleanType
 import org.ntqqrev.saltify.composeidl.Category
 import org.ntqqrev.saltify.composeidl.IntType
 import org.ntqqrev.saltify.composeidl.LongType
 
-val UserApi = Category("friend") {
+val FriendApi = Category("friend") {
     describe("好友 API")
 
     api("send_friend_nudge") {
         describe("发送好友戳一戳")
         input {
             field("user_id", LongType, "好友 QQ 号")
-            field("is_self", LongType, "是否戳自己") { default("false") }
+            field("is_self", BooleanType, "是否戳自己") { default("false") }
         }
     }
 

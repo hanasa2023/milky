@@ -7,7 +7,7 @@
 | 字段名 | 类型 | 描述 |
 | --- | --- | --- |
 | user_id | int64 | 好友 QQ 号 |
-| is_self | int64 | 是否戳自己（默认值：`false`） |
+| is_self | boolean | 是否戳自己（默认值：`false`） |
 
 ### 返回值
 
