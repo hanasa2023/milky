@@ -28,7 +28,7 @@ fun main() {
         apiCategories = listOf(
             SystemApi,
             MessageApi,
-            UserApi,
+            FriendApi,
             GroupApi,
             RequestApi,
             FileApi,
