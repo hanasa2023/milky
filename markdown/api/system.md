@@ -37,7 +37,9 @@
 
 ### 返回值
 
-见 [Friend](../struct/Friend.md)
+| 字段名 | 类型 | 描述 |
+| --- | --- | --- |
+| friend | [Friend](../struct/Friend.md) | 好友信息 |
 
 ## `get_group_list` 获取群列表
 
@@ -64,7 +66,9 @@
 
 ### 返回值
 
-见 [Group](../struct/Group.md)
+| 字段名 | 类型 | 描述 |
+| --- | --- | --- |
+| group | [Group](../struct/Group.md) | 群信息 |
 
 ## `get_group_member_list` 获取群成员列表
 
@@ -93,5 +97,7 @@
 
 ### 返回值
 
-见 [GroupMember](../struct/GroupMember.md)
+| 字段名 | 类型 | 描述 |
+| --- | --- | --- |
+| member | [GroupMember](../struct/GroupMember.md) | 群成员信息 |
 

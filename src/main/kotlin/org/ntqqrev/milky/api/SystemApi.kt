@@ -36,7 +36,9 @@ val SystemApi = Category("system") {
             field("user_id", LongType, "好友 QQ 号")
             use(cachedApiBase)
         }
-        output(FriendEntity)
+        output {
+            field("friend", FriendEntity, "好友信息")
+        }
     }
 
     api("get_group_list") {
@@ -53,7 +55,9 @@ val SystemApi = Category("system") {
             field("group_id", LongType, "群号")
             use(cachedApiBase)
         }
-        output(GroupEntity)
+        output {
+            field("group", GroupEntity, "群信息")
+        }
     }
 
     api("get_group_member_list") {
@@ -74,6 +78,8 @@ val SystemApi = Category("system") {
             field("user_id", LongType, "群成员 QQ 号")
             use(cachedApiBase)
         }
-        output(GroupMemberEntity)
+        output {
+            field("member", GroupMemberEntity, "群成员信息")
+        }
     }
 }
