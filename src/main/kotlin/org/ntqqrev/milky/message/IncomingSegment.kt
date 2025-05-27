@@ -4,6 +4,7 @@ import org.ntqqrev.saltify.composeidl.*
 
 val IncomingResourceSegmentBase = Struct {
     field("resource_id", StringType, "资源 ID")
+    field("temp_url", StringType, "临时 URL")
 }
 
 val IncomingSegment = DiscriminatedUnion("IncomingSegment", "type") {

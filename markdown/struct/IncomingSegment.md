@@ -37,6 +37,7 @@
 | 字段名 | 类型 | 描述 |
 | --- | --- | --- |
 | resource_id | string | 资源 ID |
+| temp_url | string | 临时 URL |
 | summary | string | 图片预览文本（**可选**） |
 | sub_type | enum (string) | 图片类型，可能值：`normal`, `sticker` |
 ## `record` 语音消息段
@@ -44,12 +45,14 @@
 | 字段名 | 类型 | 描述 |
 | --- | --- | --- |
 | resource_id | string | 资源 ID |
+| temp_url | string | 临时 URL |
 | duration | int32 | 语音时长（秒） |
 ## `video` 视频消息段
 
 | 字段名 | 类型 | 描述 |
 | --- | --- | --- |
 | resource_id | string | 资源 ID |
+| temp_url | string | 临时 URL |
 ## `forward` 合并转发消息段
 
 | 字段名 | 类型 | 描述 |
