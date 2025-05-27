@@ -1,12 +1,12 @@
 <div align="center">
 
-<h1>milky</h1>
-
-基于 HTTP / WebSocket 通信的新时代 QQ 机器人应用接口标准
+<h1>Milky</h1>
 
 [开始阅读](http://milky.ntqqrev.org/) | [QQ 群](https://qm.qq.com/q/C04kPQzayk) | [Telegram](https://t.me/WeavingStar)
 
 </div>
+
+Milky，得名自节奏游戏《舞萌 DX》的角色咪露库（みるく / Milk），是一个基于 HTTP / WebSocket 通信的新时代 QQ 机器人应用接口标准。
 
 ## 背景
 
@@ -29,3 +29,5 @@ Milky 对 OneBot 11 的设计理念进行了全面的反思和改进，具体体
 - **全面兼容**：Milky 旨在覆盖绝大多数 QQ 特性，适配多种应用场景。
 - **简单易用**：Milky 力求对协议端和应用端实现均友好，去除不必要的复杂性。
 - **清晰规范**：Milky 拒绝模棱两可的类型定义，始终保证接口 100% 强类型。
+
+## 快速开始
