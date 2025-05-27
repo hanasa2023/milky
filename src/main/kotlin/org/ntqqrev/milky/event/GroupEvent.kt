@@ -57,6 +57,7 @@ val GroupMessageReactionEvent = GroupEventBase.extend {
 val GroupMuteEvent = GroupEventBase.extend {
     describe("群成员禁言状态变更")
     field("user_id", LongType, "发生变更的用户 QQ 号")
+    field("operator_id", LongType, "操作者 QQ 号")
     field("duration", IntType, "禁言时长（秒），为 0 表示取消禁言")
 }
 

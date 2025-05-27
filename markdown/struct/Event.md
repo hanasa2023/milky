@@ -121,6 +121,7 @@
 | --- | --- | --- |
 | group_id | int64 | 群号 |
 | user_id | int64 | 发生变更的用户 QQ 号 |
+| operator_id | int64 | 操作者 QQ 号 |
 | duration | int32 | 禁言时长（秒），为 0 表示取消禁言 |
 ## `group_whole_mute` 群全员禁言状态变更
 
