@@ -15,6 +15,9 @@ hero:
     - theme: alt
       text: QQ 群
       link: https://qm.qq.com/q/C04kPQzayk
+    - theme: alt
+      text: Telegram
+      link: https://t.me/WeavingStar
 
 features:
   - title: 全面兼容

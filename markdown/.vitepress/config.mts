@@ -48,7 +48,13 @@ export default defineConfig({
     nav: [
       { text: '主页', link: '/' },
       { text: '指南', items: guideItems },
-      { text: 'QQ 群', link: 'https://qm.qq.com/q/C04kPQzayk' },
+      {
+        text: '联系',
+        items: [
+          { text: 'QQ 群', link: 'https://qm.qq.com/q/C04kPQzayk' },
+          { text: 'Telegram', link: 'https://t.me/WeavingStar' },
+        ]
+      },
     ],
     sidebar: [
       { text: '指南', items: guideItems },
