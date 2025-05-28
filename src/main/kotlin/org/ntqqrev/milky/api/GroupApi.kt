@@ -135,6 +135,7 @@ val GroupApi = Category("group") {
     api("send_group_message_reaction") {
         describe("发送群消息表情回应")
         input {
+            field("group_id", LongType, "群号")
             field("message_seq", LongType, "要回应的消息序列号")
             field("reaction", StringType, "表情 ID")
             field("is_add", BooleanType) {
