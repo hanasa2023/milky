@@ -25,35 +25,16 @@
 | operator_id | int64 | 操作者 QQ 号 |
 ## `friend_request` 好友请求
 
-| 字段名 | 类型 | 描述 |
-| --- | --- | --- |
-| request_id | string | 请求 ID，用于同意 / 拒绝请求 |
-| operator_id | int64 | 发起请求的用户 QQ 号 |
-| comment | string | 好友请求附加信息（**可选**） |
-| via | string | 好友请求来源（**可选**） |
-## `group_join_request` 入群请求
+见 [FriendRequest](../struct/FriendRequest.md)
 
-| 字段名 | 类型 | 描述 |
-| --- | --- | --- |
-| request_id | string | 请求 ID，用于同意 / 拒绝请求 |
-| operator_id | int64 | 发起请求的用户 QQ 号 |
-| group_id | int64 | 群号 |
-| comment | string | 入群请求附加信息（**可选**） |
-## `group_invited_join_request` 邀请他人入群请求
+## `group_request` 入群请求
 
-| 字段名 | 类型 | 描述 |
-| --- | --- | --- |
-| request_id | string | 请求 ID，用于同意 / 拒绝请求 |
-| operator_id | int64 | 发起请求的用户 QQ 号 |
-| group_id | int64 | 群号 |
-| invitee_id | int64 | 被邀请者 QQ 号 |
-## `group_invitation_request` 邀请自己入群请求
+见 [GroupRequest](../struct/GroupRequest.md)
 
-| 字段名 | 类型 | 描述 |
-| --- | --- | --- |
-| request_id | string | 请求 ID，用于同意 / 拒绝请求 |
-| operator_id | int64 | 发起请求的用户 QQ 号 |
-| group_id | int64 | 群号 |
+## `group_invitation` 他人邀请 Bot 入群请求
+
+见 [GroupInvitation](../struct/GroupInvitation.md)
+
 ## `friend_nudge` 好友戳一戳
 
 | 字段名 | 类型 | 描述 |

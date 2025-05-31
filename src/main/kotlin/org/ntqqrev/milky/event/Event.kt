@@ -1,8 +1,10 @@
 package org.ntqqrev.milky.event
 
+import org.ntqqrev.milky.common.FriendRequest
+import org.ntqqrev.milky.common.GroupInvitation
+import org.ntqqrev.milky.common.GroupRequest
 import org.ntqqrev.saltify.composeidl.DiscriminatedUnion
 import org.ntqqrev.saltify.composeidl.LongType
-import org.ntqqrev.milky.common.MessageIdentifier
 import org.ntqqrev.milky.message.IncomingMessage
 
 val Event = DiscriminatedUnion("Event", "event_type") {
@@ -16,10 +18,9 @@ val Event = DiscriminatedUnion("Event", "event_type") {
     struct("message_receive", IncomingMessage)
     struct("message_recall", MessageRecallEvent)
 
-    struct("friend_request", FriendRequestEvent)
-    struct("group_join_request", GroupJoinRequestEvent)
-    struct("group_invited_join_request", GroupInvitedJoinRequestEvent)
-    struct("group_invitation_request", GroupInvitationRequestEvent)
+    struct("friend_request", FriendRequest)
+    struct("group_request", GroupRequest)
+    struct("group_invitation", GroupInvitation)
 
     struct("friend_nudge", FriendNudgeEvent)
     struct("friend_file_upload", FriendFileUploadEvent)
