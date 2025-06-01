@@ -1,4 +1,4 @@
-# 接收转发消息
+# 接收转发消息 (IncomingForwardedMessage)
 | 字段名 | 类型 | 描述 |
 | --- | --- | --- |
 | user_id | int64 | 发送者 QQ 号 |

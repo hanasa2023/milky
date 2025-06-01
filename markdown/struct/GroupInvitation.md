@@ -1,4 +1,4 @@
-# 他人邀请 Bot 入群请求
+# 他人邀请 Bot 入群请求 (GroupInvitation)
 | 字段名 | 类型 | 描述 |
 | --- | --- | --- |
 | request_id | string | 请求 ID，用于同意 / 拒绝请求 |

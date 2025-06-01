@@ -13,14 +13,14 @@ class TypeMarkdownGenerator(val ctx: MarkdownGenerator) {
     fun generateTypeDocument(data: Type): String {
         return when (data) {
             is DiscriminatedUnion -> {
-                val result = StringBuilder("# ${data.description}")
+                val result = StringBuilder("# ${data.description} (${data.name})")
                 result.appendLine()
                 result.appendLine(generateDiscriminatedUnion(data))
                 result.toString()
             }
 
             is Struct -> {
-                val result = StringBuilder("# ${data.description}")
+                val result = StringBuilder("# ${data.description} (${data.name})")
                 result.appendLine()
                 result.appendLine(generateStruct(data))
                 result.toString()

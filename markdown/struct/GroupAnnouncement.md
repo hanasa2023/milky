@@ -1,4 +1,4 @@
-# 群公告
+# 群公告 (GroupAnnouncement)
 | 字段名 | 类型 | 描述 |
 | --- | --- | --- |
 | group_id | int64 | 群号 |
