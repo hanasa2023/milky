@@ -10,6 +10,11 @@
 
 不同的 event_type 值对应不同的 data，具体如下：
 
+## `bot_offline` 机器人下线事件
+
+| 字段名 | 类型 | 描述 |
+| --- | --- | --- |
+| reason | string | 下线原因 |
 ## `message_receive` 接收消息
 
 见 [IncomingMessage](../struct/IncomingMessage.md)

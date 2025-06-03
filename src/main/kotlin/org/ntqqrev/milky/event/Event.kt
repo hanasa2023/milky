@@ -15,6 +15,8 @@ val Event = DiscriminatedUnion("Event", "event_type") {
     field("time", LongType, "事件 Unix 时间戳（秒）")
     field("self_id", LongType, "机器人 QQ 号")
 
+    struct("bot_offline", BotOfflineEvent)
+
     struct("message_receive", IncomingMessage)
     struct("message_recall", MessageRecallEvent)
 
