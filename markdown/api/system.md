@@ -23,7 +23,8 @@
 | --- | --- | --- |
 | impl_name | string | 协议端名称 |
 | impl_version | string | 协议端版本 |
-| qq_version | string | 协议端使用的 QQ 协议版本 |
+| qq_protocol_version | string | 协议端使用的 QQ 协议版本 |
+| qq_protocol_type | enum (string) | 协议端使用的 QQ 协议平台，可能值：`windows`, `linux`, `macos`, `android_pad`, `android_phone`, `ipad`, `iphone`, `harmony`, `watch` |
 | milky_version | string | 协议端实现的 Milky 协议版本，目前为 `1.0` |
 
 ## `get_friend_list` 获取好友列表

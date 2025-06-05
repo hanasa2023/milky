@@ -28,7 +28,20 @@ val SystemApi = Category("system") {
         output {
             field("impl_name", StringType, "协议端名称")
             field("impl_version", StringType, "协议端版本")
-            field("qq_version", StringType, "协议端使用的 QQ 协议版本")
+            field("qq_protocol_version", StringType, "协议端使用的 QQ 协议版本")
+            field("qq_protocol_type", StringType, "协议端使用的 QQ 协议平台") {
+                enum(
+                    "windows",
+                    "linux",
+                    "macos",
+                    "android_pad",
+                    "android_phone",
+                    "ipad",
+                    "iphone",
+                    "harmony",
+                    "watch"
+                )
+            }
             field("milky_version", StringType, "协议端实现的 Milky 协议版本，目前为 `$MilkyVersion`")
         }
     }
