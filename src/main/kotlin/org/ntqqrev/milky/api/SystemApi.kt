@@ -1,5 +1,6 @@
 package org.ntqqrev.milky.api
 
+import org.ntqqrev.milky.MilkyVersion
 import org.ntqqrev.saltify.composeidl.*
 import org.ntqqrev.milky.common.FriendEntity
 import org.ntqqrev.milky.common.GroupEntity
@@ -19,6 +20,16 @@ val SystemApi = Category("system") {
         output {
             field("uin", LongType, "登录 QQ 号")
             field("nickname", StringType, "登录昵称")
+        }
+    }
+
+    api("get_impl_info") {
+        describe("获取协议端信息")
+        output {
+            field("impl_name", StringType, "协议端名称")
+            field("impl_version", StringType, "协议端版本")
+            field("qq_version", StringType, "协议端使用的 QQ 协议版本，格式为 `major.minor.patch-build`")
+            field("milky_version", StringType, "协议端实现的 Milky 协议版本，目前为 `$MilkyVersion`")
         }
     }
 

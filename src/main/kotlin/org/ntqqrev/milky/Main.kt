@@ -8,6 +8,8 @@ import org.ntqqrev.milky.generator.validator.DSLValidator
 import org.ntqqrev.milky.message.*
 import kotlin.io.path.Path
 
+const val MilkyVersion = "1.0"
+
 fun main() {
     val validator = DSLValidator(
         documentedStructs = listOf(

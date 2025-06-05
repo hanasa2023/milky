@@ -12,6 +12,20 @@
 | uin | int64 | 登录 QQ 号 |
 | nickname | string | 登录昵称 |
 
+## `get_impl_info` 获取协议端信息
+
+### 参数
+
+此 API 无输入参数。
+### 返回值
+
+| 字段名 | 类型 | 描述 |
+| --- | --- | --- |
+| impl_name | string | 协议端名称 |
+| impl_version | string | 协议端版本 |
+| qq_version | string | 协议端使用的 QQ 协议版本，格式为 `major.minor.patch-build` |
+| milky_version | string | 协议端实现的 Milky 协议版本，目前为 `1.0` |
+
 ## `get_friend_list` 获取好友列表
 
 ### 参数
