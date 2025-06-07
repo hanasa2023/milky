@@ -9,6 +9,7 @@
 ## 支持 Milky 的应用端
 
 - [NoneBot](https://nonebot.dev/) - 通过 [adapter-milky](https://github.com/nonebot/adapter-milky)
+- [Koishi](https://koishi.chat/) - 通过 [adapter-milky](https://github.com/idranme/koishi-plugin-adapter-milky)
 
 ## Milky SDK
 
