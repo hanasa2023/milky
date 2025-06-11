@@ -80,6 +80,16 @@ Authorization: Bearer 123456
 }
 ```
 
+同样，即使响应的 API 无输出参数，也必须返回一个空的 JSON 对象 `{}`，例如：
+
+```json
+{
+  "status": "ok",
+  "retcode": 0,
+  "data": {}
+}
+```
+
 ## 事件推送
 
 事件推送服务支持两种方式：WebSocket 和 WebHook。
