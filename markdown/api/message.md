@@ -15,7 +15,6 @@
 | --- | --- | --- |
 | message_seq | int64 | 消息序列号 |
 | time | int64 | 消息发送时间 |
-| client_seq | int64 | 消息的客户端序列号 |
 
 ## `send_group_message` 发送群消息
 
@@ -103,7 +102,6 @@
 | --- | --- | --- |
 | user_id | int64 | 好友 QQ 号 |
 | message_seq | int64 | 消息序列号 |
-| client_seq | int64 | 客户端序列号 |
 
 ### 返回值
 

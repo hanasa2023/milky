@@ -12,6 +12,7 @@
 
 OneBot 11 则使用 `message_id` 来唯一标识一条消息。
 
+<!--
 ## `client_seq` 是什么？为什么在有的 API 中我必须提供它？
 
 `client_seq` 是消息的“客户端序列号”，是 QQ 客户端（协议端）单独维护的另外一套不同于 `message_seq` 的序列号，同样是自增的，**无法通过 `message_seq` 推断或拉取**，但在**回复和撤回私聊消息**时需要用到，因此，在如下使用情景中，必须提供 `client_seq`：
@@ -30,3 +31,4 @@ OneBot 11 则使用 `message_id` 来唯一标识一条消息。
 - `get_history_messages`
 
 综上所述，应用端实现需要妥善保存私聊消息的 `client_seq`，以便在需要时使用。`client_seq` 仅在发送和接收消息时有效，无法通过其他方式获取。
+-->

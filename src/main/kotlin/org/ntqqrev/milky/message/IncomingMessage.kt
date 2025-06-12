@@ -19,7 +19,6 @@ val IncomingMessage = DiscriminatedUnion("IncomingMessage", "message_scene") {
     struct("friend") {
         describe("好友消息")
         field("friend", FriendEntity, "好友信息")
-        field("client_seq", LongType, "客户端序列号")
     }
 
     struct("group") {

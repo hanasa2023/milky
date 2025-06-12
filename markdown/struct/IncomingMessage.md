@@ -17,7 +17,6 @@
 | 字段名 | 类型 | 描述 |
 | --- | --- | --- |
 | friend | [Friend](../struct/Friend.md) | 好友信息 |
-| client_seq | int64 | 客户端序列号 |
 ## `group` 群消息
 
 | 字段名 | 类型 | 描述 |

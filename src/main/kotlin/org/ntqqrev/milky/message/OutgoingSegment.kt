@@ -19,10 +19,6 @@ val OutgoingSegment = DiscriminatedUnion("OutgoingSegment", "type") {
     struct("reply") {
         describe("回复消息段")
         field("message_seq", LongType, "被引用的消息序列号")
-        field("client_seq", LongType) {
-            describe("被引用的消息的客户端序列号，在回复私聊消息时必须提供")
-            optional()
-        }
     }
 
     struct("image") {

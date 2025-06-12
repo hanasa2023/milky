@@ -24,10 +24,7 @@ val MessageApi = Category("message") {
             field("user_id", LongType, "好友 QQ 号")
             use(sendMessageApiBase)
         }
-        output {
-            use(sendMessageApiCommonOutput)
-            field("client_seq", LongType, "消息的客户端序列号")
-        }
+        output(sendMessageApiCommonOutput)
     }
 
     api("send_group_message") {
@@ -97,7 +94,6 @@ val MessageApi = Category("message") {
         input {
             field("user_id", LongType, "好友 QQ 号")
             field("message_seq", LongType, "消息序列号")
-            field("client_seq", LongType, "客户端序列号")
         }
     }
 
