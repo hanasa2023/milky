@@ -2,7 +2,6 @@
 | 字段名 | 类型 | 描述 |
 | --- | --- | --- |
 | user_id | int64 | 用户 QQ 号 |
-| qid | string | 用户 QID（**可选**） |
 | nickname | string | 用户昵称 |
 | sex | enum (string) | 用户性别，可能值：`male`, `female`, `unknown` |
 | group_id | int64 | 群号 |
