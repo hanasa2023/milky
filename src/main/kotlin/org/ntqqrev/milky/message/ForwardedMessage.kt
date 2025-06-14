@@ -5,8 +5,9 @@ import org.ntqqrev.saltify.composeidl.Array
 
 val IncomingForwardedMessage = Struct("IncomingForwardedMessage") {
     describe("接收转发消息")
-    field("user_id", LongType, "发送者 QQ 号")
     field("name", StringType, "发送者名称")
+    field("avatar_url", StringType, "发送者头像 URL")
+    field("time", LongType, "消息 Unix 时间戳（秒）")
     field("segments", Array(IncomingSegment), "消息段列表")
 }
 
