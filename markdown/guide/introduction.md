@@ -1,6 +1,6 @@
 # Milky 介绍
 
-Milky，得名自节奏游戏《舞萌 DX》的角色咪露库（みるく / Milk），是一个基于 HTTP / WebSocket 通信的新时代 QQ 机器人应用接口标准。
+Milky<!--，得名自节奏游戏《舞萌 DX》的角色咪露库（みるく / Milk），--> 是基于 HTTP / WebSocket 通信的新时代 QQ 机器人应用接口标准。
 
 ## 背景
 
