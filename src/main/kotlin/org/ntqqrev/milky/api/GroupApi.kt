@@ -121,7 +121,7 @@ val GroupApi = Category("group") {
         describe("删除群公告")
         input {
             field("group_id", LongType, "群号")
-            field("announcement_id", LongType, "公告 ID")
+            field("announcement_id", StringType, "公告 ID")
         }
     }
 
