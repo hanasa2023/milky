@@ -8,6 +8,7 @@
 | --- | --- | --- |
 | user_id | int64 | 好友 QQ 号 |
 | file_uri | string | 文件 URI，支持 `file://` `http(s)://` `base64://` 三种格式 |
+| file_name | string | 文件名称 |
 
 ### 返回值
 
@@ -23,6 +24,8 @@
 | --- | --- | --- |
 | group_id | int64 | 群号 |
 | file_uri | string | 文件 URI，支持 `file://` `http(s)://` `base64://` 三种格式 |
+| file_name | string | 文件名称 |
+| parent_folder_id | string | 目标文件夹 ID，默认为根目录（**可选**） |
 
 ### 返回值
 

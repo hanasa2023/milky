@@ -135,7 +135,7 @@
 | 字段名 | 类型 | 描述 |
 | --- | --- | --- |
 | group_id | int64 | 群号 |
-| announcement_id | int64 | 公告 ID |
+| announcement_id | string | 公告 ID |
 
 ### 返回值
 

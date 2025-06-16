@@ -12,6 +12,7 @@ val FileApi = Category("file") {
         field("file_uri", StringType) {
             describe("文件 URI，支持 `file://` `http(s)://` `base64://` 三种格式")
         }
+        field("file_name", StringType, "文件名称")
     }
 
     api("upload_private_file") {
@@ -30,6 +31,10 @@ val FileApi = Category("file") {
         input {
             field("group_id", LongType, "群号")
             use(fileUploadApiBase)
+            field("parent_folder_id", StringType) {
+                describe("目标文件夹 ID，默认为根目录")
+                optional()
+            }
         }
         output {
             field("file_id", StringType, "文件 ID")
