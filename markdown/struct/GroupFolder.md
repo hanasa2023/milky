@@ -3,7 +3,7 @@
 | --- | --- | --- |
 | group_id | int64 | 群号 |
 | folder_id | string | 文件夹 ID |
-| parent_folder_id | string | 父文件夹 ID（**可选**） |
+| parent_folder_id | string | 父文件夹 ID |
 | folder_name | string | 文件夹名称 |
 | created_time | int64 | 创建时的 Unix 时间戳（秒） |
 | last_modified_time | int64 | 最后修改时的 Unix 时间戳（秒） |
