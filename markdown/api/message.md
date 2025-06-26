@@ -92,7 +92,7 @@
 
 | 字段名 | 类型 | 描述 |
 | --- | --- | --- |
-| messages | Array<[IncomingMessage](../struct/IncomingMessage.md)> | 转发消息内容 |
+| messages | Array<[IncomingForwardedMessage](../struct/IncomingForwardedMessage.md)> | 转发消息内容 |
 
 ## `recall_private_message` 撤回私聊消息
 

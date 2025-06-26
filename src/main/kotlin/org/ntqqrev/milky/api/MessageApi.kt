@@ -3,6 +3,7 @@ package org.ntqqrev.milky.api
 import org.ntqqrev.saltify.composeidl.*
 import org.ntqqrev.saltify.composeidl.Array
 import org.ntqqrev.milky.common.MessageIdentifier
+import org.ntqqrev.milky.message.IncomingForwardedMessage
 import org.ntqqrev.milky.message.IncomingMessage
 import org.ntqqrev.milky.message.OutgoingSegment
 
@@ -85,7 +86,7 @@ val MessageApi = Category("message") {
             field("forward_id", StringType, "转发消息 ID")
         }
         output {
-            field("messages", Array(IncomingMessage), "转发消息内容")
+            field("messages", Array(IncomingForwardedMessage), "转发消息内容")
         }
     }
 
