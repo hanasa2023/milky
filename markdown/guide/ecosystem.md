@@ -5,6 +5,7 @@
 ## 支持 Milky 的协议端
 
 - [Lagrange.Milky](https://github.com/LagrangeDev/LagrangeV2/tree/main/Lagrange.Milky) (WIP)
+- [tanebi-milky](https://github.com/SaltifyDev/tanebi/tree/v2/packages/milky) (WIP)
 
 ## 支持 Milky 的应用端
 
