@@ -27,6 +27,29 @@
 | qq_protocol_type | enum (string) | 协议端使用的 QQ 协议平台，可能值：`windows`, `linux`, `macos`, `android_pad`, `android_phone`, `ipad`, `iphone`, `harmony`, `watch` |
 | milky_version | string | 协议端实现的 Milky 协议版本，目前为 `1.0` |
 
+## `get_user_profile` 获取用户个人信息
+
+### 参数
+
+| 字段名 | 类型 | 描述 |
+| --- | --- | --- |
+| user_id | int32 | 用户 QQ 号 |
+
+### 返回值
+
+| 字段名 | 类型 | 描述 |
+| --- | --- | --- |
+| nickname | string | 昵称 |
+| qid | string | QID（**可选**） |
+| age | int32 | 年龄 |
+| sex | enum (string) | 性别，可能值：`male`, `female`, `unknown` |
+| remark | string | 备注（**可选**） |
+| bio | string | 个性签名（**可选**） |
+| level | int32 | QQ 等级（**可选**） |
+| country | string | 国家或地区（**可选**） |
+| city | string | 城市（**可选**） |
+| school | string | 学校（**可选**） |
+
 ## `get_friend_list` 获取好友列表
 
 ### 参数

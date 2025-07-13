@@ -46,6 +46,27 @@ val SystemApi = Category("system") {
         }
     }
 
+    api("get_user_profile") {
+        describe("获取用户个人信息")
+        input {
+            field("user_id", IntType, "用户 QQ 号")
+        }
+        output {
+            field("nickname", StringType, "昵称")
+            field("qid", StringType, "QID") { optional() }
+            field("age", IntType, "年龄")
+            field("sex", StringType, "性别") {
+                enum("male", "female", "unknown")
+            }
+            field("remark", StringType, "备注") { optional() }
+            field("bio", StringType, "个性签名") { optional() }
+            field("level", IntType, "QQ 等级") { optional() }
+            field("country", StringType, "国家或地区") { optional() }
+            field("city", StringType, "城市") { optional() }
+            field("school", StringType, "学校") { optional() }
+        }
+    }
+
     api("get_friend_list") {
         describe("获取好友列表")
         input(cachedApiBase)
