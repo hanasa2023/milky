@@ -52,6 +52,7 @@ val RequestApi = Category("request") {
         describe("拒绝好友请求")
         input {
             field("request_id", StringType, "请求 ID")
+            field("reason", StringType, "拒绝理由") { optional() }
         }
     }
 
@@ -66,6 +67,7 @@ val RequestApi = Category("request") {
         describe("拒绝群请求")
         input {
             field("request_id", StringType, "请求 ID")
+            field("reason", StringType, "拒绝理由") { optional() }
         }
     }
 
@@ -80,7 +82,6 @@ val RequestApi = Category("request") {
         describe("拒绝群邀请")
         input {
             field("request_id", StringType, "请求 ID")
-            field("reason", StringType, "拒绝理由") { optional() }
         }
     }
 }
