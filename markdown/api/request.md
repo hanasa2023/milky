@@ -53,31 +53,6 @@
 ### 返回值
 
 此 API 无返回值。
-
-## `accept_group_invite_request` 同意邀请入群请求
-
-### 参数
-
-| 字段名 | 类型 | 描述 |
-| --- | --- | --- |
-| request_id | string | 请求 ID |
-
-### 返回值
-
-此 API 无返回值。
-
-## `accept_group_join_request` 同意入群请求
-
-### 参数
-
-| 字段名 | 类型 | 描述 |
-| --- | --- | --- |
-| request_id | string | 请求 ID |
-
-### 返回值
-
-此 API 无返回值。
-
 ## `reject_friend_request` 拒绝好友请求
 
 ### 参数
@@ -89,8 +64,7 @@
 ### 返回值
 
 此 API 无返回值。
-
-## `reject_group_invite_request` 拒绝邀请入群请求
+## `accept_group_request` 同意群请求
 
 ### 参数
 
@@ -101,8 +75,29 @@
 ### 返回值
 
 此 API 无返回值。
+## `reject_group_request` 拒绝群请求
 
-## `reject_group_join_request` 拒绝入群请求
+### 参数
+
+| 字段名 | 类型 | 描述 |
+| --- | --- | --- |
+| request_id | string | 请求 ID |
+
+### 返回值
+
+此 API 无返回值。
+## `accept_group_invitation` 同意群邀请
+
+### 参数
+
+| 字段名 | 类型 | 描述 |
+| --- | --- | --- |
+| request_id | string | 请求 ID |
+
+### 返回值
+
+此 API 无返回值。
+## `reject_group_invitation` 拒绝群邀请
 
 ### 参数
 
