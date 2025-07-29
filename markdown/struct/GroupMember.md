@@ -11,4 +11,5 @@
 | role | enum (string) | 权限等级，可能值：`owner`, `admin`, `member` |
 | join_time | int64 | 入群时间，Unix 时间戳（秒） |
 | last_sent_time | int64 | 最后发言时间，Unix 时间戳（秒） |
+| shut_up_end_time | int64 | 禁言结束时间，Unix 时间戳（秒）（**可选**） |
 

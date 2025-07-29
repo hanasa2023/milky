@@ -14,4 +14,5 @@ val GroupMemberEntity = Struct("GroupMember") {
     }
     field("join_time", LongType, "入群时间，Unix 时间戳（秒）")
     field("last_sent_time", LongType, "最后发言时间，Unix 时间戳（秒）")
+    field("shut_up_end_time", LongType, "禁言结束时间，Unix 时间戳（秒）") { optional() }
 }
