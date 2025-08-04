@@ -56,8 +56,7 @@
 | --- | --- | --- |
 | message_scene | enum (string) | 消息场景，可能值：`friend`, `group`, `temp` |
 | peer_id | int64 | 好友 QQ 号或群号 |
-| start_message_seq | int64 | 起始消息序列号，不提供则从最新消息开始（**可选**） |
-| direction | enum (string) | 消息获取方向，可能值：`newer`, `older` |
+| start_message_seq | int64 | 起始消息序列号，由此开始从新到旧查询，不提供则从最新消息开始（**可选**） |
 | limit | int32 | 获取的最大消息数量（默认值：`20`） |
 
 ### 返回值

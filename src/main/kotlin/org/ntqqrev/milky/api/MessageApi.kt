@@ -54,12 +54,8 @@ val MessageApi = Category("message") {
             }
             field("peer_id", LongType, "好友 QQ 号或群号")
             field("start_message_seq", LongType) {
-                describe("起始消息序列号，不提供则从最新消息开始")
+                describe("起始消息序列号，由此开始从新到旧查询，不提供则从最新消息开始")
                 optional()
-            }
-            field("direction", StringType) {
-                describe("消息获取方向")
-                enum("newer", "older")
             }
             field("limit", IntType, "获取的最大消息数量") { default("20") }
         }
