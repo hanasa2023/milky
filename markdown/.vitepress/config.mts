@@ -64,6 +64,10 @@ export default defineConfig({
       { text: '参考', items: referenceItems }
     ],
 
+    search: {
+      provider: 'local',
+    },
+
     socialLinks: [
       { icon: 'github', link: 'https://github.com/SaltifyDev/milky' }
     ]
