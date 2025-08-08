@@ -62,7 +62,7 @@ export const GetFriendListOutput = z.object({
 // 获取好友信息输入
 export const GetFriendInfoInput = z.object({
   user_id: ZInt64.describe('好友 QQ 号'),
-}).extend(CachedApiBase);
+}).extend(CachedApiBase.shape);
 
 // 获取好友信息输出
 export const GetFriendInfoOutput = z.object({
@@ -80,7 +80,7 @@ export const GetGroupListOutput = z.object({
 // 获取群信息输入
 export const GetGroupInfoInput = z.object({
   group_id: ZInt64.describe('群号'),
-}).extend(CachedApiBase);
+}).extend(CachedApiBase.shape);
 
 // 获取群信息输出
 export const GetGroupInfoOutput = z.object({
@@ -90,7 +90,7 @@ export const GetGroupInfoOutput = z.object({
 // 获取群成员列表输入
 export const GetGroupMemberListInput = z.object({
   group_id: ZInt64.describe('群号'),
-}).extend(CachedApiBase);
+}).extend(CachedApiBase.shape);
 
 // 获取群成员列表输出
 export const GetGroupMemberListOutput = z.object({
@@ -101,7 +101,7 @@ export const GetGroupMemberListOutput = z.object({
 export const GetGroupMemberInfoInput = z.object({
   group_id: ZInt64.describe('群号'),
   user_id: ZInt64.describe('群成员 QQ 号'),
-}).extend(CachedApiBase);
+}).extend(CachedApiBase.shape);
 
 // 获取群成员信息输出
 export const GetGroupMemberInfoOutput = z.object({

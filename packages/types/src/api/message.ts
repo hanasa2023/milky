@@ -17,7 +17,7 @@ export const SendMessageApiCommonOutput = z.object({
 // 发送私聊消息输入
 export const SendPrivateMessageInput = z.object({
   user_id: ZInt64.describe('好友 QQ 号'),
-}).extend(SendMessageApiBase);
+}).extend(SendMessageApiBase.shape);
 
 // 发送私聊消息输出
 export const SendPrivateMessageOutput = SendMessageApiCommonOutput;
@@ -25,7 +25,7 @@ export const SendPrivateMessageOutput = SendMessageApiCommonOutput;
 // 发送群消息输入
 export const SendGroupMessageInput = z.object({
   group_id: ZInt64.describe('群号'),
-}).extend(SendMessageApiBase);
+}).extend(SendMessageApiBase.shape);
 
 // 发送群消息输出
 export const SendGroupMessageOutput = SendMessageApiCommonOutput;

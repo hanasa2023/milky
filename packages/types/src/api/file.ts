@@ -16,7 +16,7 @@ export const FileDownloadApiBase = z.object({
 // 上传私聊文件输入
 export const UploadPrivateFileInput = z.object({
   user_id: ZInt64.describe('好友 QQ 号'),
-}).extend(FileUploadApiBase);
+}).extend(FileUploadApiBase.shape);
 
 // 上传私聊文件输出
 export const UploadPrivateFileOutput = z.object({
@@ -27,7 +27,7 @@ export const UploadPrivateFileOutput = z.object({
 export const UploadGroupFileInput = z.object({
   group_id: ZInt64.describe('群号'),
   parent_folder_id: ZString.optional().describe('目标文件夹 ID，默认为根目录'),
-}).extend(FileUploadApiBase);
+}).extend(FileUploadApiBase.shape);
 
 // 上传群文件输出
 export const UploadGroupFileOutput = z.object({
@@ -37,7 +37,7 @@ export const UploadGroupFileOutput = z.object({
 // 获取私聊文件下载链接输入
 export const GetPrivateFileDownloadUrlInput = z.object({
   user_id: ZInt64.describe('好友 QQ 号'),
-}).extend(FileDownloadApiBase);
+}).extend(FileDownloadApiBase.shape);
 
 // 获取私聊文件下载链接输出
 export const GetPrivateFileDownloadUrlOutput = z.object({
@@ -47,7 +47,7 @@ export const GetPrivateFileDownloadUrlOutput = z.object({
 // 获取群文件下载链接输入
 export const GetGroupFileDownloadUrlInput = z.object({
   group_id: ZInt64.describe('群号'),
-}).extend(FileDownloadApiBase);
+}).extend(FileDownloadApiBase.shape);
 
 // 获取群文件下载链接输出
 export const GetGroupFileDownloadUrlOutput = z.object({

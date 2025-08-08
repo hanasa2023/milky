@@ -16,7 +16,7 @@ export const SetGroupNameInput = z.object({
 // 设置群头像输入
 export const SetGroupAvatarInput = z.object({
   group_id: ZInt64.describe('群号'),
-}).extend(PictureApiBase);
+}).extend(PictureApiBase.shape);
 
 // 设置群名片输入
 export const SetGroupMemberCardInput = z.object({
@@ -73,7 +73,7 @@ export const GetGroupAnnouncementListOutput = z.object({
 export const SendGroupAnnouncementInput = z.object({
   group_id: ZInt64.describe('群号'),
   content: ZString.describe('公告内容'),
-}).extend(PictureApiBase);
+}).extend(PictureApiBase.shape);
 
 // 删除群公告输入
 export const DeleteGroupAnnouncementInput = z.object({
