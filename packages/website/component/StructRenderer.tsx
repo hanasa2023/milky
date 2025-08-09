@@ -50,7 +50,7 @@ export const commonStructs = {
   OutgoingSegment,
 } satisfies Record<string, ZodType>;
 
-const commonStructNames = new Map<ZodType, string>(
+const commonStructNames = new Map<$ZodType, string>(
   Object.entries(commonStructs).map(([name, struct]) => [struct, name])
 );
 
@@ -76,11 +76,9 @@ function renderTypeName(type: $ZodType): JSX.Element | string {
   if (type instanceof ZodLazy) {
     return renderTypeName(type.unwrap());
   }
-  if (type instanceof ZodObject) {
     if (commonStructNames.has(type)) {
       return commonStructNames.get(type)!; // TODO
     }
-  }
   return 'Unknown struct, consult the developers to register it';
 }
 
