@@ -16,6 +16,7 @@ import {
   OutgoingForwardedMessage,
   OutgoingSegment,
 } from '@saltify/milky-types';
+import { Link } from 'nextra-theme-docs';
 import { Table } from 'nextra/components';
 import { JSX } from 'react';
 import {
@@ -79,9 +80,14 @@ function renderTypeName(type: $ZodType): JSX.Element | string {
     return renderTypeName(type.unwrap());
   }
   if (commonStructNames.has(type)) {
-    return commonStructNames.get(type)!; // TODO
+    return renderCommonStructName(type);
   }
   return 'Unknown struct, consult the developers to register it';
+}
+
+function renderCommonStructName(type: $ZodType): JSX.Element {
+  const structName = commonStructNames.get(type)!;
+  return <Link href={`/struct/${structName}`}>{structName}</Link>;
 }
 
 function renderZodObject(struct: ZodObject) {
@@ -178,10 +184,10 @@ function renderZodDiscriminatedUnion(struct: ZodDiscriminatedUnion) {
               </pre>
               {option.shape.data instanceof ZodLazy ? (
                 <p style={{ marginTop: '1rem' }}>
-                  参见 {commonStructNames.get(option.shape.data.unwrap() as ZodObject)}
+                  参见 {renderCommonStructName(option.shape.data.unwrap())}
                 </p> // todo
               ) : commonStructNames.has(option.shape.data) ? (
-                <p style={{ marginTop: '1rem' }}>参见 {commonStructNames.get(option.shape.data)}</p>
+                <p style={{ marginTop: '1rem' }}>参见 {renderCommonStructName(option.shape.data)}</p>
               ) : (
                 <StructRenderer struct={option.shape.data} />
               )}
