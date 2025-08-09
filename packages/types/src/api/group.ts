@@ -36,7 +36,7 @@ export const SetGroupMemberSpecialTitleInput = z.object({
 export const SetGroupMemberAdminInput = z.object({
   group_id: ZInt64.describe('群号'),
   user_id: ZInt64.describe('被设置的 QQ 号'),
-  is_set: ZInt64.default(1).describe('是否设置为管理员，`false` 为取消管理员'),
+  is_set: ZBoolean.default(true).describe('是否设置为管理员，`false` 为取消管理员'),
 });
 
 // 设置群成员禁言输入

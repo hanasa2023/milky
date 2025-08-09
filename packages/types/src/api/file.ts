@@ -1,6 +1,6 @@
 import { z } from 'zod';
 import { ZInt64, ZString } from '../scalar';
-import { GroupFileEntity } from '../common';
+import { GroupFileEntity, GroupFolderEntity } from '../common';
 
 // 文件上传 API 基础
 export const FileUploadApiBase = z.object({
@@ -58,15 +58,6 @@ export const GetGroupFileDownloadUrlOutput = z.object({
 export const GetGroupFilesInput = z.object({
   group_id: ZInt64.describe('群号'),
   parent_folder_id: ZString.optional().describe('父文件夹 ID，默认为根目录'),
-});
-
-// 群文件夹实体
-export const GroupFolderEntity = z.object({
-  folder_id: ZString.describe('文件夹 ID'),
-  group_id: ZInt64.describe('群号'),
-  name: ZString.describe('文件夹名称'),
-  create_time: ZInt64.describe('创建时间，Unix 时间戳（秒）'),
-  creator_id: ZInt64.describe('创建者 QQ 号'),
 });
 
 // 获取群文件列表输出
@@ -139,4 +130,3 @@ export type CreateGroupFolderInput = z.infer<typeof CreateGroupFolderInput>;
 export type CreateGroupFolderOutput = z.infer<typeof CreateGroupFolderOutput>;
 export type RenameGroupFolderInput = z.infer<typeof RenameGroupFolderInput>;
 export type DeleteGroupFolderInput = z.infer<typeof DeleteGroupFolderInput>;
-export type GroupFolderEntity = z.infer<typeof GroupFolderEntity>;

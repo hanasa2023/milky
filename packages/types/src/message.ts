@@ -13,6 +13,11 @@ export const IncomingResourceSegmentBase = z.object({
   temp_url: ZString.describe('临时 URL'),
 }).describe('接收资源消息段基础');
 
+// 发送资源消息段基础
+export const OutgoingResourceSegmentBase = z.object({
+  uri: ZString.describe('文件 URI，支持 `file://` `http(s)://` `base64://` 三种格式'),
+}).describe('发送资源消息段基础');
+
 // 接收消息段
 export const IncomingSegment = z.discriminatedUnion('type', [
   // 文本消息段
@@ -22,6 +27,28 @@ export const IncomingSegment = z.discriminatedUnion('type', [
       text: ZString.describe('文本内容'),
     }).describe('文本消息段'),
   }).describe('文本消息段'),
+  
+  // 提及（@）消息段
+  z.object({
+    type: z.literal('mention'),
+    data: z.object({
+      user_id: ZInt64.describe('提及的 QQ 号'),
+    }).describe('提及消息段'),
+  }).describe('提及消息段'),
+  
+  // 提及全体（@全体成员）消息段
+  z.object({
+    type: z.literal('mention_all'),
+    data: z.object({}).describe('提及全体消息段'),
+  }).describe('提及全体消息段'),
+  
+  // 表情消息段
+  z.object({
+    type: z.literal('face'),
+    data: z.object({
+      face_id: ZString.describe('表情 ID'),
+    }).describe('表情消息段'),
+  }).describe('表情消息段'),
   
   // 回复消息段
   z.object({
@@ -89,10 +116,13 @@ export const IncomingSegment = z.discriminatedUnion('type', [
   }).describe('XML 消息段'),
 ]);
 
-// 发送资源消息段基础
-export const OutgoingResourceSegmentBase = z.object({
-  uri: ZString.describe('文件 URI，支持 `file://` `http(s)://` `base64://` 三种格式'),
-}).describe('发送资源消息段基础');
+// 合并转发消息
+export const IncomingForwardedMessage = z.object({
+  name: ZString.describe('发送者名称'),
+  avatar_url: ZString.describe('发送者头像 URL'),
+  time: ZInt64.describe('消息 Unix 时间戳（秒）'),
+  segments: z.array(IncomingSegment).describe('消息段列表'),
+});
 
 // 发送消息段
 export const OutgoingSegment = z.discriminatedUnion('type', [
@@ -103,6 +133,28 @@ export const OutgoingSegment = z.discriminatedUnion('type', [
       text: ZString.describe('文本内容'),
     }).describe('文本消息段'),
   }).describe('文本消息段'),
+  
+  // 提及（@）消息段
+  z.object({
+    type: z.literal('mention'),
+    data: z.object({
+      user_id: ZInt64.describe('提及的 QQ 号'),
+    }).describe('提及消息段'),
+  }).describe('提及消息段'),
+  
+  // 提及全体（@全体成员）消息段
+  z.object({
+    type: z.literal('mention_all'),
+    data: z.object({}).describe('提及全体消息段'),
+  }).describe('提及全体消息段'),
+  
+  // 表情消息段
+  z.object({
+    type: z.literal('face'),
+    data: z.object({
+      face_id: ZString.describe('表情 ID'),
+    }).describe('表情消息段'),
+  }).describe('表情消息段'),
   
   // 回复消息段
   z.object({
@@ -144,6 +196,13 @@ export const OutgoingSegment = z.discriminatedUnion('type', [
   }).describe('合并转发消息段'),
 ]);
 
+// 发送转发消息
+export const OutgoingForwardedMessage = z.object({
+  user_id: ZInt64.describe('发送者 QQ 号'),
+  name: ZString.describe('发送者名称'),
+  segments: z.array(OutgoingSegment).describe('消息段列表'),
+});
+
 // 接收消息
 export const IncomingMessage = z.discriminatedUnion('message_scene', [
   // 好友消息
@@ -180,19 +239,6 @@ export const IncomingMessage = z.discriminatedUnion('message_scene', [
     group: GroupEntity.optional().describe('临时会话发送者的所在的群信息'),
   }).describe('临时会话消息'),
 ]);
-
-// 合并转发消息
-export const IncomingForwardedMessage = z.object({
-  sender_id: ZInt64.describe('发送者 QQ 号'),
-  time: ZInt64.describe('消息时间，Unix 时间戳（秒）'),
-  message: ZString.describe('消息内容'),
-});
-
-export const OutgoingForwardedMessage = z.object({
-  sender_id: ZInt64.describe('发送者 QQ 号'),
-  time: ZInt64.describe('消息时间，Unix 时间戳（秒）'),
-  message: z.array(OutgoingSegment).describe('消息内容'),
-});
 
 // 导出类型
 export type IncomingSegment = z.infer<typeof IncomingSegment>;

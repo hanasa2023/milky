@@ -29,12 +29,12 @@ export const GetImplInfoOutput = z.object({
     'harmony',
     'watch'
   ]).describe('协议端使用的 QQ 协议平台'),
-  milky_version: ZString.describe('协议端实现的 Milky 协议版本'),
+  milky_version: ZString.describe('协议端实现的 Milky 协议版本，目前为 `1.0`'),
 });
 
 // 获取用户个人信息输入
 export const GetUserProfileInput = z.object({
-  user_id: ZInt32.describe('用户 QQ 号'),
+  user_id: ZInt64.describe('用户 QQ 号'),
 });
 
 // 获取用户个人信息输出

@@ -10,15 +10,15 @@ export const UserEntityBase = z.object({
 
 // 好友分类实体
 export const FriendCategoryEntity = z.object({
-  category_id: ZInt32.describe('分类 ID'),
-  name: ZString.describe('分类名称'),
+  category_id: ZInt32.describe('好友分组 ID'),
+  category_name: ZString.describe('好友分组名称'),
 }).describe('好友分类实体');
 
 // 好友实体
 export const FriendEntity = UserEntityBase.extend({
   qid: ZString.optional().describe('用户 QID'),
   remark: ZString.describe('好友备注'),
-  category: FriendCategoryEntity.optional().describe('好友分组'),
+  category: FriendCategoryEntity.describe('好友分组'),
 }).describe('好友实体');
 
 // 群实体
@@ -43,25 +43,38 @@ export const GroupMemberEntity = UserEntityBase.extend({
 
 // 群公告实体
 export const GroupAnnouncementEntity = z.object({
-  announcement_id: ZString.describe('公告 ID'),
   group_id: ZInt64.describe('群号'),
+  announcement_id: ZString.describe('公告 ID'),
+  user_id: ZInt64.describe('发送者 QQ 号'),
+  time: ZInt64.describe('Unix 时间戳（秒）'),
   content: ZString.describe('公告内容'),
-  sender_id: ZInt64.describe('发送者 QQ 号'),
-  time: ZInt64.describe('发送时间，Unix 时间戳（秒）'),
+  image_url: ZString.optional().describe('公告图片 URL'),
 }).describe('群公告实体');
 
 // 群文件实体
 export const GroupFileEntity = z.object({
-  file_id: ZString.describe('文件 ID'),
   group_id: ZInt64.describe('群号'),
-  name: ZString.describe('文件名'),
-  size: ZInt64.describe('文件大小（字节）'),
-  busid: ZInt32.describe('文件类型'),
-  upload_time: ZInt64.describe('上传时间，Unix 时间戳（秒）'),
-  expire_time: ZInt64.describe('过期时间，Unix 时间戳（秒）'),
+  file_id: ZString.describe('文件 ID'),
+  file_name: ZString.describe('文件名称'),
+  parent_folder_id: ZString.describe('父文件夹 ID'),
+  file_size: ZInt64.describe('文件大小（字节）'),
+  uploaded_time: ZInt64.describe('上传时的 Unix 时间戳（秒）'),
+  expire_time: ZInt64.optional().describe('过期时的 Unix 时间戳（秒）'),
   uploader_id: ZInt64.describe('上传者 QQ 号'),
-  url: ZString.describe('文件下载链接'),
+  downloaded_times: ZInt32.describe('下载次数'),
 }).describe('群文件实体');
+
+// 群文件夹实体
+export const GroupFolderEntity = z.object({
+  group_id: ZInt64.describe('群号'),
+  folder_id: ZString.describe('文件夹 ID'),
+  parent_folder_id: ZString.describe('父文件夹 ID'),
+  folder_name: ZString.describe('文件夹名称'),
+  created_time: ZInt64.describe('创建时的 Unix 时间戳（秒）'),
+  last_modified_time: ZInt64.describe('最后修改时的 Unix 时间戳（秒）'),
+  creator_id: ZInt64.describe('创建者 QQ 号'),
+  file_count: ZInt32.describe('文件数量'),
+}).describe('群文件夹实体');
 
 // 请求基础实体
 export const RequestBase = z.object({
@@ -136,6 +149,7 @@ export type GroupEntity = z.infer<typeof GroupEntity>;
 export type GroupMemberEntity = z.infer<typeof GroupMemberEntity>;
 export type GroupAnnouncementEntity = z.infer<typeof GroupAnnouncementEntity>;
 export type GroupFileEntity = z.infer<typeof GroupFileEntity>;
+export type GroupFolderEntity = z.infer<typeof GroupFolderEntity>;
 export type RequestBase = z.infer<typeof RequestBase>;
 export type FriendRequest = z.infer<typeof FriendRequest>;
 export type GroupRequest = z.infer<typeof GroupRequest>;
