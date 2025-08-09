@@ -121,7 +121,7 @@ export const IncomingForwardedMessage = z.object({
   name: ZString.describe('发送者名称'),
   avatar_url: ZString.describe('发送者头像 URL'),
   time: ZInt64.describe('消息 Unix 时间戳（秒）'),
-  segments: z.array(IncomingSegment).describe('消息段列表'),
+  segments: z.array(z.lazy(() => IncomingSegment)).describe('消息段列表'),
 });
 
 // 发送消息段
@@ -191,7 +191,9 @@ export const OutgoingSegment = z.discriminatedUnion('type', [
   z.object({
     type: z.literal('forward'),
     data: z.object({
-      messages: z.array(z.any()).describe('合并转发消息列表'),
+      get messages() {
+        return z.array(z.lazy(() => OutgoingForwardedMessage)).describe('合并转发消息段');
+      }
     }).describe('合并转发消息段'),
   }).describe('合并转发消息段'),
 ]);
@@ -200,7 +202,7 @@ export const OutgoingSegment = z.discriminatedUnion('type', [
 export const OutgoingForwardedMessage = z.object({
   user_id: ZInt64.describe('发送者 QQ 号'),
   name: ZString.describe('发送者名称'),
-  segments: z.array(OutgoingSegment).describe('消息段列表'),
+  segments: z.array(z.lazy(() => OutgoingSegment)).describe('消息段列表'),
 });
 
 // 接收消息
@@ -212,7 +214,7 @@ export const IncomingMessage = z.discriminatedUnion('message_scene', [
     message_seq: ZInt64.describe('消息序列号'),
     sender_id: ZInt64.describe('发送者 QQ 号'),
     time: ZInt64.describe('消息 Unix 时间戳（秒）'),
-    segments: z.array(IncomingSegment).describe('消息段列表'),
+    segments: z.array(z.lazy(() => IncomingSegment)).describe('消息段列表'),
     friend: z.lazy(() => FriendEntity).describe('好友信息'),
   }).describe('好友消息'),
   
@@ -223,7 +225,7 @@ export const IncomingMessage = z.discriminatedUnion('message_scene', [
     message_seq: ZInt64.describe('消息序列号'),
     sender_id: ZInt64.describe('发送者 QQ 号'),
     time: ZInt64.describe('消息 Unix 时间戳（秒）'),
-    segments: z.array(IncomingSegment).describe('消息段列表'),
+    segments: z.array(z.lazy(() => IncomingSegment)).describe('消息段列表'),
     group: z.lazy(() => GroupEntity).describe('群信息'),
     group_member: z.lazy(() => GroupMemberEntity).describe('群成员信息'),
   }).describe('群消息'),
@@ -235,7 +237,7 @@ export const IncomingMessage = z.discriminatedUnion('message_scene', [
     message_seq: ZInt64.describe('消息序列号'),
     sender_id: ZInt64.describe('发送者 QQ 号'),
     time: ZInt64.describe('消息 Unix 时间戳（秒）'),
-    segments: z.array(IncomingSegment).describe('消息段列表'),
+    segments: z.array(z.lazy(() => IncomingSegment)).describe('消息段列表'),
     group: z.lazy(() => GroupEntity).optional().describe('临时会话发送者的所在的群信息'),
   }).describe('临时会话消息'),
 ]);

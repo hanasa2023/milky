@@ -5,7 +5,7 @@ import { OutgoingSegment, IncomingMessage, IncomingForwardedMessage } from '../m
 
 // 发送消息 API 基础
 export const SendMessageApiBase = z.object({
-  message: z.array(OutgoingSegment).describe('消息内容'),
+  message: z.array(z.lazy(() => OutgoingSegment)).describe('消息内容'),
 });
 
 // 发送消息 API 通用输出
@@ -48,7 +48,7 @@ export const GetHistoryMessagesInput = z.object({
 
 // 获取历史消息输出
 export const GetHistoryMessagesOutput = z.object({
-  messages: z.array(IncomingMessage).describe('获取到的消息，部分消息可能不存在，如撤回的消息'),
+  messages: z.array(z.lazy(() => IncomingMessage)).describe('获取到的消息，部分消息可能不存在，如撤回的消息'),
 });
 
 // 获取临时资源链接输入
@@ -68,7 +68,7 @@ export const GetForwardedMessagesInput = z.object({
 
 // 获取合并转发消息内容输出
 export const GetForwardedMessagesOutput = z.object({
-  messages: z.array(IncomingForwardedMessage).describe('转发消息内容'),
+  messages: z.array(z.lazy(() => IncomingForwardedMessage)).describe('转发消息内容'),
 });
 
 // 撤回私聊消息输入
