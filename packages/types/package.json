@@ -11,6 +11,8 @@
   "author": "SaltifyDev",
   "license": "CC0-1.0",
   "dependencies": {
+    "@fontsource-variable/inter": "^5.2.6",
+    "@fontsource-variable/noto-sans-sc": "^5.2.6",
     "zod": "^4.0.15"
   },
   "devDependencies": {

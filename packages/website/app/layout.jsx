@@ -1,6 +1,9 @@
 import { Layout, Navbar } from 'nextra-theme-docs';
 import { getPageMap } from 'nextra/page-map';
 import 'nextra-theme-docs/style.css';
+import '@fontsource-variable/inter';
+import '@fontsource-variable/noto-sans-sc';
+import './styles.css';
 import { commonStructs } from '@/component/StructRenderer';
 
 export const metadata = {
