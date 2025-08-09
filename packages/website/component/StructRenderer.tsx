@@ -83,6 +83,9 @@ function renderTypeName(type: $ZodType): JSX.Element | string {
 }
 
 function renderZodObject(struct: ZodObject) {
+  if (Object.keys(struct.shape).length === 0) {
+    return <p style={{ marginTop: '1rem' }}>此对象无字段，请传入 {'{}'}。</p>;
+  }
   return (
     <div style={{ marginTop: '1rem' }}>
       <Table>
