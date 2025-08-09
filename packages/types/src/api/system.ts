@@ -56,7 +56,7 @@ export const GetFriendListInput = CachedApiBase;
 
 // 获取好友列表输出
 export const GetFriendListOutput = z.object({
-  friends: z.array(FriendEntity).describe('好友列表'),
+  friends: z.array(z.lazy(() => FriendEntity)).describe('好友列表'),
 });
 
 // 获取好友信息输入
@@ -66,7 +66,7 @@ export const GetFriendInfoInput = z.object({
 
 // 获取好友信息输出
 export const GetFriendInfoOutput = z.object({
-  friend: FriendEntity.describe('好友信息'),
+  friend: z.lazy(() => FriendEntity).describe('好友信息'),
 });
 
 // 获取群列表输入
@@ -74,7 +74,7 @@ export const GetGroupListInput = CachedApiBase;
 
 // 获取群列表输出
 export const GetGroupListOutput = z.object({
-  groups: z.array(GroupEntity).describe('群列表'),
+  groups: z.array(z.lazy(() => GroupEntity)).describe('群列表'),
 });
 
 // 获取群信息输入
@@ -84,7 +84,7 @@ export const GetGroupInfoInput = z.object({
 
 // 获取群信息输出
 export const GetGroupInfoOutput = z.object({
-  group: GroupEntity.describe('群信息'),
+  group: z.lazy(() => GroupEntity).describe('群信息'),
 });
 
 // 获取群成员列表输入
@@ -94,7 +94,7 @@ export const GetGroupMemberListInput = z.object({
 
 // 获取群成员列表输出
 export const GetGroupMemberListOutput = z.object({
-  members: z.array(GroupMemberEntity).describe('群成员列表'),
+  members: z.array(z.lazy(() => GroupMemberEntity)).describe('群成员列表'),
 });
 
 // 获取群成员信息输入
@@ -105,7 +105,7 @@ export const GetGroupMemberInfoInput = z.object({
 
 // 获取群成员信息输出
 export const GetGroupMemberInfoOutput = z.object({
-  member: GroupMemberEntity.describe('群成员信息'),
+  member: z.lazy(() => GroupMemberEntity).describe('群成员信息'),
 });
 
 // 导出类型

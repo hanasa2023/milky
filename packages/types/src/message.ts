@@ -213,7 +213,7 @@ export const IncomingMessage = z.discriminatedUnion('message_scene', [
     sender_id: ZInt64.describe('发送者 QQ 号'),
     time: ZInt64.describe('消息 Unix 时间戳（秒）'),
     segments: z.array(IncomingSegment).describe('消息段列表'),
-    friend: FriendEntity.describe('好友信息'),
+    friend: z.lazy(() => FriendEntity).describe('好友信息'),
   }).describe('好友消息'),
   
   // 群消息
@@ -224,8 +224,8 @@ export const IncomingMessage = z.discriminatedUnion('message_scene', [
     sender_id: ZInt64.describe('发送者 QQ 号'),
     time: ZInt64.describe('消息 Unix 时间戳（秒）'),
     segments: z.array(IncomingSegment).describe('消息段列表'),
-    group: GroupEntity.describe('群信息'),
-    group_member: GroupMemberEntity.describe('群成员信息'),
+    group: z.lazy(() => GroupEntity).describe('群信息'),
+    group_member: z.lazy(() => GroupMemberEntity).describe('群成员信息'),
   }).describe('群消息'),
   
   // 临时会话消息
@@ -236,7 +236,7 @@ export const IncomingMessage = z.discriminatedUnion('message_scene', [
     sender_id: ZInt64.describe('发送者 QQ 号'),
     time: ZInt64.describe('消息 Unix 时间戳（秒）'),
     segments: z.array(IncomingSegment).describe('消息段列表'),
-    group: GroupEntity.optional().describe('临时会话发送者的所在的群信息'),
+    group: z.lazy(() => GroupEntity).optional().describe('临时会话发送者的所在的群信息'),
   }).describe('临时会话消息'),
 ]);
 

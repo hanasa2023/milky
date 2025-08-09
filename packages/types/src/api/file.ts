@@ -62,8 +62,8 @@ export const GetGroupFilesInput = z.object({
 
 // 获取群文件列表输出
 export const GetGroupFilesOutput = z.object({
-  files: z.array(GroupFileEntity).describe('文件列表'),
-  folder: z.array(GroupFolderEntity).describe('文件夹列表'),
+  files: z.array(z.lazy(() => GroupFileEntity)).describe('文件列表'),
+  folder: z.array(z.lazy(() => GroupFolderEntity)).describe('文件夹列表'),
 });
 
 // 移动群文件输入

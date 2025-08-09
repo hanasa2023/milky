@@ -66,7 +66,7 @@ export const GetGroupAnnouncementListInput = z.object({
 
 // 获取群公告列表输出
 export const GetGroupAnnouncementListOutput = z.object({
-  announcements: z.array(GroupAnnouncementEntity).describe('群公告列表'),
+  announcements: z.array(z.lazy(() => GroupAnnouncementEntity)).describe('群公告列表'),
 });
 
 // 发送群公告输入

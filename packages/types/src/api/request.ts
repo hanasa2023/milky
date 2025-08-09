@@ -9,7 +9,7 @@ export const GetFriendRequestsInput = z.object({
 
 // 获取好友请求列表输出
 export const GetFriendRequestsOutput = z.object({
-  requests: z.array(FriendRequest).describe('好友请求列表'),
+  requests: z.array(z.lazy(() => FriendRequest)).describe('好友请求列表'),
 });
 
 // 获取群请求列表输入
@@ -19,7 +19,7 @@ export const GetGroupRequestsInput = z.object({
 
 // 获取群请求列表输出
 export const GetGroupRequestsOutput = z.object({
-  requests: z.array(GroupRequest).describe('群请求列表'),
+  requests: z.array(z.lazy(() => GroupRequest)).describe('群请求列表'),
 });
 
 // 获取群邀请列表输入
@@ -29,7 +29,7 @@ export const GetGroupInvitationsInput = z.object({
 
 // 获取群邀请列表输出
 export const GetGroupInvitationsOutput = z.object({
-  invitations: z.array(GroupInvitation).describe('群邀请列表'),
+  invitations: z.array(z.lazy(() => GroupInvitation)).describe('群邀请列表'),
 });
 
 // 同意好友请求输入
