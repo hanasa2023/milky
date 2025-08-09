@@ -76,9 +76,9 @@ function renderTypeName(type: $ZodType): JSX.Element | string {
   if (type instanceof ZodLazy) {
     return renderTypeName(type.unwrap());
   }
-    if (commonStructNames.has(type)) {
-      return commonStructNames.get(type)!; // TODO
-    }
+  if (commonStructNames.has(type)) {
+    return commonStructNames.get(type)!; // TODO
+  }
   return 'Unknown struct, consult the developers to register it';
 }
 
@@ -167,15 +167,61 @@ function renderZodDiscriminatedUnion(struct: ZodDiscriminatedUnion) {
           return (
             <div key={discriminatorValue} style={{ marginTop: '2rem' }}>
               <pre style={{ fontSize: '120%' }}>
-                <b>{struct.def.discriminator} = "{discriminatorValue}" {'->'}</b> {option.description}
+                <b>
+                  {struct.def.discriminator} = "{discriminatorValue}" {'->'} {option.description}
+                </b>
               </pre>
               {option.shape.data instanceof ZodLazy ? (
-                <p style={{ marginTop: '1rem' }}>参见 {commonStructNames.get(option.shape.data.unwrap() as ZodObject)}</p> // todo
+                <p style={{ marginTop: '1rem' }}>
+                  参见 {commonStructNames.get(option.shape.data.unwrap() as ZodObject)}
+                </p> // todo
               ) : commonStructNames.has(option.shape.data) ? (
                 <p style={{ marginTop: '1rem' }}>参见 {commonStructNames.get(option.shape.data)}</p>
               ) : (
                 <StructRenderer struct={option.shape.data} />
               )}
+            </div>
+          );
+        })}
+      </div>
+    );
+  } else {
+    return (
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          marginTop: '1rem',
+          gap: '1rem',
+        }}
+      >
+        <p>可能的类型如下：</p>
+        {struct.options.map((option) => {
+          if (!(option instanceof ZodObject)) {
+            throw new Error('Expected option to be a ZodObject');
+          }
+          const discriminatorValue = (option.shape[struct.def.discriminator] as ZodLiteral).value as string;
+          return (
+            <div key={discriminatorValue}>
+              <Table>
+                <thead>
+                  <Table.Tr>
+                    <Table.Th>字段名</Table.Th>
+                    <Table.Th>类型</Table.Th>
+                    <Table.Th>描述</Table.Th>
+                  </Table.Tr>
+                </thead>
+                <tbody>
+                  <Table.Tr>
+                    <Table.Td>{struct.def.discriminator}</Table.Td>
+                    <Table.Td>"{discriminatorValue}"</Table.Td>
+                    <Table.Td>表示{option.description}</Table.Td>
+                  </Table.Tr>
+                  {Object.entries<ZodType>(option.shape)
+                    .filter(([key]) => key !== struct.def.discriminator)
+                    .map(([key, value]) => renderZodObjectRow(key, value))}
+                </tbody>
+              </Table>
             </div>
           );
         })}
