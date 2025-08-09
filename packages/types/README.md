@@ -5,7 +5,7 @@
 ## 安装
 
 ```bash
-npm install @saltifydev/milky-types
+npm install @saltify/milky-types
 ```
 
 ## 使用方法
@@ -189,21 +189,3 @@ try {
 - `group.ts` - 群聊 API 类型
 - `file.ts` - 文件 API 类型
 - `request.ts` - 请求 API 类型
-
-## 开发
-
-### 构建
-
-```bash
-npm run build
-```
-
-### 类型检查
-
-```bash
-npx tsc --noEmit
-```
-
-## 许可证
-
-ISC
