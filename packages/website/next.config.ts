@@ -6,7 +6,10 @@ const withNextra = nextra({
 });
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  output: 'export',
+  images: {
+    unoptimized: true,
+  },
 };
 
 export default withNextra(nextConfig);
