@@ -254,7 +254,7 @@ export const Event = z.discriminatedUnion('event_type', [
     self_id: ZInt64.describe('机器人 QQ 号'),
     data: GroupFileUploadEvent,
   }).describe('群文件上传事件'),
-]);
+]).describe('事件');
 
 // 导出类型
 export type BotOfflineEvent = z.infer<typeof BotOfflineEvent>;

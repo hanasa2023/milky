@@ -114,7 +114,7 @@ export const IncomingSegment = z.discriminatedUnion('type', [
       xml_payload: ZString.describe('XML 数据'),
     }).describe('XML 消息段'),
   }).describe('XML 消息段'),
-]);
+]).describe('接收消息段');
 
 // 合并转发消息
 export const IncomingForwardedMessage = z.object({
@@ -122,7 +122,7 @@ export const IncomingForwardedMessage = z.object({
   avatar_url: ZString.describe('发送者头像 URL'),
   time: ZInt64.describe('消息 Unix 时间戳（秒）'),
   segments: z.array(z.lazy(() => IncomingSegment)).describe('消息段列表'),
-});
+}).describe('接收转发消息');
 
 // 发送消息段
 export const OutgoingSegment = z.discriminatedUnion('type', [
@@ -196,14 +196,14 @@ export const OutgoingSegment = z.discriminatedUnion('type', [
       }
     }).describe('合并转发消息段'),
   }).describe('合并转发消息段'),
-]);
+]).describe('发送消息段');
 
 // 发送转发消息
 export const OutgoingForwardedMessage = z.object({
   user_id: ZInt64.describe('发送者 QQ 号'),
   name: ZString.describe('发送者名称'),
   segments: z.array(z.lazy(() => OutgoingSegment)).describe('消息段列表'),
-});
+}).describe('发送转发消息');
 
 // 接收消息
 export const IncomingMessage = z.discriminatedUnion('message_scene', [
@@ -240,7 +240,7 @@ export const IncomingMessage = z.discriminatedUnion('message_scene', [
     segments: z.array(z.lazy(() => IncomingSegment)).describe('消息段列表'),
     group: z.lazy(() => GroupEntity).optional().describe('临时会话发送者的所在的群信息'),
   }).describe('临时会话消息'),
-]);
+]).describe('接收消息');
 
 // 导出类型
 export type IncomingSegment = z.infer<typeof IncomingSegment>;

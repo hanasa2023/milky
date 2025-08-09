@@ -118,7 +118,7 @@ export const GroupRequest = z.discriminatedUnion('request_type', [
     operator_id: ZInt64.optional().describe('处理请求的用户 QQ 号'),
     invitee_id: ZInt64.describe('被邀请者 QQ 号'),
   }).describe('他人邀请入群请求'),
-]);
+]).describe('群请求实体');
 
 // 群邀请实体
 export const GroupInvitation = RequestBase.extend({
