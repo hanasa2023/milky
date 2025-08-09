@@ -9,11 +9,13 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@saltify/milky-types": "workspace:*",
     "next": "15.4.6",
     "nextra": "^4.3.0",
     "nextra-theme-docs": "^4.3.0",
     "react": "19.1.0",
-    "react-dom": "19.1.0"
+    "react-dom": "19.1.0",
+    "zod": "^4.0.15"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
