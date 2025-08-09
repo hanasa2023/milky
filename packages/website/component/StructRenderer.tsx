@@ -1,4 +1,5 @@
 import {
+  Event,
   FriendCategoryEntity,
   FriendEntity,
   FriendRequest,
@@ -33,6 +34,7 @@ import {
 import { $ZodType, toJSONSchema } from 'zod/v4/core';
 
 export const commonStructs = {
+  Event,
   FriendEntity,
   FriendCategoryEntity,
   GroupEntity,
