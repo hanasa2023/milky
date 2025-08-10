@@ -12,7 +12,7 @@ import '@fontsource/inter/800.css';
 import '@fontsource/inter/900.css';
 import '@fontsource-variable/noto-sans-sc';
 import './styles.css';
-import { commonStructs } from './common';
+import { commonStructs, apiCategories } from './common';
 
 export const metadata = {
   title: '🥛 Milky',
@@ -28,6 +28,16 @@ export default async function RootLayout({ children }) {
         <Layout navbar={navbar} pageMap={[
           ...await getPageMap(),
           {
+            name: 'api',
+            route: '/api',
+            title: 'API',
+            children: Object.entries(apiCategories).map(([name, apiCategory]) => ({
+              name,
+              route: `/api/${name}`,
+              title: apiCategory.name,
+            })),
+          },
+          {
             name: 'struct',
             route: '/struct',
             title: '结构体',
@@ -37,7 +47,7 @@ export default async function RootLayout({ children }) {
               title: struct.description,
               frontMater: {},
             })),
-          }
+          },
         ]} docsRepositoryBase="https://github.com/SaltifyDev/milky">
           {children}
         </Layout>
