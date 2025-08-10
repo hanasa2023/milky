@@ -42,7 +42,11 @@ function renderTypeName(type: $ZodType): JSX.Element | string {
     return <>{renderTypeName(type.unwrap())} (optional)</>;
   }
   if (type instanceof ZodDefault) {
-    return <>{renderTypeName(type.unwrap())} (default: {JSON.stringify(type.def.defaultValue)})</>;
+    return (
+      <>
+        {renderTypeName(type.unwrap())} (default: {JSON.stringify(type.def.defaultValue)})
+      </>
+    );
   }
   if (type instanceof ZodLazy) {
     return renderTypeName(type.unwrap());
@@ -145,15 +149,14 @@ function renderZodDiscriminatedUnion(struct: ZodDiscriminatedUnion) {
           const discriminatorValue = (option.shape[struct.def.discriminator] as ZodLiteral).value as string;
           return (
             <div id={`type-${discriminatorValue}`} key={discriminatorValue} style={{ marginTop: '2rem' }}>
-              <pre style={{ fontSize: '120%' }}>
-                <b>
-                  {struct.def.discriminator} = "{discriminatorValue}" {'->'} {option.description}
-                </b>
-              </pre>
+              <p
+                className="x:text-slate-900 x:dark:text-slate-100 x:border-b nextra-border"
+                style={{ fontSize: '1.75rem' }}
+              >
+                <b>{discriminatorValue}</b> {option.description}
+              </p>
               {option.shape.data instanceof ZodLazy ? (
-                <p style={{ marginTop: '1rem' }}>
-                  参见 {renderCommonStructName(option.shape.data.unwrap())}
-                </p> // todo
+                <p style={{ marginTop: '1rem' }}>参见 {renderCommonStructName(option.shape.data.unwrap())}</p> // todo
               ) : commonStructNames.has(option.shape.data) ? (
                 <p style={{ marginTop: '1rem' }}>参见 {renderCommonStructName(option.shape.data)}</p>
               ) : (
