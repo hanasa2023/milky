@@ -1,3 +1,7 @@
+pnpm-lock.yaml
+node_modules/
+
+### LEGACY
 .gradle
 build/
 !gradle/wrapper/gradle-wrapper.jar
