@@ -215,13 +215,13 @@ export const Event = z.discriminatedUnion('event_type', [
     data: GroupNameChangeEvent,
   }).describe('群名称变更事件'),
   
-  // 群消息反应事件
+  // 群消息表情回应事件
   z.object({
     event_type: z.literal('group_message_reaction'),
     time: ZInt64.describe('事件 Unix 时间戳（秒）'),
     self_id: ZInt64.describe('机器人 QQ 号'),
     data: GroupMessageReactionEvent,
-  }).describe('群消息反应事件'),
+  }).describe('群消息表情回应事件'),
   
   // 群禁言事件
   z.object({

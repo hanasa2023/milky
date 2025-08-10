@@ -1,6 +1,7 @@
 import { z } from 'zod';
 import { ZInt32, ZInt64, ZString, ZBoolean } from '../scalar';
 import { FriendEntity, GroupEntity, GroupMemberEntity } from '../common';
+import { milkyVersion } from '../constants';
 
 // 缓存 API 基础
 export const CachedApiBase = z.object({
@@ -29,7 +30,7 @@ export const GetImplInfoOutput = z.object({
     'harmony',
     'watch'
   ]).describe('协议端使用的 QQ 协议平台'),
-  milky_version: ZString.describe('协议端实现的 Milky 协议版本，目前为 `1.0`'),
+  milky_version: ZString.describe(`协议端实现的 Milky 协议版本，目前为 "${milkyVersion}"`),
 });
 
 // 获取用户个人信息输入

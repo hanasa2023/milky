@@ -35,7 +35,7 @@ export const GetMessageInput = MessageIdentifier;
 
 // 获取消息输出
 export const GetMessageOutput = z.object({
-  message: IncomingMessage.describe('消息内容'),
+  message: z.lazy(() => IncomingMessage).describe('消息内容'),
 });
 
 // 获取历史消息输入
