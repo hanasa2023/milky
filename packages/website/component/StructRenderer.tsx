@@ -5,6 +5,7 @@ import { JSX } from 'react';
 import {
   ZodArray,
   ZodBoolean,
+  ZodDefault,
   ZodDiscriminatedUnion,
   ZodEnum,
   ZodLazy,
@@ -39,6 +40,9 @@ function renderTypeName(type: $ZodType): JSX.Element | string {
   }
   if (type instanceof ZodOptional) {
     return <>{renderTypeName(type.unwrap())} (optional)</>;
+  }
+  if (type instanceof ZodDefault) {
+    return <>{renderTypeName(type.unwrap())} (default: {JSON.stringify(type.def.defaultValue)})</>;
   }
   if (type instanceof ZodLazy) {
     return renderTypeName(type.unwrap());
