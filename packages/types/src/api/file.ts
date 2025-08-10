@@ -77,7 +77,7 @@ export const MoveGroupFileInput = z.object({
 export const RenameGroupFileInput = z.object({
   group_id: ZInt64.describe('群号'),
   file_id: ZString.describe('文件 ID'),
-  new_name: ZString.describe('新文件名称'),
+  new_file_name: ZString.describe('新文件名称'),
 });
 
 // 删除群文件输入
@@ -101,7 +101,7 @@ export const CreateGroupFolderOutput = z.object({
 export const RenameGroupFolderInput = z.object({
   group_id: ZInt64.describe('群号'),
   folder_id: ZString.describe('文件夹 ID'),
-  new_name: ZString.describe('新文件夹名'),
+  new_folder_name: ZString.describe('新文件夹名'),
 });
 
 // 删除群文件夹输入

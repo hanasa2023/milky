@@ -24,7 +24,7 @@ export const FriendEntity = UserEntityBase.extend({
 // 群实体
 export const GroupEntity = z.object({
   group_id: ZInt64.describe('群号'),
-  name: ZString.describe('群名称'),
+  group_name: ZString.describe('群名称'),
   member_count: ZInt32.describe('群成员数量'),
   max_member_count: ZInt32.describe('群容量'),
 }).describe('群实体');

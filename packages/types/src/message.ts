@@ -118,7 +118,7 @@ export const IncomingSegment = z.discriminatedUnion('type', [
 
 // 合并转发消息
 export const IncomingForwardedMessage = z.object({
-  name: ZString.describe('发送者名称'),
+  sender_name: ZString.describe('发送者名称'),
   avatar_url: ZString.describe('发送者头像 URL'),
   time: ZInt64.describe('消息 Unix 时间戳（秒）'),
   segments: z.array(z.lazy(() => IncomingSegment)).describe('消息段列表'),
@@ -201,7 +201,7 @@ export const OutgoingSegment = z.discriminatedUnion('type', [
 // 发送转发消息
 export const OutgoingForwardedMessage = z.object({
   user_id: ZInt64.describe('发送者 QQ 号'),
-  name: ZString.describe('发送者名称'),
+  sender_name: ZString.describe('发送者名称'),
   segments: z.array(z.lazy(() => OutgoingSegment)).describe('消息段列表'),
 }).describe('发送转发消息');
 

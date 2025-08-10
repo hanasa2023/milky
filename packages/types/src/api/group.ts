@@ -10,7 +10,7 @@ export const PictureApiBase = z.object({
 // 设置群名称输入
 export const SetGroupNameInput = z.object({
   group_id: ZInt64.describe('群号'),
-  name: ZString.describe('新群名称'),
+  new_group_name: ZString.describe('新群名称'),
 });
 
 // 设置群头像输入

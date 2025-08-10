@@ -65,7 +65,7 @@ export const GroupMemberDecreaseEvent = z.object({
 // 群名称变更事件
 export const GroupNameChangeEvent = z.object({
   group_id: ZInt64.describe('群号'),
-  name: ZString.describe('新的群名称'),
+  new_group_name: ZString.describe('新的群名称'),
   operator_id: ZInt64.describe('操作者 QQ 号'),
 }).describe('群名称变更事件');
 
