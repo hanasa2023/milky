@@ -1,7 +1,15 @@
 import StructRenderer, { commonStructs } from '@/component/StructRenderer';
 import { useMDXComponents as getMDXComponents } from '../../../mdx-components';
+import { ZodDiscriminatedUnion } from 'zod';
 
 const Wrapper = getMDXComponents().wrapper;
+
+export async function generateMetadata(props) {
+  const params = await props.params;
+  return {
+    title: `🥛 Milky | ${commonStructs[params.commonEntityName].description} (${params.commonEntityName})`,
+  };
+}
 
 export function generateStaticParams() {
   return Object.keys(commonStructs).map((name) => ({
@@ -14,7 +22,14 @@ export default async function Page(props) {
   const entity = commonStructs[params.commonEntityName];
   return (
     <Wrapper
-      toc={[]}
+      toc={entity instanceof ZodDiscriminatedUnion ? entity.options.map((option) => {
+        const discriminatorValue = option.shape[entity.def.discriminator].value;
+        return {
+          depth: 2,
+          value: option.description,
+          id: `type-${discriminatorValue}`,
+        }
+      }) : []}
       metadata={{
         title: entity.description,
       }}

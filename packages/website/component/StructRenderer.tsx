@@ -176,7 +176,7 @@ function renderZodDiscriminatedUnion(struct: ZodDiscriminatedUnion) {
           }
           const discriminatorValue = (option.shape[struct.def.discriminator] as ZodLiteral).value as string;
           return (
-            <div key={discriminatorValue} style={{ marginTop: '2rem' }}>
+            <div id={`type-${discriminatorValue}`} key={discriminatorValue} style={{ marginTop: '2rem' }}>
               <pre style={{ fontSize: '120%' }}>
                 <b>
                   {struct.def.discriminator} = "{discriminatorValue}" {'->'} {option.description}

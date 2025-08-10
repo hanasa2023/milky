@@ -15,7 +15,7 @@ import './styles.css';
 import { commonStructs } from '@/component/StructRenderer';
 
 export const metadata = {
-  title: 'Milky',
+  title: '🥛 Milky',
   description: 'Milky 协议文档',
 };
 
