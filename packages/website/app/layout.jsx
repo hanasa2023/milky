@@ -12,7 +12,7 @@ import '@fontsource/inter/800.css';
 import '@fontsource/inter/900.css';
 import '@fontsource-variable/noto-sans-sc';
 import './styles.css';
-import { commonStructs } from '@/component/StructRenderer';
+import { commonStructs } from './common';
 
 export const metadata = {
   title: '🥛 Milky',

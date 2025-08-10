@@ -1,0 +1,38 @@
+import {
+  Event,
+  FriendEntity,
+  FriendCategoryEntity,
+  GroupEntity,
+  GroupMemberEntity,
+  GroupAnnouncementEntity,
+  GroupFileEntity,
+  GroupFolderEntity,
+  FriendRequest,
+  GroupRequest,
+  GroupInvitation,
+  IncomingMessage,
+  IncomingForwardedMessage,
+  IncomingSegment,
+  OutgoingForwardedMessage,
+  OutgoingSegment,
+} from '@saltify/milky-types';
+import { ZodType } from 'zod';
+
+export const commonStructs = {
+  Event,
+  FriendEntity,
+  FriendCategoryEntity,
+  GroupEntity,
+  GroupMemberEntity,
+  GroupAnnouncementEntity,
+  GroupFileEntity,
+  GroupFolderEntity,
+  FriendRequest,
+  GroupRequest,
+  GroupInvitation,
+  IncomingMessage,
+  IncomingForwardedMessage,
+  IncomingSegment,
+  OutgoingForwardedMessage,
+  OutgoingSegment,
+} satisfies Record<string, ZodType>;

@@ -1,21 +1,4 @@
-import {
-  Event,
-  FriendCategoryEntity,
-  FriendEntity,
-  FriendRequest,
-  GroupAnnouncementEntity,
-  GroupEntity,
-  GroupFileEntity,
-  GroupFolderEntity,
-  GroupInvitation,
-  GroupMemberEntity,
-  GroupRequest,
-  IncomingForwardedMessage,
-  IncomingMessage,
-  IncomingSegment,
-  OutgoingForwardedMessage,
-  OutgoingSegment,
-} from '@saltify/milky-types';
+import { commonStructs } from '@/app/common';
 import { Link } from 'nextra-theme-docs';
 import { Table } from 'nextra/components';
 import { JSX } from 'react';
@@ -32,26 +15,7 @@ import {
   ZodString,
   ZodType,
 } from 'zod';
-import { $ZodType, toJSONSchema } from 'zod/v4/core';
-
-export const commonStructs = {
-  Event,
-  FriendEntity,
-  FriendCategoryEntity,
-  GroupEntity,
-  GroupMemberEntity,
-  GroupAnnouncementEntity,
-  GroupFileEntity,
-  GroupFolderEntity,
-  FriendRequest,
-  GroupRequest,
-  GroupInvitation,
-  IncomingMessage,
-  IncomingForwardedMessage,
-  IncomingSegment,
-  OutgoingForwardedMessage,
-  OutgoingSegment,
-} satisfies Record<string, ZodType>;
+import { $ZodType } from 'zod/v4/core';
 
 const commonStructNames = new Map<$ZodType, string>(
   Object.entries(commonStructs).map(([name, struct]) => [struct, name])

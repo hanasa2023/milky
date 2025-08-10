@@ -1,4 +1,5 @@
-import StructRenderer, { commonStructs } from '@/component/StructRenderer';
+import StructRenderer from '@/component/StructRenderer';
+import { commonStructs } from '@/app/common';
 import { useMDXComponents as getMDXComponents } from '../../../mdx-components';
 import { ZodDiscriminatedUnion } from 'zod';
 
