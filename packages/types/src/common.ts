@@ -125,15 +125,6 @@ export const GroupInvitation = RequestBase.extend({
   group_id: ZInt64.describe('群号'),
 }).describe('群邀请实体');
 
-// 请求实体（通用）
-export const RequestEntity = z.object({
-  request_id: ZString.describe('请求 ID'),
-  time: ZInt64.describe('请求时间，Unix 时间戳（秒）'),
-  requester_id: ZInt64.describe('请求者 QQ 号'),
-  requester_nickname: ZString.describe('请求者昵称'),
-  message: ZString.describe('请求消息'),
-}).describe('请求实体（通用）');
-
 // 消息标识符
 export const MessageIdentifier = z.object({
   message_scene: z.enum(['friend', 'group', 'temp']).describe('消息场景'),
@@ -154,5 +145,4 @@ export type RequestBase = z.infer<typeof RequestBase>;
 export type FriendRequest = z.infer<typeof FriendRequest>;
 export type GroupRequest = z.infer<typeof GroupRequest>;
 export type GroupInvitation = z.infer<typeof GroupInvitation>;
-export type RequestEntity = z.infer<typeof RequestEntity>;
 export type MessageIdentifier = z.infer<typeof MessageIdentifier>;
