@@ -18,7 +18,7 @@ export const FriendCategoryEntity = z.object({
 export const FriendEntity = UserEntityBase.extend({
   qid: ZString.optional().describe('用户 QID'),
   remark: ZString.describe('好友备注'),
-  category: z.lazy(() => FriendCategoryEntity).describe('好友分组'),
+  category: z.lazy(() => FriendCategoryEntity).optional().describe('好友分组'),
 }).describe('好友实体');
 
 // 群实体
