@@ -1,14 +1,9 @@
 {
   "name": "milky",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "website:dev": "pnpm --filter website dev"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "license": "CC0-1.0",
   "packageManager": "pnpm@10.14.0",
   "devDependencies": {
     "eslint": "^9.32.0",
