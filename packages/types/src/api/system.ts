@@ -109,6 +109,18 @@ export const GetGroupMemberInfoOutput = z.object({
   member: z.lazy(() => GroupMemberEntity).describe('群成员信息'),
 });
 
+export const GetCookiesInput = z.object({
+  domain: ZString.describe('需要获取 Cookies 的域名'),
+});
+
+export const GetCookiesOutput = z.object({
+  cookies: ZString.describe('域名对应的 Cookies 字符串'),
+});
+
+export const GetCSRFTokenOutput = z.object({
+  csrf_token: ZString.describe('CSRF Token'),
+});
+
 // 导出类型
 export type CachedApiBase = z.infer<typeof CachedApiBase>;
 export type GetLoginInfoOutput = z.infer<typeof GetLoginInfoOutput>;
@@ -127,3 +139,6 @@ export type GetGroupMemberListInput = z.infer<typeof GetGroupMemberListInput>;
 export type GetGroupMemberListOutput = z.infer<typeof GetGroupMemberListOutput>;
 export type GetGroupMemberInfoInput = z.infer<typeof GetGroupMemberInfoInput>;
 export type GetGroupMemberInfoOutput = z.infer<typeof GetGroupMemberInfoOutput>;
+export type GetCookiesInput = z.infer<typeof GetCookiesInput>;
+export type GetCookiesOutput = z.infer<typeof GetCookiesOutput>;
+export type GetCSRFTokenOutput = z.infer<typeof GetCSRFTokenOutput>;
