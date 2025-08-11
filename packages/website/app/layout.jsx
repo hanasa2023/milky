@@ -52,7 +52,7 @@ export default async function RootLayout({ children }) {
               })),
             },
           ]}
-          docsRepositoryBase="https://github.com/SaltifyDev/milky/tree/main/packages/website/content"
+          docsRepositoryBase="https://github.com/SaltifyDev/milky/tree/main/packages/website/"
           search={<Search
             placeholder="搜索内容..."
             emptyResult="没有找到相关内容"
