@@ -13,7 +13,7 @@ import '@fontsource/inter/900.css';
 import '@fontsource-variable/noto-sans-sc';
 import './styles.css';
 import { commonStructs, apiCategories } from './common';
-import { Search } from 'nextra/components';
+import { Head, Search } from 'nextra/components';
 
 export const metadata = {
   title: '🥛 Milky',
@@ -25,6 +25,7 @@ const navbar = <Navbar logo={<b>Milky</b>} />;
 export default async function RootLayout({ children }) {
   return (
     <html lang="zh" suppressHydrationWarning>
+      <Head />
       <body>
         <Layout
           navbar={navbar}
