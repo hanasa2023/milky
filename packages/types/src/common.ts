@@ -16,9 +16,9 @@ export const FriendCategoryEntity = z.object({
 
 // 好友实体
 export const FriendEntity = UserEntityBase.extend({
-  qid: ZString.optional().describe('用户 QID'),
+  qid: ZString.describe('用户 QID'),
   remark: ZString.describe('好友备注'),
-  category: z.lazy(() => FriendCategoryEntity).optional().describe('好友分组'),
+  category: z.lazy(() => FriendCategoryEntity).describe('好友分组'),
 }).describe('好友实体');
 
 // 群实体
@@ -33,7 +33,7 @@ export const GroupEntity = z.object({
 export const GroupMemberEntity = UserEntityBase.extend({
   group_id: ZInt64.describe('群号'),
   card: ZString.describe('成员备注'),
-  title: ZString.optional().describe('专属头衔'),
+  title: ZString.describe('专属头衔'),
   level: ZInt32.describe('群等级，注意和 QQ 等级区分'),
   role: z.enum(['owner', 'admin', 'member']).describe('权限等级'),
   join_time: ZInt64.describe('入群时间，Unix 时间戳（秒）'),
@@ -87,8 +87,8 @@ export const RequestBase = z.object({
 
 // 好友请求实体
 export const FriendRequest = RequestBase.extend({
-  comment: ZString.optional().describe('好友请求附加信息'),
-  via: ZString.optional().describe('好友请求来源'),
+  comment: ZString.describe('好友请求附加信息'),
+  via: ZString.describe('好友请求来源'),
 }).describe('好友请求实体');
 
 // 群请求实体
@@ -103,7 +103,7 @@ export const GroupRequest = z.discriminatedUnion('request_type', [
     state: z.enum(['pending', 'accepted', 'rejected', 'ignored']).describe('请求状态'),
     group_id: ZInt64.describe('群号'),
     operator_id: ZInt64.optional().describe('处理请求的用户 QQ 号'),
-    comment: ZString.optional().describe('入群请求附加信息'),
+    comment: ZString.describe('入群请求附加信息'),
   }).describe('自主申请入群请求'),
   
   // 他人邀请入群请求

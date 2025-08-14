@@ -41,15 +41,15 @@ export const GetUserProfileInput = z.object({
 // 获取用户个人信息输出
 export const GetUserProfileOutput = z.object({
   nickname: ZString.describe('昵称'),
-  qid: ZString.optional().describe('QID'),
+  qid: ZString.describe('QID'),
   age: ZInt32.describe('年龄'),
   sex: z.enum(['male', 'female', 'unknown']).describe('性别'),
-  remark: ZString.optional().describe('备注'),
-  bio: ZString.optional().describe('个性签名'),
-  level: ZInt32.optional().describe('QQ 等级'),
-  country: ZString.optional().describe('国家或地区'),
-  city: ZString.optional().describe('城市'),
-  school: ZString.optional().describe('学校'),
+  remark: ZString.describe('备注'),
+  bio: ZString.describe('个性签名'),
+  level: ZInt32.describe('QQ 等级'),
+  country: ZString.describe('国家或地区'),
+  city: ZString.describe('城市'),
+  school: ZString.describe('学校'),
 });
 
 // 获取好友列表输入
