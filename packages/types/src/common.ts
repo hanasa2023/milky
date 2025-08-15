@@ -10,7 +10,7 @@ const UserEntityBase = z.object({
 export const FriendCategoryEntity = z.object({
   category_id: ZInt32.describe('好友分组 ID'),
   category_name: ZString.describe('好友分组名称'),
-}).describe('好友分类实体');
+}).describe('好友分组实体');
 
 export const FriendEntity = UserEntityBase.extend({
   qid: ZString.describe('用户 QID'),
