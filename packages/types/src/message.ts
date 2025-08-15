@@ -52,6 +52,8 @@ export const IncomingSegment = z.discriminatedUnion('type', [
   z.object({
     type: z.literal('image'),
     data: IncomingResourceSegmentBase.extend({
+      width: ZInt32.describe('图片宽度'),
+      height: ZInt32.describe('图片高度'),
       summary: ZString.describe('图片预览文本'),
       sub_type: z.enum(['normal', 'sticker']).describe('图片类型'),
     }).describe('图片消息段'),
@@ -66,7 +68,11 @@ export const IncomingSegment = z.discriminatedUnion('type', [
 
   z.object({
     type: z.literal('video'),
-    data: IncomingResourceSegmentBase.describe('视频消息段'),
+    data: IncomingResourceSegmentBase.extend({
+      width: ZInt32.describe('视频宽度'),
+      height: ZInt32.describe('视频高度'),
+      duration: ZInt32.describe('视频时长（秒）'),
+    }).describe('视频消息段'),
   }).describe('视频消息段'),
 
   z.object({
