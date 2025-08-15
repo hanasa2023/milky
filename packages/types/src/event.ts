@@ -253,6 +253,9 @@ export const Event = z.discriminatedUnion('event_type', [
 
 export type BotOfflineEvent = z.infer<typeof BotOfflineEvent>;
 export type MessageRecallEvent = z.infer<typeof MessageRecallEvent>;
+export type GroupJoinRequestEvent = z.infer<typeof GroupJoinRequestEvent>;
+export type GroupInvitedJoinRequestEvent = z.infer<typeof GroupInvitedJoinRequestEvent>;
+export type GroupInvitationEvent = z.infer<typeof GroupInvitationEvent>;
 export type FriendNudgeEvent = z.infer<typeof FriendNudgeEvent>;
 export type FriendFileUploadEvent = z.infer<typeof FriendFileUploadEvent>;
 export type GroupAdminChangeEvent = z.infer<typeof GroupAdminChangeEvent>;
