@@ -210,8 +210,21 @@ export const IncomingMessage = z.discriminatedUnion('message_scene', [
   }).describe('临时会话消息'),
 ]).describe('接收消息');
 
+export const GroupEssenceMessage = z.object({
+  group_id: ZInt64.describe('群号'),
+  message_seq: ZInt64.describe('消息序列号'),
+  message_time: ZInt64.describe('消息发送时的 Unix 时间戳（秒）'),
+  sender_id: ZInt64.describe('发送者 QQ 号'),
+  sender_name: ZString.describe('发送者名称'),
+  operator_id: ZInt64.describe('设置精华的操作者 QQ 号'),
+  operator_name: ZString.describe('设置精华的操作者名称'),
+  operation_time: ZInt64.describe('消息被设置精华时的 Unix 时间戳（秒）'),
+  segments: z.array(z.lazy(() => IncomingSegment)).describe('消息段列表'),
+}).describe('群精华消息');
+
 export type IncomingSegment = z.infer<typeof IncomingSegment>;
 export type OutgoingSegment = z.infer<typeof OutgoingSegment>;
 export type IncomingMessage = z.infer<typeof IncomingMessage>;
+export type GroupEssenceMessage = z.infer<typeof GroupEssenceMessage>;
 export type IncomingForwardedMessage = z.infer<typeof IncomingForwardedMessage>;
 export type OutgoingForwardedMessage = z.infer<typeof OutgoingForwardedMessage>;

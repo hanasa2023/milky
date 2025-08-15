@@ -1,6 +1,7 @@
 import { z } from 'zod';
 import { ZInt64, ZString, ZBoolean, ZInt32 } from '../scalar';
 import { GroupAnnouncementEntity, GroupNotification } from '../common';
+import { GroupEssenceMessage } from '../message';
 
 const PictureApiBase = z.object({
   image_uri: ZString.describe('图像文件 URI，支持 `file://` `http(s)://` `base64://` 三种格式'),
@@ -68,6 +69,23 @@ export const DeleteGroupAnnouncementInput = z.object({
   announcement_id: ZString.describe('公告 ID'),
 });
 
+export const GetGroupEssenceMessagesInput = z.object({
+  group_id: ZInt64.describe('群号'),
+  page_index: ZInt32.describe('页码索引，从 0 开始'),
+  page_size: ZInt32.describe('每页包含的精华消息数量'),
+});
+
+export const GetGroupEssenceMessagesOutput = z.object({
+  messages: z.array(z.lazy(() => GroupEssenceMessage)).describe('精华消息列表'),
+  is_end: ZBoolean.describe('是否已到最后一页'),
+});
+
+export const SetGroupEssenceMessageInput = z.object({
+  group_id: ZInt64.describe('群号'),
+  message_seq: ZInt64.describe('消息序列号'),
+  is_set: ZBoolean.default(true).describe('是否设置为精华消息，`false` 为取消精华'),
+});
+
 export const QuitGroupInput = z.object({
   group_id: ZInt64.describe('群号'),
 });
@@ -128,6 +146,9 @@ export type GetGroupAnnouncementListInput = z.infer<typeof GetGroupAnnouncementL
 export type GetGroupAnnouncementListOutput = z.infer<typeof GetGroupAnnouncementListOutput>;
 export type SendGroupAnnouncementInput = z.infer<typeof SendGroupAnnouncementInput>;
 export type DeleteGroupAnnouncementInput = z.infer<typeof DeleteGroupAnnouncementInput>;
+export type GetGroupEssenceMessagesInput = z.infer<typeof GetGroupEssenceMessagesInput>;
+export type GetGroupEssenceMessagesOutput = z.infer<typeof GetGroupEssenceMessagesOutput>;
+export type SetGroupEssenceMessageInput = z.infer<typeof SetGroupEssenceMessageInput>;
 export type QuitGroupInput = z.infer<typeof QuitGroupInput>;
 export type SendGroupMessageReactionInput = z.infer<typeof SendGroupMessageReactionInput>;
 export type SendGroupNudgeInput = z.infer<typeof SendGroupNudgeInput>;
