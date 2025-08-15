@@ -97,10 +97,12 @@ export const GetGroupNotificationsOutput = z.object({
 
 export const AcceptGroupRequestInput = z.object({
   notification_seq: ZString.describe('请求对应的通知序列号'),
+  is_filtered: ZBoolean.default(false).describe('是否是被过滤的请求'),
 });
 
 export const RejectGroupRequestInput = z.object({
   notification_seq: ZString.describe('请求对应的通知序列号'),
+  is_filtered: ZBoolean.default(false).describe('是否是被过滤的请求'),
   reason: ZString.optional().describe('拒绝理由'),
 });
 
