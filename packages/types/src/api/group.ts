@@ -107,10 +107,12 @@ export const RejectGroupRequestInput = z.object({
 });
 
 export const AcceptGroupInvitationInput = z.object({
+  group_id: ZInt64.describe('群号'),
   invitation_seq: ZString.describe('邀请序列号'),
 });
 
 export const RejectGroupInvitationInput = z.object({
+  group_id: ZInt64.describe('群号'),
   invitation_seq: ZString.describe('邀请序列号'),
 });
 
