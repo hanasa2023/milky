@@ -68,17 +68,16 @@ export const GroupFolderEntity = z.object({
   file_count: ZInt32.describe('文件数量'),
 }).describe('群文件夹实体');
 
-const RequestBase = z.object({
-  request_id: ZString.describe('请求 ID，用于同意 / 拒绝请求'),
+export const FriendRequest = z.object({
   time: ZInt64.describe('请求发起时的 Unix 时间戳（秒）'),
-  is_filtered: ZBoolean.describe('请求是否被过滤（发起自风险账户）'),
-  initiator_id: ZInt64.describe('发起请求的用户 QQ 号'),
+  initiator_id: ZInt64.describe('请求发起者 QQ 号'),
+  initiator_uid: ZString.describe('请求发起者 UID'),
+  target_user_id: ZInt64.describe('目标用户 QQ 号'),
+  target_user_uid: ZString.describe('目标用户 UID'),
   state: z.enum(['pending', 'accepted', 'rejected', 'ignored']).describe('请求状态'),
-}).describe('请求基础实体');
-
-export const FriendRequest = RequestBase.extend({
-  comment: ZString.describe('好友请求附加信息'),
-  via: ZString.describe('好友请求来源'),
+  comment: ZString.describe('申请附加信息'),
+  via: ZString.describe('申请来源'),
+  is_filtered: ZBoolean.describe('请求是否被过滤（发起自风险账户）'),
 }).describe('好友请求实体');
 
 export const GroupNotification = z.discriminatedUnion('type', [

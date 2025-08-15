@@ -1,6 +1,5 @@
 import { z } from 'zod';
 import { ZInt32, ZInt64, ZString, ZBoolean } from './scalar';
-import { FriendRequest } from './common';
 import { IncomingMessage } from './message';
 
 export const BotOfflineEvent = z.object({
@@ -14,6 +13,13 @@ export const MessageRecallEvent = z.object({
   sender_id: ZInt64.describe('被撤回的消息的发送者 QQ 号'),
   operator_id: ZInt64.describe('操作者 QQ 号'),
 }).describe('消息撤回事件');
+
+export const FriendRequestEvent = z.object({
+  initiator_id: ZInt64.describe('申请好友的用户 QQ 号'),
+  initiator_uid: ZString.describe('用户 UID'),
+  comment: ZString.describe('申请附加信息'),
+  via: ZString.describe('申请来源'),
+}).describe('好友请求事件');
 
 export const GroupJoinRequestEvent = z.object({
   group_id: ZInt64.describe('群号'),
@@ -142,7 +148,7 @@ export const Event = z.discriminatedUnion('event_type', [
     event_type: z.literal('friend_request'),
     time: ZInt64.describe('事件 Unix 时间戳（秒）'),
     self_id: ZInt64.describe('机器人 QQ 号'),
-    data: FriendRequest,
+    data: FriendRequestEvent,
   }).describe('好友请求事件'),
 
   z.object({
@@ -253,6 +259,7 @@ export const Event = z.discriminatedUnion('event_type', [
 
 export type BotOfflineEvent = z.infer<typeof BotOfflineEvent>;
 export type MessageRecallEvent = z.infer<typeof MessageRecallEvent>;
+export type FriendRequestEvent = z.infer<typeof FriendRequestEvent>;
 export type GroupJoinRequestEvent = z.infer<typeof GroupJoinRequestEvent>;
 export type GroupInvitedJoinRequestEvent = z.infer<typeof GroupInvitedJoinRequestEvent>;
 export type GroupInvitationEvent = z.infer<typeof GroupInvitationEvent>;
