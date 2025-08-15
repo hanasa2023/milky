@@ -48,7 +48,8 @@ export const GetHistoryMessagesInput = z.object({
 
 // 获取历史消息输出
 export const GetHistoryMessagesOutput = z.object({
-  messages: z.array(z.lazy(() => IncomingMessage)).describe('获取到的消息，部分消息可能不存在，如撤回的消息'),
+  messages: z.array(z.lazy(() => IncomingMessage)).describe('获取到的消息（message_seq 升序排列），部分消息可能不存在，如撤回的消息'),
+  next_message_seq: ZInt64.describe('下一页起始消息序列号'),
 });
 
 // 获取临时资源链接输入
