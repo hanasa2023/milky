@@ -184,8 +184,14 @@ function renderZodDiscriminatedUnion(struct: ZodDiscriminatedUnion) {
           }
           const discriminatorValue = (option.shape[struct.def.discriminator] as ZodLiteral).value as string;
           return (
-            <div key={discriminatorValue}>
-              <Table>
+            <div id={`type-${discriminatorValue}`} key={discriminatorValue} style={{ marginTop: '2rem' }}>
+              <p
+                className="x:text-slate-900 x:dark:text-slate-100 x:border-b nextra-border"
+                style={{ fontSize: '1.75rem' }}
+              >
+                <b>{discriminatorValue}</b> {option.description}
+              </p>
+              <Table style={{ marginTop: '1rem' }}>
                 <thead>
                   <Table.Tr>
                     <Table.Th>字段名</Table.Th>
