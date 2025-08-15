@@ -13,7 +13,7 @@ import '@fontsource/inter/900.css';
 import '@fontsource-variable/noto-sans-sc';
 import './styles.css';
 import { commonStructs, apiCategories } from './common';
-import { Head, Search } from 'nextra/components';
+import { Banner, Head, Search } from 'nextra/components';
 
 export const metadata = {
   title: '🥛 Milky',
@@ -28,6 +28,7 @@ export default async function RootLayout({ children }) {
       <Head />
       <body>
         <Layout
+          banner={<Banner storageKey="milky-1.0-draft">🎉 Milky 1.0 草案正在征求意见阶段，我们需要你的声音！ 🎉</Banner>}
           navbar={navbar}
           pageMap={[
             ...(await getPageMap()),
