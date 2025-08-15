@@ -21,7 +21,7 @@ export const UploadPrivateFileOutput = z.object({
 
 export const UploadGroupFileInput = z.object({
   group_id: ZInt64.describe('群号'),
-  parent_folder_id: ZString.optional().describe('目标文件夹 ID，默认为根目录'),
+  parent_folder_id: ZString.default('/').describe('目标文件夹 ID'),
 }).extend(FileUploadApiBase.shape);
 
 export const UploadGroupFileOutput = z.object({
@@ -46,7 +46,7 @@ export const GetGroupFileDownloadUrlOutput = z.object({
 
 export const GetGroupFilesInput = z.object({
   group_id: ZInt64.describe('群号'),
-  parent_folder_id: ZString.optional().describe('父文件夹 ID，默认为根目录'),
+  parent_folder_id: ZString.default('/').describe('父文件夹 ID'),
 });
 
 export const GetGroupFilesOutput = z.object({
