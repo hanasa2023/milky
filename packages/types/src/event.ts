@@ -92,8 +92,8 @@ export const GroupMessageReactionEvent = z.object({
   user_id: ZInt64.describe('发送回应者 QQ 号'),
   message_seq: ZInt64.describe('消息序列号'),
   face_id: ZString.describe('表情 ID'),
-  is_add: ZBoolean.optional().describe('是否为添加，`false` 表示取消回应'),
-}).describe('群消息反应事件');
+  is_add: ZBoolean.describe('是否为添加，`false` 表示取消回应'),
+}).describe('群消息回应事件');
 
 export const GroupMuteEvent = z.object({
   group_id: ZInt64.describe('群号'),
