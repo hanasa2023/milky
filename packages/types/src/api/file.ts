@@ -2,18 +2,11 @@ import { z } from 'zod';
 import { ZInt64, ZString } from '../scalar';
 import { GroupFileEntity, GroupFolderEntity } from '../common';
 
-const FileUploadApiBase = z.object({
+export const UploadPrivateFileInput = z.object({
+  user_id: ZInt64.describe('好友 QQ 号'),
   file_uri: ZString.describe('文件 URI，支持 `file://` `http(s)://` `base64://` 三种格式'),
   file_name: ZString.describe('文件名称'),
 });
-
-const FileDownloadApiBase = z.object({
-  file_id: ZString.describe('文件 ID'),
-});
-
-export const UploadPrivateFileInput = z.object({
-  user_id: ZInt64.describe('好友 QQ 号'),
-}).extend(FileUploadApiBase.shape);
 
 export const UploadPrivateFileOutput = z.object({
   file_id: ZString.describe('文件 ID'),
@@ -22,7 +15,9 @@ export const UploadPrivateFileOutput = z.object({
 export const UploadGroupFileInput = z.object({
   group_id: ZInt64.describe('群号'),
   parent_folder_id: ZString.default('/').describe('目标文件夹 ID'),
-}).extend(FileUploadApiBase.shape);
+  file_uri: ZString.describe('文件 URI，支持 `file://` `http(s)://` `base64://` 三种格式'),
+  file_name: ZString.describe('文件名称'),
+});
 
 export const UploadGroupFileOutput = z.object({
   file_id: ZString.describe('文件 ID'),
@@ -30,7 +25,9 @@ export const UploadGroupFileOutput = z.object({
 
 export const GetPrivateFileDownloadUrlInput = z.object({
   user_id: ZInt64.describe('好友 QQ 号'),
-}).extend(FileDownloadApiBase.shape);
+  file_id: ZString.describe('文件 ID'),
+  file_hash: ZString.describe('文件的 TriSHA1 哈希值'),
+});
 
 export const GetPrivateFileDownloadUrlOutput = z.object({
   download_url: ZString.describe('文件下载链接'),
@@ -38,7 +35,8 @@ export const GetPrivateFileDownloadUrlOutput = z.object({
 
 export const GetGroupFileDownloadUrlInput = z.object({
   group_id: ZInt64.describe('群号'),
-}).extend(FileDownloadApiBase.shape);
+  file_id: ZString.describe('文件 ID'),
+});
 
 export const GetGroupFileDownloadUrlOutput = z.object({
   download_url: ZString.describe('文件下载链接'),

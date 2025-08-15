@@ -53,6 +53,7 @@ export const FriendFileUploadEvent = z.object({
   file_id: ZString.describe('文件 ID'),
   file_name: ZString.describe('文件名称'),
   file_size: ZInt64.describe('文件大小'),
+  file_hash: ZString.describe('文件的 TriSHA1 哈希值'),
   is_self: ZBoolean.describe('是否是自己发送的文件'),
 }).describe('好友文件上传事件');
 
