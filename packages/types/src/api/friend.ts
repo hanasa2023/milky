@@ -14,7 +14,7 @@ export const SendProfileLikeInput = z.object({
 
 export const GetFriendRequestsInput = z.object({
   limit: ZInt32.default(20).describe('获取的最大请求数量'),
-  is_filtered: ZBoolean.default(false).describe('`true` 表示只获取被过滤（由风险账号发起）的通知，`false` 为只获取未被过滤的通知'),
+  is_filtered: ZBoolean.default(false).describe('`true` 表示只获取被过滤（由风险账号发起）的通知，`false` 表示只获取未被过滤的通知'),
 });
 
 export const GetFriendRequestsOutput = z.object({

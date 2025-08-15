@@ -31,7 +31,7 @@ export const SetGroupMemberSpecialTitleInput = z.object({
 export const SetGroupMemberAdminInput = z.object({
   group_id: ZInt64.describe('群号'),
   user_id: ZInt64.describe('被设置的 QQ 号'),
-  is_set: ZBoolean.default(true).describe('是否设置为管理员，`false` 为取消管理员'),
+  is_set: ZBoolean.default(true).describe('是否设置为管理员，`false` 表示取消管理员'),
 });
 
 export const SetGroupMemberMuteInput = z.object({
@@ -42,13 +42,13 @@ export const SetGroupMemberMuteInput = z.object({
 
 export const SetGroupWholeMuteInput = z.object({
   group_id: ZInt64.describe('群号'),
-  is_mute: ZBoolean.default(true).describe('是否开启全员禁言，`false` 为取消全员禁言'),
+  is_mute: ZBoolean.default(true).describe('是否开启全员禁言，`false` 表示取消全员禁言'),
 });
 
 export const KickGroupMemberInput = z.object({
   group_id: ZInt64.describe('群号'),
   user_id: ZInt64.describe('被踢的 QQ 号'),
-  reject_add_request: ZBoolean.default(true).describe('是否拒绝加群申请，`false` 为不拒绝'),
+  reject_add_request: ZBoolean.default(true).describe('是否拒绝加群申请，`false` 表示不拒绝'),
 });
 
 export const GetGroupAnnouncementListInput = z.object({
@@ -83,7 +83,7 @@ export const GetGroupEssenceMessagesOutput = z.object({
 export const SetGroupEssenceMessageInput = z.object({
   group_id: ZInt64.describe('群号'),
   message_seq: ZInt64.describe('消息序列号'),
-  is_set: ZBoolean.default(true).describe('是否设置为精华消息，`false` 为取消精华'),
+  is_set: ZBoolean.default(true).describe('是否设置为精华消息，`false` 表示取消精华'),
 });
 
 export const QuitGroupInput = z.object({
@@ -94,7 +94,7 @@ export const SendGroupMessageReactionInput = z.object({
   group_id: ZInt64.describe('群号'),
   message_seq: ZInt64.describe('要回应的消息序列号'),
   reaction: ZString.describe('表情 ID'),
-  is_add: ZBoolean.default(true).describe('是否添加表情，`false` 为取消'),
+  is_add: ZBoolean.default(true).describe('是否添加表情，`false` 表示取消'),
 });
 
 export const SendGroupNudgeInput = z.object({
@@ -104,7 +104,7 @@ export const SendGroupNudgeInput = z.object({
 
 export const GetGroupNotificationsInput = z.object({
   start_notification_seq: ZInt64.optional().describe('起始通知序列号'),
-  is_filtered: ZBoolean.default(false).describe('`true` 表示只获取被过滤（由风险账号发起）的通知，`false` 为只获取未被过滤的通知'),
+  is_filtered: ZBoolean.default(false).describe('`true` 表示只获取被过滤（由风险账号发起）的通知，`false` 表示只获取未被过滤的通知'),
   limit: ZInt32.default(20).describe('获取的最大通知数量'),
 });
 
