@@ -92,7 +92,7 @@ export const GetGroupNotificationsInput = z.object({
 
 export const GetGroupNotificationsOutput = z.object({
   notifications: z.array(z.lazy(() => GroupNotification)).describe('获取到的群通知（notification_seq 降序排列），序列号不一定连续'),
-  next_notification_seq: ZInt64.describe('下一页起始通知序列号'),
+  next_notification_seq: ZInt64.optional().describe('下一页起始通知序列号'),
 });
 
 export const AcceptGroupRequestInput = z.object({
