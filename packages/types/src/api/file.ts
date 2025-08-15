@@ -57,12 +57,14 @@ export const GetGroupFilesOutput = z.object({
 export const MoveGroupFileInput = z.object({
   group_id: ZInt64.describe('群号'),
   file_id: ZString.describe('文件 ID'),
-  target_folder_id: ZString.optional().describe('目标文件夹 ID，默认为根目录'),
+  parent_folder_id: ZString.default('/').describe('文件所在的文件夹 ID'),
+  target_folder_id: ZString.default('/').describe('目标文件夹 ID'),
 });
 
 export const RenameGroupFileInput = z.object({
   group_id: ZInt64.describe('群号'),
   file_id: ZString.describe('文件 ID'),
+  parent_folder_id: ZString.default('/').describe('文件所在的文件夹 ID'),
   new_file_name: ZString.describe('新文件名称'),
 });
 
