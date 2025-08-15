@@ -71,6 +71,12 @@ export const RecallGroupMessageInput = z.object({
   message_seq: ZInt64.describe('消息序列号'),
 });
 
+export const MarkMessageAsReadInput = z.object({
+  message_scene: z.enum(['friend', 'group', 'temp']).describe('消息场景'),
+  peer_id: ZInt64.describe('好友 QQ 号或群号'),
+  message_seq: ZInt64.describe('标为已读的消息序列号，该消息及更早的消息将被标记为已读'),
+});
+
 export type SendPrivateMessageInput = z.infer<typeof SendPrivateMessageInput>;
 export type SendPrivateMessageOutput = z.infer<typeof SendPrivateMessageOutput>;
 export type SendGroupMessageInput = z.infer<typeof SendGroupMessageInput>;
@@ -85,3 +91,4 @@ export type GetForwardedMessagesInput = z.infer<typeof GetForwardedMessagesInput
 export type GetForwardedMessagesOutput = z.infer<typeof GetForwardedMessagesOutput>;
 export type RecallPrivateMessageInput = z.infer<typeof RecallPrivateMessageInput>;
 export type RecallGroupMessageInput = z.infer<typeof RecallGroupMessageInput>;
+export type MarkMessageAsReadInput = z.infer<typeof MarkMessageAsReadInput>;
