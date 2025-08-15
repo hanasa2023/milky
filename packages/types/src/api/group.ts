@@ -1,6 +1,6 @@
 import { z } from 'zod';
-import { ZInt64, ZString, ZBoolean } from '../scalar';
-import { GroupAnnouncementEntity } from '../common';
+import { ZInt64, ZString, ZBoolean, ZInt32 } from '../scalar';
+import { GroupAnnouncementEntity, GroupNotification } from '../common';
 
 // 图片 API 基础
 export const PictureApiBase = z.object({
@@ -100,6 +100,40 @@ export const SendGroupNudgeInput = z.object({
   user_id: ZInt64.describe('被戳的群成员 QQ 号'),
 });
 
+// 获取群通知列表输入
+export const GetGroupNotificationsInput = z.object({
+  start_notification_seq: ZInt64.optional().describe('起始通知序列号'),
+  is_filtered: ZBoolean.default(false).describe('`true` 表示只获取被过滤（由风险账号发起）的通知，`false` 为只获取未被过滤的通知'),
+  limit: ZInt32.default(20).describe('获取的最大通知数量'),
+});
+
+// 获取群通知列表输出
+export const GetGroupNotificationsOutput = z.object({
+  notifications: z.array(z.lazy(() => GroupNotification)).describe('获取到的群通知（notification_seq 降序排列），序列号不一定连续'),
+  next_notification_seq: ZInt64.describe('下一页起始通知序列号'),
+});
+
+// 同意群请求输入
+export const AcceptGroupRequestInput = z.object({
+  notification_seq: ZString.describe('请求对应的通知序列号'),
+});
+
+// 拒绝群请求输入
+export const RejectGroupRequestInput = z.object({
+  notification_seq: ZString.describe('请求对应的通知序列号'),
+  reason: ZString.optional().describe('拒绝理由'),
+});
+
+// 同意群邀请输入
+export const AcceptGroupInvitationInput = z.object({
+  invitation_seq: ZString.describe('邀请序列号'),
+});
+
+// 拒绝群邀请输入
+export const RejectGroupInvitationInput = z.object({
+  invitation_seq: ZString.describe('邀请序列号'),
+});
+
 // 导出类型
 export type PictureApiBase = z.infer<typeof PictureApiBase>;
 export type SetGroupNameInput = z.infer<typeof SetGroupNameInput>;
@@ -117,3 +151,9 @@ export type DeleteGroupAnnouncementInput = z.infer<typeof DeleteGroupAnnouncemen
 export type QuitGroupInput = z.infer<typeof QuitGroupInput>;
 export type SendGroupMessageReactionInput = z.infer<typeof SendGroupMessageReactionInput>;
 export type SendGroupNudgeInput = z.infer<typeof SendGroupNudgeInput>;
+export type GetGroupNotificationsInput = z.infer<typeof GetGroupNotificationsInput>;
+export type GetGroupNotificationsOutput = z.infer<typeof GetGroupNotificationsOutput>;
+export type AcceptGroupRequestInput = z.infer<typeof AcceptGroupRequestInput>;
+export type RejectGroupRequestInput = z.infer<typeof RejectGroupRequestInput>;
+export type AcceptGroupInvitationInput = z.infer<typeof AcceptGroupInvitationInput>;
+export type RejectGroupInvitationInput = z.infer<typeof RejectGroupInvitationInput>;

@@ -91,39 +91,48 @@ export const FriendRequest = RequestBase.extend({
   via: ZString.describe('好友请求来源'),
 }).describe('好友请求实体');
 
-// 群请求实体
-export const GroupRequest = z.discriminatedUnion('request_type', [
-  // 自主申请入群请求
+export const GroupNotification = z.discriminatedUnion('type', [
   z.object({
-    request_type: z.literal('join'),
-    request_id: ZString.describe('请求 ID，用于同意 / 拒绝请求'),
-    time: ZInt64.describe('请求发起时的 Unix 时间戳（秒）'),
-    is_filtered: ZBoolean.describe('请求是否被过滤（发起自风险账户）'),
-    initiator_id: ZInt64.describe('发起请求的用户 QQ 号'),
-    state: z.enum(['pending', 'accepted', 'rejected', 'ignored']).describe('请求状态'),
+    type: z.literal('join_request'), // internal type: 1
     group_id: ZInt64.describe('群号'),
-    operator_id: ZInt64.optional().describe('处理请求的用户 QQ 号'),
+    notification_seq: ZInt64.describe('通知序列号'),
+    is_filtered: ZBoolean.describe('请求是否被过滤（发起自风险账户）'),
+    initiator_id: ZInt64.describe('发起者 QQ 号'),
+    state: z.enum(['pending', 'accepted', 'rejected', 'ignored']).describe('请求状态'),
+    operator_id: ZInt64.optional().describe('处理请求的管理员 QQ 号'),
     comment: ZString.describe('入群请求附加信息'),
-  }).describe('自主申请入群请求'),
-  
-  // 他人邀请入群请求
+  }).describe('用户入群请求'),
   z.object({
-    request_type: z.literal('invite'),
-    request_id: ZString.describe('请求 ID，用于同意 / 拒绝请求'),
-    time: ZInt64.describe('请求发起时的 Unix 时间戳（秒）'),
-    is_filtered: ZBoolean.describe('请求是否被过滤（发起自风险账户）'),
-    initiator_id: ZInt64.describe('发起请求的用户 QQ 号'),
-    state: z.enum(['pending', 'accepted', 'rejected', 'ignored']).describe('请求状态'),
+    type: z.literal('admin_change'), // internal type: 3 (set), 16 (unset)
     group_id: ZInt64.describe('群号'),
-    operator_id: ZInt64.optional().describe('处理请求的用户 QQ 号'),
-    invitee_id: ZInt64.describe('被邀请者 QQ 号'),
-  }).describe('他人邀请入群请求'),
-]).describe('群请求实体');
-
-// 群邀请实体
-export const GroupInvitation = RequestBase.extend({
-  group_id: ZInt64.describe('群号'),
-}).describe('群邀请实体');
+    notification_seq: ZInt64.describe('通知序列号'),
+    target_user_id: ZInt64.describe('被设置/取消用户 QQ 号'),
+    is_set: ZBoolean.describe('是否被设置为管理员，`false` 表示被取消管理员'),
+    operator_id: ZInt64.describe('操作者（群主）QQ 号'),
+  }).describe('群管理员变更通知'),
+  z.object({
+    type: z.literal('kick'), // internal type: 6, 7
+    group_id: ZInt64.describe('群号'),
+    notification_seq: ZInt64.describe('通知序列号'),
+    target_user_id: ZInt64.describe('被移除用户 QQ 号'),
+    operator_id: ZInt64.describe('移除用户的管理员 QQ 号'),
+  }).describe('群成员被移除通知'),
+  z.object({
+    type: z.literal('quit'), // internal type: 13
+    group_id: ZInt64.describe('群号'),
+    notification_seq: ZInt64.describe('通知序列号'),
+    target_user_id: ZInt64.describe('退群用户 QQ 号'),
+  }).describe('群成员退群通知'),
+  z.object({
+    type: z.literal('invited_join_request'), // internal type: 22
+    group_id: ZInt64.describe('群号'),
+    notification_seq: ZInt64.describe('通知序列号'),
+    initiator_id: ZInt64.describe('邀请者 QQ 号'),
+    target_user_id: ZInt64.describe('被邀请用户 QQ 号'),
+    state: z.enum(['pending', 'accepted', 'rejected', 'ignored']).describe('请求状态'),
+    operator_id: ZInt64.optional().describe('处理请求的管理员 QQ 号'),
+  }).describe('群成员邀请他人入群请求'),
+]).describe('群通知实体');
 
 // 消息标识符
 export const MessageIdentifier = z.object({
@@ -143,6 +152,5 @@ export type GroupFileEntity = z.infer<typeof GroupFileEntity>;
 export type GroupFolderEntity = z.infer<typeof GroupFolderEntity>;
 export type RequestBase = z.infer<typeof RequestBase>;
 export type FriendRequest = z.infer<typeof FriendRequest>;
-export type GroupRequest = z.infer<typeof GroupRequest>;
-export type GroupInvitation = z.infer<typeof GroupInvitation>;
+export type GroupNotification = z.infer<typeof GroupNotification>;
 export type MessageIdentifier = z.infer<typeof MessageIdentifier>;

@@ -1,6 +1,6 @@
 import { z } from 'zod';
 import { ZInt32, ZInt64, ZString, ZBoolean } from './scalar';
-import { FriendRequest, GroupRequest, GroupInvitation } from './common';
+import { FriendRequest } from './common';
 import { IncomingMessage } from './message';
 
 // 机器人离线事件
@@ -16,6 +16,30 @@ export const MessageRecallEvent = z.object({
   sender_id: ZInt64.describe('被撤回的消息的发送者 QQ 号'),
   operator_id: ZInt64.describe('操作者 QQ 号'),
 }).describe('消息撤回事件');
+
+// 入群申请事件
+export const GroupJoinRequestEvent = z.object({
+  group_id: ZInt64.describe('群号'),
+  notification_seq: ZInt64.describe('请求对应的通知序列号'),
+  is_filtered: ZBoolean.describe('请求是否被过滤（发起自风险账户）'),
+  initiator_id: ZInt64.describe('申请入群的用户 QQ 号'),
+  comment: ZString.describe('申请附加信息'),
+}).describe('入群申请事件');
+
+// 群成员邀请他人入群事件
+export const GroupInvitedJoinRequestEvent = z.object({
+  group_id: ZInt64.describe('群号'),
+  notification_seq: ZInt64.describe('请求对应的通知序列号'),
+  initiator_id: ZInt64.describe('邀请者 QQ 号'),
+  target_user_id: ZInt64.describe('被邀请者 QQ 号'),
+}).describe('群成员邀请他人入群事件');
+
+// 他人邀请自身入群事件
+export const GroupInvitationEvent = z.object({
+  group_id: ZInt64.describe('群号'),
+  invitation_seq: ZInt64.describe('邀请序列号'),
+  initiator_id: ZInt64.describe('邀请者 QQ 号'),
+}).describe('他人邀请自身入群事件');
 
 // 好友戳一戳事件
 export const FriendNudgeEvent = z.object({
@@ -143,21 +167,29 @@ export const Event = z.discriminatedUnion('event_type', [
     data: FriendRequest,
   }).describe('好友请求事件'),
   
-  // 群请求事件
+  // 入群请求事件
   z.object({
-    event_type: z.literal('group_request'),
+    event_type: z.literal('group_join_request'),
     time: ZInt64.describe('事件 Unix 时间戳（秒）'),
     self_id: ZInt64.describe('机器人 QQ 号'),
-    data: GroupRequest,
-  }).describe('群请求事件'),
-  
-  // 群邀请事件
+    data: GroupJoinRequestEvent,
+  }).describe('入群请求事件'),
+
+  // 群成员邀请他人入群请求事件
+  z.object({
+    event_type: z.literal('group_invited_join_request'),
+    time: ZInt64.describe('事件 Unix 时间戳（秒）'),
+    self_id: ZInt64.describe('机器人 QQ 号'),
+    data: GroupInvitedJoinRequestEvent,
+  }).describe('群成员邀请他人入群请求事件'),
+
+  // 他人邀请自身入群事件
   z.object({
     event_type: z.literal('group_invitation'),
     time: ZInt64.describe('事件 Unix 时间戳（秒）'),
     self_id: ZInt64.describe('机器人 QQ 号'),
-    data: GroupInvitation,
-  }).describe('群邀请事件'),
+    data: GroupInvitationEvent,
+  }).describe('他人邀请自身入群事件'),
   
   // 好友戳一戳事件
   z.object({
