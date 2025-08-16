@@ -12,6 +12,12 @@
 - [NoneBot](https://nonebot.dev/) - 通过 [adapter-milky](https://github.com/nonebot/adapter-milky)
 - [Koishi](https://koishi.chat/) - 通过 [adapter-milky](https://github.com/idranme/koishi-plugin-adapter-milky)
 
+## 类型定义
+
+| 语言         | 包名                                                                         |
+|------------|----------------------------------------------------------------------------|
+| TypeScript | [@saltify/milky-types](https://www.npmjs.com/package/@saltify/milky-types) |
+
 ## Milky SDK
 
 - Rust - [vivian-rs](https://crates.io/crates/vivian)
