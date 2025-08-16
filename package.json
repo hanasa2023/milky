@@ -6,6 +6,7 @@
   "license": "CC0-1.0",
   "packageManager": "pnpm@10.14.0",
   "devDependencies": {
+    "@typescript/native-preview": "7.0.0-dev.20250816.1",
     "eslint": "^9.32.0",
     "typescript": "^5.9.2"
   }
