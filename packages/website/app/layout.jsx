@@ -14,13 +14,12 @@ import '@fontsource-variable/noto-sans-sc';
 import './styles.css';
 import { commonStructs, apiCategories } from './common';
 import { Banner, Head, Search } from 'nextra/components';
+import { milkyPackageVersion, milkyVersion } from '@saltify/milky-types';
 
 export const metadata = {
   title: '🥛 Milky',
   description: 'Milky 协议文档',
 };
-
-const navbar = <Navbar logo={<b>Milky</b>} />;
 
 export default async function RootLayout({ children }) {
   return (
@@ -28,8 +27,14 @@ export default async function RootLayout({ children }) {
       <Head />
       <body>
         <Layout
-          banner={<Banner storageKey="milky-1.0-draft">🎉 Milky 1.0 草案正在征求意见阶段，我们需要你的声音！ 🎉</Banner>}
-          navbar={navbar}
+          banner={<Banner storageKey={'milky-1.0-draft'}>🎉 Milky 1.0 草案正在征求意见阶段，我们需要你的声音！ 🎉</Banner>}
+          navbar={<Navbar
+            logo={<div style={{ fontSize: '1.15rem' }}>
+              <b>Milky</b> v{milkyVersion} 文档 <div style={{ fontSize: '0.75rem' }}>{milkyPackageVersion}</div>
+            </div>}
+            projectLink={"https://github.com/SaltifyDev/milky"}
+          >
+          </Navbar>}
           pageMap={[
             ...(await getPageMap()),
             {
