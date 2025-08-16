@@ -13,6 +13,10 @@
   },
   "keywords": [],
   "author": "SaltifyDev",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SaltifyDev/milky.git"
+  },
   "license": "CC0-1.0",
   "dependencies": {
     "zod": "^4.0.17"
