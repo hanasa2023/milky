@@ -101,7 +101,7 @@ import {
   DeleteGroupFolderInput,
 } from '@saltify/milky-types';
 
-export const commonStructs = {
+export const commonStructs: Record<string, ZodType> = {
   Event,
   FriendEntity,
   FriendCategoryEntity,
@@ -118,7 +118,7 @@ export const commonStructs = {
   IncomingSegment,
   OutgoingForwardedMessage,
   OutgoingSegment,
-} satisfies Record<string, ZodType>;
+};
 
 export interface Api {
   endpoint: string;
@@ -132,7 +132,7 @@ export interface ApiCategory {
   apis: Api[];
 }
 
-export const apiCategories = {
+export const apiCategories: Record<string, ApiCategory> = {
   system: {
     name: '系统 API',
     apis: [
@@ -495,4 +495,4 @@ export const apiCategories = {
       },
     ],
   },
-} satisfies Record<string, ApiCategory>;
+};
