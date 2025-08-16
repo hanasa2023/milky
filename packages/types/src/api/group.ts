@@ -48,7 +48,7 @@ export const SetGroupWholeMuteInput = z.object({
 export const KickGroupMemberInput = z.object({
   group_id: ZInt64.describe('群号'),
   user_id: ZInt64.describe('被踢的 QQ 号'),
-  reject_add_request: ZBoolean.default(true).describe('是否拒绝加群申请，`false` 表示不拒绝'),
+  reject_add_request: ZBoolean.default(false).describe('是否拒绝加群申请，`false` 表示不拒绝'),
 });
 
 export const GetGroupAnnouncementListInput = z.object({
