@@ -3,10 +3,6 @@ import { ZInt64, ZString, ZBoolean, ZInt32 } from '../scalar';
 import { GroupAnnouncementEntity, GroupNotification } from '../common';
 import { GroupEssenceMessage } from '../message';
 
-const PictureApiBase = z.object({
-  image_uri: ZString.describe('图像文件 URI，支持 `file://` `http(s)://` `base64://` 三种格式'),
-});
-
 export const SetGroupNameInput = z.object({
   group_id: ZInt64.describe('群号'),
   new_group_name: ZString.describe('新群名称'),
@@ -14,7 +10,8 @@ export const SetGroupNameInput = z.object({
 
 export const SetGroupAvatarInput = z.object({
   group_id: ZInt64.describe('群号'),
-}).extend(PictureApiBase.shape);
+  image_uri: ZString.describe('头像文件 URI，支持 `file://` `http(s)://` `base64://` 三种格式'),
+});
 
 export const SetGroupMemberCardInput = z.object({
   group_id: ZInt64.describe('群号'),
@@ -62,7 +59,8 @@ export const GetGroupAnnouncementListOutput = z.object({
 export const SendGroupAnnouncementInput = z.object({
   group_id: ZInt64.describe('群号'),
   content: ZString.describe('公告内容'),
-}).extend(PictureApiBase.shape);
+  image_uri: ZString.optional().describe('公告附带图像文件 URI，支持 `file://` `http(s)://` `base64://` 三种格式'),
+});
 
 export const DeleteGroupAnnouncementInput = z.object({
   group_id: ZInt64.describe('群号'),
