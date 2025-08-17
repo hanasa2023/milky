@@ -2,10 +2,16 @@ import StructRenderer from '@/component/StructRenderer';
 import { apiCategories } from '@/app/common';
 import { useMDXComponents as getMDXComponents } from '../../../mdx-components';
 import { ZodVoid } from 'zod';
+import { Metadata } from 'next';
 
 const Wrapper = getMDXComponents().wrapper;
 
-export async function generateMetadata(props) {
+type Props = {
+  params: Promise<{ slug: string; apiCategoryId: string }>;
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+};
+
+export async function generateMetadata(props: Props): Promise<Metadata> {
   const params = await props.params;
   return {
     title: `🥛 Milky | ${apiCategories[params.apiCategoryId].name}`,
@@ -18,7 +24,7 @@ export function generateStaticParams() {
   }));
 }
 
-export default async function Page(props) {
+export default async function Page(props: Props) {
   const params = await props.params;
   const apiCategory = apiCategories[params.apiCategoryId];
   return (
@@ -55,7 +61,10 @@ export default async function Page(props) {
               flexDirection: 'column',
             }}
           >
-            <p className="x:text-slate-900 x:dark:text-slate-100 x:border-b nextra-border" style={{ fontSize: '1.75rem', marginBottom: '0.5em' }}>
+            <p
+              className="x:text-slate-900 x:dark:text-slate-100 x:border-b nextra-border"
+              style={{ fontSize: '1.75rem', marginBottom: '0.5em' }}
+            >
               <b>{api.endpoint}</b> {api.description}
             </p>
             <p style={{ fontSize: '1.25rem', marginTop: '0.5em' }}>
@@ -66,7 +75,7 @@ export default async function Page(props) {
               <b>输出参数</b>
             </p>
             {api.outputStruct instanceof ZodVoid ? (
-                <p style={{ marginTop: '1em' }}>此 API 无输出参数，请协议端传入 {'{}'}。</p>
+              <p style={{ marginTop: '1em' }}>此 API 无输出参数，请协议端传入 {'{}'}。</p>
             ) : (
               <StructRenderer struct={api.outputStruct} />
             )}

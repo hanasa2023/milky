@@ -1,11 +1,17 @@
 import StructRenderer from '@/component/StructRenderer';
 import { commonStructs } from '@/app/common';
 import { useMDXComponents as getMDXComponents } from '../../../mdx-components';
-import { ZodDiscriminatedUnion } from 'zod';
+import { ZodDiscriminatedUnion, ZodObject } from 'zod';
+import { Metadata } from 'next';
 
 const Wrapper = getMDXComponents().wrapper;
 
-export async function generateMetadata(props) {
+type Props = {
+  params: Promise<{ slug: string; commonEntityName: string }>;
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+};
+
+export async function generateMetadata(props: Props): Promise<Metadata> {
   const params = await props.params;
   return {
     title: `🥛 Milky | ${commonStructs[params.commonEntityName].description} (${params.commonEntityName})`,
@@ -18,19 +24,26 @@ export function generateStaticParams() {
   }));
 }
 
-export default async function Page(props) {
+export default async function Page(props: Props) {
   const params = await props.params;
   const entity = commonStructs[params.commonEntityName];
   return (
     <Wrapper
-      toc={entity instanceof ZodDiscriminatedUnion ? entity.options.map((option) => {
-        const discriminatorValue = option.shape[entity.def.discriminator].value;
-        return {
-          depth: 2,
-          value: option.description,
-          id: `type-${discriminatorValue}`,
-        }
-      }) : []}
+      toc={
+        entity instanceof ZodDiscriminatedUnion
+          ? entity.options.map((option) => {
+              if (!(option instanceof ZodObject)) {
+                throw new Error(`Expected ZodObject, but got ${option.constructor.name}`);
+              }
+              const discriminatorValue = option.shape[entity.def.discriminator].value;
+              return {
+                depth: 2,
+                value: option.description,
+                id: `type-${discriminatorValue}`,
+              };
+            })
+          : []
+      }
       metadata={{
         title: entity.description,
       }}
