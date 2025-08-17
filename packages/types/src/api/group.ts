@@ -114,24 +114,24 @@ export const GetGroupNotificationsOutput = z.object({
 });
 
 export const AcceptGroupRequestInput = z.object({
-  notification_seq: ZString.describe('请求对应的通知序列号'),
+  notification_seq: ZInt64.describe('请求对应的通知序列号'),
   is_filtered: ZBoolean.default(false).describe('是否是被过滤的请求'),
 });
 
 export const RejectGroupRequestInput = z.object({
-  notification_seq: ZString.describe('请求对应的通知序列号'),
+  notification_seq: ZInt64.describe('请求对应的通知序列号'),
   is_filtered: ZBoolean.default(false).describe('是否是被过滤的请求'),
   reason: ZString.optional().describe('拒绝理由'),
 });
 
 export const AcceptGroupInvitationInput = z.object({
   group_id: ZInt64.describe('群号'),
-  invitation_seq: ZString.describe('邀请序列号'),
+  invitation_seq: ZInt64.describe('邀请序列号'),
 });
 
 export const RejectGroupInvitationInput = z.object({
   group_id: ZInt64.describe('群号'),
-  invitation_seq: ZString.describe('邀请序列号'),
+  invitation_seq: ZInt64.describe('邀请序列号'),
 });
 
 export type SetGroupNameInput = z.infer<typeof SetGroupNameInput>;
