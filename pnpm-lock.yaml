@@ -22,7 +22,7 @@ importers:
         version: 16.3.0
       tsup:
         specifier: ^8.5.0
-        version: 8.5.0(postcss@8.4.31)(typescript@5.9.2)(yaml@2.8.1)
+        version: 8.5.0(postcss@8.4.31)(tsx@4.20.4)(typescript@5.9.2)(yaml@2.8.1)
       typescript:
         specifier: ^5.9.2
         version: 5.9.2
@@ -31,10 +31,14 @@ importers:
         version: 8.39.0(eslint@9.32.0)(typescript@5.9.2)
 
   packages/node-sdk:
-    devDependencies:
+    dependencies:
       '@saltify/milky-types':
-        specifier: workspace:*
-        version: link:../types
+        specifier: ^1.0.0-draft.6
+        version: 1.0.0-draft.6
+      zod:
+        specifier: ^4.0.17
+        version: 4.0.17
+    devDependencies:
       '@types/node':
         specifier: ^22.17.2
         version: 22.17.2
@@ -887,6 +891,9 @@ packages:
 
   '@rushstack/eslint-patch@1.12.0':
     resolution: {integrity: sha512-5EwMtOqvJMMa3HbmxLlF74e+3/HhwBTMcvt3nqVJgGCozO6hzIPOBlwm8mGVNR9SN2IJpxSnlxczyDjcn7qIyw==}
+
+  '@saltify/milky-types@1.0.0-draft.6':
+    resolution: {integrity: sha512-TMvp+O+DRvOpK0Gq+f0tWbGf0ieW8Scy4gtstfhznF4WdO59+Jll7lQEb+E/U6R4eWEVnjSBeZVlStffSnIfDQ==}
 
   '@shikijs/core@3.9.2':
     resolution: {integrity: sha512-3q/mzmw09B2B6PgFNeiaN8pkNOixWS726IHmJEpjDAcneDPMQmUg2cweT9cWXY4XcyQS3i6mOOUgQz9RRUP6HA==}
@@ -3483,6 +3490,11 @@ packages:
       typescript:
         optional: true
 
+  tsx@4.20.4:
+    resolution: {integrity: sha512-yyxBKfORQ7LuRt/BQKBXrpcq59ZvSW0XxwfjAt3w2/8PmdxaFzijtMhTawprSHhpzeM5BgU2hXHG3lklIERZXg==}
+    engines: {node: '>=18.0.0'}
+    hasBin: true
+
   twoslash-protocol@0.3.3:
     resolution: {integrity: sha512-26NXjXEj+2NgytwOjjhFtNpQI7Zgct6PTyLg6JO7fIbO7MIm+kx89IxvBustgBOSKxoWjNBN2LXjNHHMD7+k0g==}
 
@@ -4338,6 +4350,10 @@ snapshots:
   '@rtsao/scc@1.1.0': {}
 
   '@rushstack/eslint-patch@1.12.0': {}
+
+  '@saltify/milky-types@1.0.0-draft.6':
+    dependencies:
+      zod: 4.0.17
 
   '@shikijs/core@3.9.2':
     dependencies:
@@ -7162,11 +7178,12 @@ snapshots:
 
   possible-typed-array-names@1.1.0: {}
 
-  postcss-load-config@6.0.1(postcss@8.4.31)(yaml@2.8.1):
+  postcss-load-config@6.0.1(postcss@8.4.31)(tsx@4.20.4)(yaml@2.8.1):
     dependencies:
       lilconfig: 3.1.3
     optionalDependencies:
       postcss: 8.4.31
+      tsx: 4.20.4
       yaml: 2.8.1
 
   postcss@8.4.31:
@@ -7810,7 +7827,7 @@ snapshots:
 
   tslib@2.8.1: {}
 
-  tsup@8.5.0(postcss@8.4.31)(typescript@5.9.2)(yaml@2.8.1):
+  tsup@8.5.0(postcss@8.4.31)(tsx@4.20.4)(typescript@5.9.2)(yaml@2.8.1):
     dependencies:
       bundle-require: 5.1.0(esbuild@0.25.9)
       cac: 6.7.14
@@ -7821,7 +7838,7 @@ snapshots:
       fix-dts-default-cjs-exports: 1.0.1
       joycon: 3.1.1
       picocolors: 1.1.1
-      postcss-load-config: 6.0.1(postcss@8.4.31)(yaml@2.8.1)
+      postcss-load-config: 6.0.1(postcss@8.4.31)(tsx@4.20.4)(yaml@2.8.1)
       resolve-from: 5.0.0
       rollup: 4.46.2
       source-map: 0.8.0-beta.0
@@ -7837,6 +7854,14 @@ snapshots:
       - supports-color
       - tsx
       - yaml
+
+  tsx@4.20.4:
+    dependencies:
+      esbuild: 0.25.9
+      get-tsconfig: 4.10.1
+    optionalDependencies:
+      fsevents: 2.3.3
+    optional: true
 
   twoslash-protocol@0.3.3: {}
 
