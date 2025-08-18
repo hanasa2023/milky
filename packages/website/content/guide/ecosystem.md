@@ -4,20 +4,27 @@
 
 ## 支持 Milky 的协议端
 
-- [Lagrange.Milky](https://github.com/LagrangeDev/LagrangeV2/tree/main/Lagrange.Milky) (WIP)
-- [tanebi-milky](https://github.com/SaltifyDev/tanebi/tree/v2/packages/milky) (WIP)
+| 语言       | 项目                                                                                 |
+| ---------- | ------------------------------------------------------------------------------------ |
+| C#         | [Lagrange.Milky](https://github.com/LagrangeDev/LagrangeV2/tree/main/Lagrange.Milky) |
+| TypeScript | [tanebi-milky](https://github.com/SaltifyDev/tanebi/tree/v2/packages/milky)          |
 
 ## 支持 Milky 的应用端
 
-- [NoneBot](https://nonebot.dev/) - 通过 [adapter-milky](https://github.com/nonebot/adapter-milky)
-- [Koishi](https://koishi.chat/) - 通过 [adapter-milky](https://github.com/idranme/koishi-plugin-adapter-milky)
+| 框架    | 语言       | 适配器                                                                                |
+| ------- | ---------- | ------------------------------------------------------------------------------------- |
+| NoneBot | Python     | [nonebot-adapter-milky](https://github.com/nonebot/adapter-milky)                     |
+| Koishi  | TypeScript | [koishi-plugin-adapter-milky](https://github.com/idranme/koishi-plugin-adapter-milky) |
 
 ## 类型定义
 
-| 语言         | 包名                                                                         |
-|------------|----------------------------------------------------------------------------|
+| 语言       | 包名                                                                       |
+| ---------- | -------------------------------------------------------------------------- |
 | TypeScript | [@saltify/milky-types](https://www.npmjs.com/package/@saltify/milky-types) |
 
 ## Milky SDK
 
-- Rust - [vivian-rs](https://crates.io/crates/vivian)
+| 语言       | 包名                                                                             |
+| ---------- | -------------------------------------------------------------------------------- |
+| TypeScript | [@saltify/milky-node-sdk](https://www.npmjs.com/package/@saltify/milky-node-sdk) |
+| Rust       | [vivian-rs](https://crates.io/crates/vivian)                                     |
