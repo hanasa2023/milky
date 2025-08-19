@@ -4,10 +4,8 @@
 
 ## 支持 Milky 的协议端
 
-| 语言       | 项目                                                                                 |
-| ---------- | ------------------------------------------------------------------------------------ |
-| C#         | [Lagrange.Milky](https://github.com/LagrangeDev/LagrangeV2/tree/main/Lagrange.Milky) |
-| TypeScript | [tanebi-milky](https://github.com/SaltifyDev/tanebi/tree/v2/packages/milky)          |
+- [Lagrange.Milky](https://github.com/LagrangeDev/LagrangeV2/tree/main/Lagrange.Milky)
+- [tanebi-milky](https://github.com/SaltifyDev/tanebi/tree/v2/packages/milky)
 
 ## 支持 Milky 的应用端
 
