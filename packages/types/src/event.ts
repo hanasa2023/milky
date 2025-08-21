@@ -12,6 +12,7 @@ export const MessageRecallEvent = z.object({
   message_seq: ZInt64.describe('消息序列号'),
   sender_id: ZInt64.describe('被撤回的消息的发送者 QQ 号'),
   operator_id: ZInt64.describe('操作者 QQ 号'),
+  raw_xml: ZString.optional().describe('撤回提示的原始 XML'),
 }).describe('消息撤回事件');
 
 export const FriendRequestEvent = z.object({
@@ -46,6 +47,7 @@ export const FriendNudgeEvent = z.object({
   user_id: ZInt64.describe('好友 QQ 号'),
   is_self_send: ZBoolean.describe('是否是自己发送的戳一戳'),
   is_self_receive: ZBoolean.describe('是否是自己接收的戳一戳'),
+  raw_xml: ZString.optional().describe('戳一戳提示的原始 XML'),
 }).describe('好友戳一戳事件');
 
 export const FriendFileUploadEvent = z.object({
@@ -113,6 +115,7 @@ export const GroupNudgeEvent = z.object({
   group_id: ZInt64.describe('群号'),
   sender_id: ZInt64.describe('发送者 QQ 号'),
   receiver_id: ZInt64.describe('接收者 QQ 号'),
+  raw_xml: ZString.optional().describe('戳一戳提示的原始 XML'),
 }).describe('群戳一戳事件');
 
 export const GroupFileUploadEvent = z.object({
