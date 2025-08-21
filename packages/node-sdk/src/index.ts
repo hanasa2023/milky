@@ -2,6 +2,11 @@ import EventEmitter from 'events';
 import type { ApiCollection, ApiResponse } from './api';
 import type { EventCollection } from './event';
 
+if (typeof globalThis.WebSocket === 'undefined') {
+  console.error('WebSocket is not supported in this environment.');
+  process.exit(1);
+}
+
 export class MilkyClient {
   private readonly httpApiUrl: string;
   private readonly eventUrl: string;
