@@ -202,7 +202,7 @@ function renderZodDiscriminatedUnion(struct: ZodDiscriminatedUnion) {
                 <tbody>
                   <Table.Tr>
                     <Table.Td>{struct.def.discriminator}</Table.Td>
-                    <Table.Td>"{discriminatorValue}"</Table.Td>
+                    <Table.Td>&quot;{discriminatorValue}&quot;</Table.Td>
                     <Table.Td>表示{option.description}</Table.Td>
                   </Table.Tr>
                   {Object.entries<ZodType>(option.shape)
