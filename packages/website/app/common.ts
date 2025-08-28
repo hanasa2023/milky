@@ -215,9 +215,21 @@ export const apiCategories: Record<string, ApiCategory> = {
       },
       {
         endpoint: 'send_group_message',
-        description: '发送群消息',
+        description: '发送群聊消息',
         inputStruct: SendGroupMessageInput,
         outputStruct: SendGroupMessageOutput,
+      },
+      {
+        endpoint: 'recall_private_message',
+        description: '撤回私聊消息',
+        inputStruct: RecallPrivateMessageInput,
+        outputStruct: z.void(),
+      },
+      {
+        endpoint: 'recall_group_message',
+        description: '撤回群聊消息',
+        inputStruct: RecallGroupMessageInput,
+        outputStruct: z.void(),
       },
       {
         endpoint: 'get_message',
@@ -242,18 +254,6 @@ export const apiCategories: Record<string, ApiCategory> = {
         description: '获取合并转发消息内容',
         inputStruct: GetForwardedMessagesInput,
         outputStruct: GetForwardedMessagesOutput,
-      },
-      {
-        endpoint: 'recall_private_message',
-        description: '撤回私聊消息',
-        inputStruct: RecallPrivateMessageInput,
-        outputStruct: z.void(),
-      },
-      {
-        endpoint: 'recall_group_message',
-        description: '撤回群消息',
-        inputStruct: RecallGroupMessageInput,
-        outputStruct: z.void(),
       },
       {
         endpoint: 'mark_message_as_read',
@@ -301,7 +301,12 @@ export const apiCategories: Record<string, ApiCategory> = {
   group: {
     name: '群聊 API',
     apis: [
-      { endpoint: 'set_group_name', description: '设置群名称', inputStruct: SetGroupNameInput, outputStruct: z.void() },
+      {
+        endpoint: 'set_group_name',
+        description: '设置群名称',
+        inputStruct: SetGroupNameInput,
+        outputStruct: z.void(),
+      },
       {
         endpoint: 'set_group_avatar',
         description: '设置群头像',

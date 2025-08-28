@@ -30,12 +30,12 @@ export type ApiCollection = {
   // Message API
   send_private_message: (input: z.input<typeof types.SendPrivateMessageInput>) => types.SendPrivateMessageOutput;
   send_group_message: (input: z.input<typeof types.SendGroupMessageInput>) => types.SendGroupMessageOutput;
+  recall_private_message: (input: z.input<typeof types.RecallPrivateMessageInput>) => void;
+  recall_group_message: (input: z.input<typeof types.RecallGroupMessageInput>) => void;
   get_message: (input: z.input<typeof types.GetMessageInput>) => types.GetMessageOutput;
   get_history_messages: (input: z.input<typeof types.GetHistoryMessagesInput>) => types.GetHistoryMessagesOutput;
   get_resource_temp_url: (input: z.input<typeof types.GetResourceTempUrlInput>) => types.GetResourceTempUrlOutput;
   get_forwarded_messages: (input: z.input<typeof types.GetForwardedMessagesInput>) => types.GetForwardedMessagesOutput;
-  recall_private_message: (input: z.input<typeof types.RecallPrivateMessageInput>) => void;
-  recall_group_message: (input: z.input<typeof types.RecallGroupMessageInput>) => void;
   mark_message_as_read: (input: z.input<typeof types.MarkMessageAsReadInput>) => void;
 
   // Friend API

@@ -23,6 +23,16 @@ export const SendGroupMessageInput = z.object({
 
 export const SendGroupMessageOutput = SendMessageApiCommonOutput;
 
+export const RecallPrivateMessageInput = z.object({
+  user_id: ZInt64.describe('好友 QQ 号'),
+  message_seq: ZInt64.describe('消息序列号'),
+});
+
+export const RecallGroupMessageInput = z.object({
+  group_id: ZInt64.describe('群号'),
+  message_seq: ZInt64.describe('消息序列号'),
+});
+
 export const GetMessageInput = z.object({
   message_scene: z.enum(['friend', 'group', 'temp']).describe('消息场景'),
   peer_id: ZInt64.describe('好友 QQ 号或群号'),
@@ -61,16 +71,6 @@ export const GetForwardedMessagesOutput = z.object({
   messages: z.array(z.lazy(() => IncomingForwardedMessage)).describe('转发消息内容'),
 });
 
-export const RecallPrivateMessageInput = z.object({
-  user_id: ZInt64.describe('好友 QQ 号'),
-  message_seq: ZInt64.describe('消息序列号'),
-});
-
-export const RecallGroupMessageInput = z.object({
-  group_id: ZInt64.describe('群号'),
-  message_seq: ZInt64.describe('消息序列号'),
-});
-
 export const MarkMessageAsReadInput = z.object({
   message_scene: z.enum(['friend', 'group', 'temp']).describe('消息场景'),
   peer_id: ZInt64.describe('好友 QQ 号或群号'),
@@ -81,6 +81,8 @@ export type SendPrivateMessageInput = z.infer<typeof SendPrivateMessageInput>;
 export type SendPrivateMessageOutput = z.infer<typeof SendPrivateMessageOutput>;
 export type SendGroupMessageInput = z.infer<typeof SendGroupMessageInput>;
 export type SendGroupMessageOutput = z.infer<typeof SendGroupMessageOutput>;
+export type RecallPrivateMessageInput = z.infer<typeof RecallPrivateMessageInput>;
+export type RecallGroupMessageInput = z.infer<typeof RecallGroupMessageInput>;
 export type GetMessageInput = z.infer<typeof GetMessageInput>;
 export type GetMessageOutput = z.infer<typeof GetMessageOutput>;
 export type GetHistoryMessagesInput = z.infer<typeof GetHistoryMessagesInput>;
@@ -89,6 +91,4 @@ export type GetResourceTempUrlInput = z.infer<typeof GetResourceTempUrlInput>;
 export type GetResourceTempUrlOutput = z.infer<typeof GetResourceTempUrlOutput>;
 export type GetForwardedMessagesInput = z.infer<typeof GetForwardedMessagesInput>;
 export type GetForwardedMessagesOutput = z.infer<typeof GetForwardedMessagesOutput>;
-export type RecallPrivateMessageInput = z.infer<typeof RecallPrivateMessageInput>;
-export type RecallGroupMessageInput = z.infer<typeof RecallGroupMessageInput>;
 export type MarkMessageAsReadInput = z.infer<typeof MarkMessageAsReadInput>;
