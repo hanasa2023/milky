@@ -1,21 +1,31 @@
 {
   "name": "@saltify/milky-types",
   "type": "module",
-  "version": "1.0.0-draft.11",
+  "version": "1.0.0-draft.12",
   "description": "Type definitions for Milky protocol",
   "main": "src/index.ts",
-  "publishConfig": {
-    "main": "dist/index.js",
-    "typings": "dist/index.d.ts"
-  },
   "exports": {
     ".": {
-      "import": "./dist/index.js",
-      "types": "./dist/index.d.ts"
+      "import": "./src/index.ts",
+      "types": "./src/index.ts"
     },
     "./api": {
-      "import": "./dist/api-endpoints.js",
-      "types": "./dist/api-endpoints.d.ts"
+      "import": "./src/api-endpoints.ts",
+      "types": "./src/api-endpoints.ts"
+    }
+  },
+  "publishConfig": {
+    "main": "dist/index.js",
+    "typings": "dist/index.d.ts",
+    "exports": {
+      ".": {
+        "import": "./dist/index.js",
+        "types": "./dist/index.d.ts"
+      },
+      "./api": {
+        "import": "./dist/api-endpoints.js",
+        "types": "./dist/api-endpoints.d.ts"
+      }
     }
   },
   "files": [
