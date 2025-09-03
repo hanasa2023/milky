@@ -21,6 +21,7 @@
 | 语言       | 包名                                                                       |
 | ---------- | -------------------------------------------------------------------------- |
 | TypeScript | [@saltify/milky-types](https://www.npmjs.com/package/@saltify/milky-types) |
+| .Net       | [Milky.Net.Model](https://www.nuget.org/packages/Milky.Net.Model)          |
 
 同时，Milky 官方通过一系列社区工具将 Zod 定义转化为其他语言的类型定义，托管在 `/raw` 端点下，可以直接通过 `GET` 请求获取。目前支持的语言有：
 
@@ -36,3 +37,4 @@
 | ---------- | -------------------------------------------------------------------------------- |
 | TypeScript | [@saltify/milky-node-sdk](https://www.npmjs.com/package/@saltify/milky-node-sdk) |
 | Rust       | [vivian-rs](https://crates.io/crates/vivian)                                     |
+| .Net       | [Milky.Net.Client](https://www.nuget.org/packages/Milky.Net.Client)              |
