@@ -18,10 +18,10 @@
 
 以下是由 Milky 官方和社区发布的类型定义包，可以在项目中直接引用：
 
-| 语言       | 包名                                                                       |
-| ---------- | -------------------------------------------------------------------------- |
-| TypeScript | [@saltify/milky-types](https://www.npmjs.com/package/@saltify/milky-types) |
-| .NET       | [Milky.Net.Model](https://www.nuget.org/packages/Milky.Net.Model)          |
+| 语言       | 包名                                                                       | License |
+| ---------- | -------------------------------------------------------------------------- | ------- |
+| TypeScript | [@saltify/milky-types](https://www.npmjs.com/package/@saltify/milky-types) | CC0-1.0 |
+| .NET       | [Milky.Net.Model](https://www.nuget.org/packages/Milky.Net.Model)          | MIT     |
 
 同时，Milky 官方通过一系列社区工具将 Zod 定义转化为其他语言的类型定义，托管在 `/raw` 端点下，可以直接通过 `GET` 请求获取。目前支持的语言有：
 
@@ -33,8 +33,8 @@
 
 ## Milky SDK
 
-| 语言       | 包名                                                                             |
-| ---------- | -------------------------------------------------------------------------------- |
-| TypeScript | [@saltify/milky-node-sdk](https://www.npmjs.com/package/@saltify/milky-node-sdk) |
-| Rust       | [vivian-rs](https://crates.io/crates/vivian)                                     |
-| .NET       | [Milky.Net.Client](https://www.nuget.org/packages/Milky.Net.Client)              |
+| 语言       | 包名                                                                             | License               |
+| ---------- | -------------------------------------------------------------------------------- | --------------------- |
+| TypeScript | [@saltify/milky-node-sdk](https://www.npmjs.com/package/@saltify/milky-node-sdk) | CC0-1.0               |
+| Rust       | [vivian-rs](https://crates.io/crates/vivian)                                     | MIT **or** Apache 2.0 |
+| .NET       | [Milky.Net.Client](https://www.nuget.org/packages/Milky.Net.Client)              | MIT                   |
