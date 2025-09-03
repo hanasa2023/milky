@@ -1,4 +1,4 @@
-# 生态
+# 社区资源
 
 下面列出了部分支持 Milky 的项目。如果你想要将自己的项目加入以下列表，欢迎在 [Milky 的 GitHub 仓库](https://github.com/SaltifyDev/milky)提出 Pull Request。
 
@@ -16,12 +16,12 @@
 
 ## 类型定义
 
-以下是由 Milky 官方发布的类型定义包：
+以下是由 Milky 官方和社区发布的类型定义包，可以在项目中直接引用：
 
 | 语言       | 包名                                                                       |
 | ---------- | -------------------------------------------------------------------------- |
 | TypeScript | [@saltify/milky-types](https://www.npmjs.com/package/@saltify/milky-types) |
-| .Net       | [Milky.Net.Model](https://www.nuget.org/packages/Milky.Net.Model)          |
+| .NET       | [Milky.Net.Model](https://www.nuget.org/packages/Milky.Net.Model)          |
 
 同时，Milky 官方通过一系列社区工具将 Zod 定义转化为其他语言的类型定义，托管在 `/raw` 端点下，可以直接通过 `GET` 请求获取。目前支持的语言有：
 
@@ -37,4 +37,4 @@
 | ---------- | -------------------------------------------------------------------------------- |
 | TypeScript | [@saltify/milky-node-sdk](https://www.npmjs.com/package/@saltify/milky-node-sdk) |
 | Rust       | [vivian-rs](https://crates.io/crates/vivian)                                     |
-| .Net       | [Milky.Net.Client](https://www.nuget.org/packages/Milky.Net.Client)              |
+| .NET       | [Milky.Net.Client](https://www.nuget.org/packages/Milky.Net.Client)              |
