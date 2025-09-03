@@ -3,7 +3,7 @@ import { milkyVersion, milkyPackageVersion } from '@saltify/milky-types';
 import { commonStructs, apiCategories } from '@saltify/milky-types/api';
 
 Object.entries(commonStructs).forEach(([name, schema]) => {
-  z.globalRegistry.add(schema, { id: name });
+  z.globalRegistry.add(schema, { id: name, description: schema.description });
 });
 
 Object.entries(apiCategories).forEach(([, category]) => {
