@@ -1,50 +1,49 @@
-import EventEmitter from 'events';
+import EventEmitter from 'node:events';
+import { createEventSource } from 'eventsource-client';
 import type { ApiCollection, ApiResponse } from './api';
 import type { EventCollection } from './event';
 
-if (typeof globalThis.WebSocket === 'undefined') {
-  console.error('WebSocket is not supported in this environment.');
-  process.exit(1);
-}
+const combineUrl = (base: string, path: string) => {
+  const baseUrl = base.endsWith('/') ? base.slice(0, -1) : base;
+  const pathUrl = path.startsWith('/') ? path.slice(1) : path;
+  return `${baseUrl}/${pathUrl}`;
+};
 
 export class MilkyClient {
+  private readonly eventEmitter: EventEmitter;
   private readonly httpApiUrl: string;
   private readonly eventUrl: string;
-  private readonly wsClient: WebSocket;
   private readonly fetchHeader: Record<string, string>;
-  private readonly eventEmitter: EventEmitter;
+  private disposeCore?: () => void;
 
   /**
-   * @param address The address of the Milky API server
-   * @param port The port of the Milky API server
-   * @param base The base path for the Milky API
+   * @param authority The authority of the Milky API (value of `new URL('https://example.com:443/some-path').host`)
+   * @param basePath The base path for the Milky API
    * @param accessToken The access token for authentication (optional)
-   * @param useHttps Whether to use HTTPS (default: false)
+   * @param useTLS Whether to use HTTPS and WSS (default: false)
+   * @param useSSE Whether to use Server-Sent Events for event streaming (default: false)
    */
   constructor(
-    address: string,
-    port: number, 
-    base: string, 
-    private readonly accessToken?: string, 
-    useHttps: boolean = false
+    authority: string,
+    basePath?: `/${string}/` | '/',
+    accessToken?: string,
+    useTLS?: boolean,
+    useSSE?: boolean
   ) {
-    base = base.endsWith('/') ? base.slice(0, -1) : base;
-    this.httpApiUrl = `${useHttps ? 'https' : 'http'}://${address}:${port}${base}/api`;
-    this.eventUrl = accessToken
-      ? `${useHttps ? 'wss' : 'ws'}://${address}:${port}${base}/event?access_token=${accessToken}`
-      : `${useHttps ? 'wss' : 'ws'}://${address}:${port}${base}/event`;
-    this.fetchHeader = this.accessToken ? {
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${this.accessToken}`,
-    } : {
-      'Content-Type': 'application/json',
-    };
-    this.wsClient = new WebSocket(this.eventUrl);
+    const httpProtocol = useTLS ? 'https' : 'http';
+    const urlFragment = `${authority}${basePath}`;
+    const httpUrlBase = `${httpProtocol}://${urlFragment}`;
+    this.fetchHeader = {};
+    if (accessToken) this.fetchHeader['Authorization'] = `Bearer ${accessToken}`;
+
     this.eventEmitter = new EventEmitter();
-    this.wsClient.addEventListener('message', (event) => {
-      const data = JSON.parse(event.data);
-      this.eventEmitter.emit(data.event_type, data);
-    });
+    this.httpApiUrl = combineUrl(httpUrlBase, 'api');
+    this.eventUrl = combineUrl(httpUrlBase, 'api');
+    if (!useSSE) {
+      this.createWebsocket();
+    } else {
+      this.createSSE();
+    }
   }
 
   /**
@@ -57,9 +56,13 @@ export class MilkyClient {
     method: K,
     ...input: Parameters<ApiCollection[K]>
   ): Promise<ReturnType<ApiCollection[K]>> {
-    const response = await fetch(`${this.httpApiUrl}/${method}`, {
+    const response = await fetch(combineUrl(this.httpApiUrl, method), {
       method: 'POST',
-      headers: this.fetchHeader,
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        ...this.fetchHeader,
+      },
       body: JSON.stringify(input[0] ?? {}),
     });
     const callResult = (await response.json()) as ApiResponse;
@@ -80,4 +83,49 @@ export class MilkyClient {
   ): Promise<void> {
     this.eventEmitter.on(eventType, listener);
   }
+
+  private createSSE() {
+    const sse = createEventSource({
+      url: this.eventUrl,
+      headers: {
+        Accept: 'text/event-stream',
+        ...this.fetchHeader,
+      },
+      onMessage: (event: { event: string; data: string }) => {
+        if (event.event !== 'milky_event') return;
+
+        const data = JSON.parse(event.data);
+        this.eventEmitter.emit(data.event_type, data);
+      },
+    });
+
+    sse.connect();
+
+    this.disposeCore = sse.close;
+  }
+
+  private createWebsocket() {
+    if (!globalThis.WebSocket) throw new Error('WebSocket is not supported in this environment.');
+
+    const ws = new WebSocket(this.eventUrl, {
+      headers: {
+        ...this.fetchHeader,
+      },
+    });
+    ws.addEventListener('message', (event) => {
+      const data = JSON.parse(event.data);
+      this.eventEmitter.emit(data.event_type, data);
+    });
+
+    this.disposeCore = ws.close;
+  }
+
+  /**
+   * Release the WebSocket / Server Sent Event connection.
+   */
+  dispose() {
+    this.disposeCore?.();
+  }
+
+  [Symbol.dispose] = this.dispose;
 }

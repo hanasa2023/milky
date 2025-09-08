@@ -96,17 +96,70 @@ Authorization: Bearer 123456
 
 ## 事件推送
 
-事件推送服务支持两种方式：WebSocket 和 WebHook。
+事件推送服务支持三种方式：Server-Sent Events（SSE）、 WebSocket 和 WebHook。
+
+### SSE 连接
+
+接受路径为 `/event` 的 HTTP GET 请求，在建立连接后推送事件。为保证安全性，可以在配置文件中设置 `access_token`，协议端需要在请求头中检查 `Authorization` 字段，格式为 `Bearer {access_token}`。
+
+示例如下：
+
+```http
+GET /event
+Authorization: Bearer 123456
+```
+
+> [!tip]
+> 在不提供自定义头的应用中，应用端还可以通过 `?access_token={access_token}` 参数来提供 `access_token`。
+> 
+> 示例如下：
+> ```http
+> GET /event?access_token=123456
+> ```
+
+协议端需要给出 `Content-Type` 为 `text/event-stream` 的响应，且一直保持连接。产生事件时，协议端会推送一条内容格式是 JSON 的 SSE 消息，内容格式见 [Event](https://milky.ntqqrev.org/struct/Event)。示例如下：
+
+```plain
+event: milky_event
+data: {
+data:   "time": 1234567890,
+data:   "self_id": 123456789,
+data:   "event_type": "message_receive",
+data:   "data": {
+data:     "message_scene": "friend",
+data:     "peer_id": 123456789,
+data:     "message_seq": 23333,
+data:     "sender_id": 123456789,
+data:     "time": 1234567890,
+data:     "message": [
+data:       {
+data:         "type": "text",
+data:         "data": {
+data:           "text": "Hello, world!"
+data:         }
+data:       }
+data:     ]
+data:   }
+data: }
+
+```
 
 ### WebSocket 连接
 
-接受路径为 `/event` 的 WebSocket 连接请求，在建立连接后推送事件。为保证安全性，可以在配置文件中设置 `access_token`，协议端需要检查连接时的 `query` 参数 `access_token`，如果不匹配则拒绝连接。
+接受路径为 `/event` 的 WebSocket 连接请求，在建立连接后推送事件。为保证安全性，可以在配置文件中设置 `access_token`，协议端需要在请求头中检查 `Authorization` 字段，格式为 `Bearer {access_token}`。
 
-例如，如果 `access_token` 配置为 `123456`，则连接 URL 为
+连接 URL 为
+```
+ws://{IP}:{端口}/event
+```
 
-```
-ws://{IP}:{端口}/event?access_token=123456
-```
+> [!tip]
+> 在不提供自定义头的应用中，应用端还可以通过 `?access_token={access_token}` 参数来提供 `access_token`。
+> 
+> 连接 URL 为
+> ```http
+> ws://{IP}:{端口}/event?access_token=123456
+> ```
 
 产生事件时，协议端会推送一条 JSON 格式的消息，格式见 [Event](../struct/Event.md)。示例如下：
 
@@ -132,6 +185,10 @@ ws://{IP}:{端口}/event?access_token=123456
   }
 }
 ```
+
+> [!tip]
+>
+> 由于 SSE 和 WebSocket 都是由 HTTP GET 请求升级而来，协议端在确定应当提供哪种连接时，应当优先检查应用端请求中的 `Upgrade` 头，如果存在且值为 `websocket`，则视为 WebSocket 连接请求，否则视为 SSE 连接请求。
 
 ### WebHook 推送
 
