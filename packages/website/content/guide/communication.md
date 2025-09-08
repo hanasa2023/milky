@@ -98,6 +98,10 @@ Authorization: Bearer 123456
 
 事件推送服务支持三种方式：Server-Sent Events（SSE）、 WebSocket 和 WebHook。
 
+> [!tip]
+>
+> 由于 SSE 和 WebSocket 都是由 HTTP GET 请求升级而来，协议端在确定应当提供哪种连接时，应当优先检查应用端请求中的 `Upgrade` 头，如果存在且值为 `websocket`，则视为 WebSocket 连接请求，否则视为 SSE 连接请求。
+
 ### SSE 连接
 
 接受路径为 `/event` 的 HTTP GET 请求，在建立连接后推送事件。为保证安全性，可以在配置文件中设置 `access_token`，协议端需要在请求头中检查 `Authorization` 字段，格式为 `Bearer {access_token}`。
@@ -110,9 +114,9 @@ Authorization: Bearer 123456
 ```
 
 > [!tip]
-> 在不提供自定义头的应用中，应用端还可以通过 `?access_token={access_token}` 参数来提供 `access_token`。
+>
+> 在不支持提供自定义 Header 的环境中，应用端还可以通过在 query 中携带 `access_token` 参数来提供 `access_token`，例如：
 > 
-> 示例如下：
 > ```http
 > GET /event?access_token=123456
 > ```
@@ -141,22 +145,23 @@ data:       }
 data:     ]
 data:   }
 data: }
-
+// 必须以空行结尾，表示消息结束，这是 SSE 的要求
 ```
 
 ### WebSocket 连接
 
-接受路径为 `/event` 的 WebSocket 连接请求，在建立连接后推送事件。为保证安全性，可以在配置文件中设置 `access_token`，协议端需要在请求头中检查 `Authorization` 字段，格式为 `Bearer {access_token}`。
+接受路径为 `/event` 的 WebSocket 连接请求，在建立连接后推送事件。连接 URL 为：
 
-连接 URL 为
 ```
 ws://{IP}:{端口}/event
 ```
 
+为保证安全性，可以在配置文件中设置 `access_token`，协议端需要在请求头中检查 `Authorization` 字段，格式为 `Bearer {access_token}`。
+
 > [!tip]
-> 在不提供自定义头的应用中，应用端还可以通过 `?access_token={access_token}` 参数来提供 `access_token`。
-> 
-> 连接 URL 为
+>
+> 在不支持提供自定义 Header 的环境中，应用端还可以通过在 query 中携带 `access_token` 参数来提供 `access_token`，例如：
+>
 > ```http
 > ws://{IP}:{端口}/event?access_token=123456
 > ```
@@ -185,10 +190,6 @@ ws://{IP}:{端口}/event
   }
 }
 ```
-
-> [!tip]
->
-> 由于 SSE 和 WebSocket 都是由 HTTP GET 请求升级而来，协议端在确定应当提供哪种连接时，应当优先检查应用端请求中的 `Upgrade` 头，如果存在且值为 `websocket`，则视为 WebSocket 连接请求，否则视为 SSE 连接请求。
 
 ### WebHook 推送
 
