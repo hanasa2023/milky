@@ -1,7 +1,7 @@
 {
   "name": "@saltify/milky-types",
   "type": "module",
-  "version": "1.0.0-draft.13",
+  "version": "1.0.0-draft.14",
   "description": "Type definitions for Milky protocol",
   "main": "src/index.ts",
   "exports": {
