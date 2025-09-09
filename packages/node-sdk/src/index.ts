@@ -91,11 +91,10 @@ export class MilkyClient {
         Accept: 'text/event-stream',
         ...this.fetchHeader,
       },
-      onMessage: (event: { event: string; data: string }) => {
-        if (event.event !== 'milky_event') return;
-
-        const data = JSON.parse(event.data);
-        this.eventEmitter.emit(data.event_type, data);
+      onMessage: ({ event, data }) => {
+        if (event !== 'milky_event') return;
+        const parsedData = JSON.parse(data);
+        this.eventEmitter.emit(parsedData.event_type, parsedData);
       },
     });
 
