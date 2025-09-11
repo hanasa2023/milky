@@ -67,6 +67,15 @@ Authorization: Bearer 123456
 ```
 
 ```jsonc
+// 失败响应示例 0
+{
+  "status": "failed",
+  "retcode": -403, // 协议端未处于登录状态时，retcode 为 -403
+  "message": "未处于登录状态"
+}
+```
+
+```jsonc
 // 失败响应示例 1
 {
   "status": "failed",
