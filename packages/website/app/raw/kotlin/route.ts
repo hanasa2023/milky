@@ -46,7 +46,7 @@ function getKotlinTypeSpec(type: $ZodType): string {
     return `${getKotlinTypeSpec(type.unwrap())}? = null`;
   }
   if (type instanceof z.ZodDefault) {
-    return `${getKotlinTypeSpec(type.unwrap())} = ${type.def.defaultValue}`;
+    return `${getKotlinTypeSpec(type.unwrap())} = ${JSON.stringify(type.def.defaultValue)}`;
   }
   if (type instanceof z.ZodLazy) {
     return getKotlinTypeSpec(type.unwrap());
