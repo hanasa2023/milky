@@ -178,6 +178,7 @@ function generateKotlinSpec(): string {
   }
   l('// Auto-generated file');
   l('// Copy to your project and modify as needed');
+  l('@file:OptIn(ExperimentalSerializationApi::class)');
   l('');
   l('import kotlinx.serialization.*');
   l('import kotlinx.serialization.json.*');
