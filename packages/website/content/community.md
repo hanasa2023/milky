@@ -23,11 +23,12 @@
 | TypeScript | [@saltify/milky-types](https://www.npmjs.com/package/@saltify/milky-types) | CC0-1.0 |
 | .NET       | [Milky.Net.Model](https://www.nuget.org/packages/Milky.Net.Model)          | MIT     |
 
-同时，Milky 官方通过一系列社区工具将 Zod 定义转化为其他语言的类型定义，托管在 `/raw` 端点下，可以直接通过 `GET` 请求获取。目前支持的语言有：
+同时，Milky 官方通过一系列自行编写的工具和社区工具将 Zod 定义转化为其他语言的类型定义，托管在 `/raw` 端点下，可以直接通过 `GET` 请求获取。目前支持的语言有：
 
-| 语言        | 路径                                   | 生成方式                                          |
-| ----------- | -------------------------------------- | ------------------------------------------------- |
-| JSON Schema | [`/raw/json-schema`](/raw/json-schema) | [`z.toJSONSchema()`](https://zod.dev/json-schema) |
+| 语言                           | 路径                                   | 生成方式                                          |
+| ------------------------------ | -------------------------------------- | ------------------------------------------------- |
+| JSON Schema                    | [`/raw/json-schema`](/raw/json-schema) | [`z.toJSONSchema()`](https://zod.dev/json-schema) |
+| Kotlin (kotlinx.serialization) | [`/raw/kotlin`](/raw/kotlin)           | 自行编写的转换工具                                |
 
 请注意，以上由社区工具生成的类型定义是**实验性**的，Milky 官方不保证其准确性和完整性。如对生成的类型定义有疑问，请以文档提供的定义为准，并且及时反馈。
 
