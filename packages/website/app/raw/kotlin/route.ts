@@ -249,6 +249,6 @@ function generateKotlinSpec(): string {
 
 export function GET() {
   return new Response(generateKotlinSpec(), {
-    status: 200,
+    headers: { 'Content-Type': 'text/plain' },
   });
 }
