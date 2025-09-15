@@ -1,4 +1,4 @@
-import { jsonSchemas } from '../../common';
+import { jsonSchemas } from '../../../common';
 
 export const dynamic = 'force-static';
 
