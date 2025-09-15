@@ -177,9 +177,11 @@ function generateKotlinSpec(): string {
     lines[lines.length - 1] += line;
   }
   l('// Auto-generated file');
-  l('// Copy to your project and modify as needed');
   l('@file:OptIn(ExperimentalSerializationApi::class)');
   l('');
+  l('package org.ntqqrev.milky');
+  l('');
+  l('import kotlinx.serialization.Serializable');
   l('import kotlinx.serialization.*');
   l('import kotlinx.serialization.json.*');
   l('');
@@ -243,6 +245,23 @@ function generateKotlinSpec(): string {
       l('');
     });
   });
+
+  l('// ####################################');
+  l('// API Endpoint Constants');
+  l('// ####################################');
+  l('');
+  l('sealed class ApiEndpoint<T : Any, R : Any>(val path: String) {');
+  Object.entries(apiCategories).forEach(([, category]) => {
+    category.apis.forEach((api) => {
+      l(`    /** ${api.description} */`);
+      l(
+        `    object ${toUpperCamelCase(api.endpoint)} : ApiEndpoint<${toUpperCamelCase(
+          api.endpoint
+        )}Input, ${toUpperCamelCase(api.endpoint)}Output>("/${api.endpoint}")`
+      );
+    });
+  });
+  l('}');
 
   return lines.join('\n');
 }
