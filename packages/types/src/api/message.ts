@@ -47,7 +47,15 @@ export const GetHistoryMessagesInput = z.object({
   message_scene: z.enum(['friend', 'group', 'temp']).describe('消息场景'),
   peer_id: ZInt64.describe('好友 QQ 号或群号'),
   start_message_seq: ZInt64.nullish().describe('起始消息序列号，由此开始从新到旧查询，不提供则从最新消息开始'),
-  limit: ZInt32.max(30).nullish().default(20).describe('期望获取到的消息数量，最多 30 条'),
+  limit: z.number()
+    .int()
+    .min(1)
+    .max(30)
+    .nullish()
+    .default(20)
+    .transform<number>((v) => v ?? 20)
+    .meta({ scalarType: 'int32' })
+    .describe('期望获取到的消息数量，最多 30 条'),
 });
 
 export const GetHistoryMessagesOutput = z.object({

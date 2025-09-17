@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { ZInt64, ZString } from '../scalar';
+import { ZInt64, ZString, ZStringWithDefault } from '../scalar';
 import { GroupFileEntity, GroupFolderEntity } from '../common';
 
 export const UploadPrivateFileInput = z.object({
@@ -14,7 +14,7 @@ export const UploadPrivateFileOutput = z.object({
 
 export const UploadGroupFileInput = z.object({
   group_id: ZInt64.describe('群号'),
-  parent_folder_id: ZString.nullish().default('/').describe('目标文件夹 ID'),
+  parent_folder_id: ZStringWithDefault('/').describe('目标文件夹 ID'),
   file_uri: ZString.describe('文件 URI，支持 `file://` `http(s)://` `base64://` 三种格式'),
   file_name: ZString.describe('文件名称'),
 });
@@ -44,7 +44,7 @@ export const GetGroupFileDownloadUrlOutput = z.object({
 
 export const GetGroupFilesInput = z.object({
   group_id: ZInt64.describe('群号'),
-  parent_folder_id: ZString.nullish().default('/').describe('父文件夹 ID'),
+  parent_folder_id: ZStringWithDefault('/').describe('父文件夹 ID'),
 });
 
 export const GetGroupFilesOutput = z.object({
@@ -55,14 +55,14 @@ export const GetGroupFilesOutput = z.object({
 export const MoveGroupFileInput = z.object({
   group_id: ZInt64.describe('群号'),
   file_id: ZString.describe('文件 ID'),
-  parent_folder_id: ZString.nullish().default('/').describe('文件所在的文件夹 ID'),
-  target_folder_id: ZString.nullish().default('/').describe('目标文件夹 ID'),
+  parent_folder_id: ZStringWithDefault('/').describe('文件所在的文件夹 ID'),
+  target_folder_id: ZStringWithDefault('/').describe('目标文件夹 ID'),
 });
 
 export const RenameGroupFileInput = z.object({
   group_id: ZInt64.describe('群号'),
   file_id: ZString.describe('文件 ID'),
-  parent_folder_id: ZString.nullish().default('/').describe('文件所在的文件夹 ID'),
+  parent_folder_id: ZStringWithDefault('/').describe('文件所在的文件夹 ID'),
   new_file_name: ZString.describe('新文件名称'),
 });
 
