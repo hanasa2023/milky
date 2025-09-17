@@ -2,20 +2,7 @@ import { commonStructs } from '@/app/common';
 import { Link } from 'nextra-theme-docs';
 import { Table } from 'nextra/components';
 import { JSX } from 'react';
-import {
-  ZodArray,
-  ZodBoolean,
-  ZodDefault,
-  ZodDiscriminatedUnion,
-  ZodEnum,
-  ZodLazy,
-  ZodLiteral,
-  ZodNumber,
-  ZodObject,
-  ZodOptional,
-  ZodString,
-  ZodType,
-} from 'zod';
+import { z } from 'zod';
 import { $ZodType } from 'zod/v4/core';
 
 const commonStructNames = new Map<$ZodType, string>(
@@ -23,32 +10,42 @@ const commonStructNames = new Map<$ZodType, string>(
 );
 
 function renderTypeName(type: $ZodType): JSX.Element | string {
-  if (type instanceof ZodArray) {
+  if (type instanceof z.ZodArray) {
     return <>{renderTypeName(type.element)}[]</>;
   }
-  if (type instanceof ZodNumber) {
+  if (type instanceof z.ZodNumber) {
     return (type.meta()?.scalarType as string | undefined) ?? 'int32';
   }
-  if (type instanceof ZodBoolean) {
+  if (type instanceof z.ZodBoolean) {
     return 'boolean';
   }
-  if (type instanceof ZodString) {
+  if (type instanceof z.ZodString) {
     return 'string';
   }
-  if (type instanceof ZodEnum) {
+  if (type instanceof z.ZodEnum) {
     return type.options.map((e) => JSON.stringify(e)).join(' | ');
   }
-  if (type instanceof ZodOptional) {
+  if (type instanceof z.ZodNullable) {
+    return renderTypeName(type.unwrap());
+  }
+  if (type instanceof z.ZodOptional) {
     return <>{renderTypeName(type.unwrap())} (optional)</>;
   }
-  if (type instanceof ZodDefault) {
+  if (type instanceof z.ZodDefault) {
+    let unwrapped = type.unwrap();
+    if (unwrapped instanceof z.ZodOptional) {
+      unwrapped = unwrapped.unwrap();
+    }
+    if (unwrapped instanceof z.ZodNullable) {
+      unwrapped = unwrapped.unwrap();
+    }
     return (
       <>
-        {renderTypeName(type.unwrap())} (default: {JSON.stringify(type.def.defaultValue)})
+        {renderTypeName(unwrapped)} (default: {JSON.stringify(type.def.defaultValue)})
       </>
     );
   }
-  if (type instanceof ZodLazy) {
+  if (type instanceof z.ZodLazy) {
     return renderTypeName(type.unwrap());
   }
   if (commonStructNames.has(type)) {
@@ -62,7 +59,7 @@ function renderCommonStructName(type: $ZodType): JSX.Element {
   return <Link href={`/struct/${structName}`}>{structName}</Link>;
 }
 
-function renderZodObject(struct: ZodObject) {
+function renderZodObject(struct: z.ZodObject) {
   if (Object.keys(struct.shape).length === 0) {
     return <p style={{ marginTop: '1rem' }}>此对象无字段，请传入 {'{}'}。</p>;
   }
@@ -76,13 +73,13 @@ function renderZodObject(struct: ZodObject) {
             <Table.Th>描述</Table.Th>
           </Table.Tr>
         </thead>
-        <tbody>{Object.entries<ZodType>(struct.shape).map(([key, value]) => renderZodObjectRow(key, value))}</tbody>
+        <tbody>{Object.entries<z.ZodType>(struct.shape).map(([key, value]) => renderZodObjectRow(key, value))}</tbody>
       </Table>
     </div>
   );
 }
 
-function renderZodObjectRow(key: string, ztype: ZodType) {
+function renderZodObjectRow(key: string, ztype: z.ZodType) {
   return (
     <Table.Tr key={key}>
       <Table.Td>{key}</Table.Td>
@@ -92,9 +89,9 @@ function renderZodObjectRow(key: string, ztype: ZodType) {
   );
 }
 
-function renderZodDiscriminatedUnion(struct: ZodDiscriminatedUnion) {
+function renderZodDiscriminatedUnion(struct: z.ZodDiscriminatedUnion) {
   const keysList = struct.options.map((option) => {
-    if (option instanceof ZodObject) {
+    if (option instanceof z.ZodObject) {
       return Object.keys(option.shape);
     } else {
       throw new Error('Expected ZodDiscriminatedUnion to contain ZodObject');
@@ -107,7 +104,7 @@ function renderZodDiscriminatedUnion(struct: ZodDiscriminatedUnion) {
     }
     const commonKeys = keysList[0].filter((key) => key !== 'data' && key !== struct.def.discriminator);
     const firstOption = struct.options[0];
-    if (!(firstOption instanceof ZodObject)) {
+    if (!(firstOption instanceof z.ZodObject)) {
       throw new Error('Expected first option to be a ZodObject');
     }
     return (
@@ -143,10 +140,10 @@ function renderZodDiscriminatedUnion(struct: ZodDiscriminatedUnion) {
         </Table>
         <p>data 在不同 {struct.def.discriminator} 下的具体类型如下：</p>
         {struct.options.map((option) => {
-          if (!(option instanceof ZodObject)) {
+          if (!(option instanceof z.ZodObject)) {
             throw new Error('Expected option to be a ZodObject');
           }
-          const discriminatorValue = (option.shape[struct.def.discriminator] as ZodLiteral).value as string;
+          const discriminatorValue = (option.shape[struct.def.discriminator] as z.ZodLiteral).value as string;
           return (
             <div id={`type-${discriminatorValue}`} key={discriminatorValue} style={{ marginTop: '2rem' }}>
               <p
@@ -155,7 +152,7 @@ function renderZodDiscriminatedUnion(struct: ZodDiscriminatedUnion) {
               >
                 <b>{discriminatorValue}</b> {option.description}
               </p>
-              {option.shape.data instanceof ZodLazy ? (
+              {option.shape.data instanceof z.ZodLazy ? (
                 <p style={{ marginTop: '1rem' }}>参见 {renderCommonStructName(option.shape.data.unwrap())}</p> // todo
               ) : commonStructNames.has(option.shape.data) ? (
                 <p style={{ marginTop: '1rem' }}>参见 {renderCommonStructName(option.shape.data)}</p>
@@ -179,10 +176,10 @@ function renderZodDiscriminatedUnion(struct: ZodDiscriminatedUnion) {
       >
         <p>可能的类型如下：</p>
         {struct.options.map((option) => {
-          if (!(option instanceof ZodObject)) {
+          if (!(option instanceof z.ZodObject)) {
             throw new Error('Expected option to be a ZodObject');
           }
-          const discriminatorValue = (option.shape[struct.def.discriminator] as ZodLiteral).value as string;
+          const discriminatorValue = (option.shape[struct.def.discriminator] as z.ZodLiteral).value as string;
           return (
             <div id={`type-${discriminatorValue}`} key={discriminatorValue} style={{ marginTop: '2rem' }}>
               <p
@@ -205,7 +202,7 @@ function renderZodDiscriminatedUnion(struct: ZodDiscriminatedUnion) {
                     <Table.Td>&quot;{discriminatorValue}&quot;</Table.Td>
                     <Table.Td>表示{option.description}</Table.Td>
                   </Table.Tr>
-                  {Object.entries<ZodType>(option.shape)
+                  {Object.entries<z.ZodType>(option.shape)
                     .filter(([key]) => key !== struct.def.discriminator)
                     .map(([key, value]) => renderZodObjectRow(key, value))}
                 </tbody>
@@ -218,11 +215,11 @@ function renderZodDiscriminatedUnion(struct: ZodDiscriminatedUnion) {
   }
 }
 
-export default function StructRenderer(props: { struct: ZodType }) {
-  if (props.struct instanceof ZodObject) {
+export default function StructRenderer(props: { struct: z.ZodType }) {
+  if (props.struct instanceof z.ZodObject) {
     return renderZodObject(props.struct);
   }
-  if (props.struct instanceof ZodDiscriminatedUnion) {
+  if (props.struct instanceof z.ZodDiscriminatedUnion) {
     return renderZodDiscriminatedUnion(props.struct);
   }
   return <>unsupported type</>;

@@ -4,7 +4,7 @@ import { FriendEntity, GroupEntity, GroupMemberEntity } from '../common';
 import { milkyVersion } from '../constants';
 
 const CachedApiBase = z.object({
-  no_cache: ZBoolean.default(false).describe('是否强制不使用缓存'),
+  no_cache: ZBoolean.nullish().default(false).describe('是否强制不使用缓存'),
 });
 
 export const GetLoginInfoOutput = z.object({

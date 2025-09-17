@@ -42,11 +42,21 @@ function getKotlinTypeSpec(type: $ZodType): string {
   if (type instanceof z.ZodString || type instanceof z.ZodEnum) {
     return 'String';
   }
+  if (type instanceof z.ZodNullable) {
+    return getKotlinTypeSpec(type.unwrap()); // unwrap only once, since we only use z.nullish()
+  }
   if (type instanceof z.ZodOptional) {
     return `${getKotlinTypeSpec(type.unwrap())}? = null`;
   }
   if (type instanceof z.ZodDefault) {
-    return `${getKotlinTypeSpec(type.unwrap())} = ${JSON.stringify(type.def.defaultValue)}`;
+    let unwrapped = type.unwrap();
+    if (unwrapped instanceof z.ZodOptional) {
+      unwrapped = unwrapped.unwrap();
+    }
+    if (unwrapped instanceof z.ZodNullable) {
+      unwrapped = unwrapped.unwrap();
+    }
+    return `${getKotlinTypeSpec(unwrapped)} = ${JSON.stringify(type.def.defaultValue)}`;
   }
   if (type instanceof z.ZodLazy) {
     return getKotlinTypeSpec(type.unwrap());

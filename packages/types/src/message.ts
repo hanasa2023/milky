@@ -150,7 +150,7 @@ export const OutgoingSegment = z.discriminatedUnion('type', [
   z.object({
     type: z.literal('image'),
     data: OutgoingResourceSegmentBase.extend({
-      summary: ZString.optional().describe('图片预览文本'),
+      summary: ZString.nullish().describe('图片预览文本'),
       sub_type: z.enum(['normal', 'sticker']).describe('图片类型'),
     }).describe('图片消息段'),
   }).describe('图片消息段'),
@@ -163,7 +163,7 @@ export const OutgoingSegment = z.discriminatedUnion('type', [
   z.object({
     type: z.literal('video'),
     data: OutgoingResourceSegmentBase.extend({
-      thumb_uri: ZString.optional().describe('封面图片 URI'),
+      thumb_uri: ZString.nullish().describe('封面图片 URI'),
     }).describe('视频消息段'),
   }).describe('视频消息段'),
 
@@ -212,7 +212,7 @@ export const IncomingMessage = z.discriminatedUnion('message_scene', [
     sender_id: ZInt64.describe('发送者 QQ 号'),
     time: ZInt64.describe('消息 Unix 时间戳（秒）'),
     segments: z.array(z.lazy(() => IncomingSegment)).describe('消息段列表'),
-    group: z.lazy(() => GroupEntity).optional().describe('临时会话发送者的所在的群信息'),
+    group: z.lazy(() => GroupEntity).nullish().describe('临时会话发送者的所在的群信息'),
   }).describe('临时会话消息'),
 ]).describe('接收消息');
 

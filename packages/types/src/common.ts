@@ -33,7 +33,7 @@ export const GroupMemberEntity = UserEntityBase.extend({
   role: z.enum(['owner', 'admin', 'member']).describe('权限等级'),
   join_time: ZInt64.describe('入群时间，Unix 时间戳（秒）'),
   last_sent_time: ZInt64.describe('最后发言时间，Unix 时间戳（秒）'),
-  shut_up_end_time: ZInt64.optional().describe('禁言结束时间，Unix 时间戳（秒）'),
+  shut_up_end_time: ZInt64.nullish().describe('禁言结束时间，Unix 时间戳（秒）'),
 }).describe('群成员实体');
 
 export const GroupAnnouncementEntity = z.object({
@@ -42,7 +42,7 @@ export const GroupAnnouncementEntity = z.object({
   user_id: ZInt64.describe('发送者 QQ 号'),
   time: ZInt64.describe('Unix 时间戳（秒）'),
   content: ZString.describe('公告内容'),
-  image_url: ZString.optional().describe('公告图片 URL'),
+  image_url: ZString.nullish().describe('公告图片 URL'),
 }).describe('群公告实体');
 
 export const GroupFileEntity = z.object({
@@ -52,7 +52,7 @@ export const GroupFileEntity = z.object({
   parent_folder_id: ZString.describe('父文件夹 ID'),
   file_size: ZInt64.describe('文件大小（字节）'),
   uploaded_time: ZInt64.describe('上传时的 Unix 时间戳（秒）'),
-  expire_time: ZInt64.optional().describe('过期时的 Unix 时间戳（秒）'),
+  expire_time: ZInt64.nullish().describe('过期时的 Unix 时间戳（秒）'),
   uploader_id: ZInt64.describe('上传者 QQ 号'),
   downloaded_times: ZInt32.describe('下载次数'),
 }).describe('群文件实体');
@@ -88,7 +88,7 @@ export const GroupNotification = z.discriminatedUnion('type', [
     is_filtered: ZBoolean.describe('请求是否被过滤（发起自风险账户）'),
     initiator_id: ZInt64.describe('发起者 QQ 号'),
     state: z.enum(['pending', 'accepted', 'rejected', 'ignored']).describe('请求状态'),
-    operator_id: ZInt64.optional().describe('处理请求的管理员 QQ 号'),
+    operator_id: ZInt64.nullish().describe('处理请求的管理员 QQ 号'),
     comment: ZString.describe('入群请求附加信息'),
   }).describe('用户入群请求'),
   z.object({
@@ -119,7 +119,7 @@ export const GroupNotification = z.discriminatedUnion('type', [
     initiator_id: ZInt64.describe('邀请者 QQ 号'),
     target_user_id: ZInt64.describe('被邀请用户 QQ 号'),
     state: z.enum(['pending', 'accepted', 'rejected', 'ignored']).describe('请求状态'),
-    operator_id: ZInt64.optional().describe('处理请求的管理员 QQ 号'),
+    operator_id: ZInt64.nullish().describe('处理请求的管理员 QQ 号'),
   }).describe('群成员邀请他人入群请求'),
 ]).describe('群通知实体');
 

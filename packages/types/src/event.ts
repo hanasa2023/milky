@@ -76,14 +76,14 @@ export const GroupEssenceMessageChangeEvent = z.object({
 export const GroupMemberIncreaseEvent = z.object({
   group_id: ZInt64.describe('群号'),
   user_id: ZInt64.describe('发生变更的用户 QQ 号'),
-  operator_id: ZInt64.optional().describe('管理员 QQ 号，如果是管理员同意入群'),
-  invitor_id: ZInt64.optional().describe('邀请者 QQ 号，如果是邀请入群'),
+  operator_id: ZInt64.nullish().describe('管理员 QQ 号，如果是管理员同意入群'),
+  invitor_id: ZInt64.nullish().describe('邀请者 QQ 号，如果是邀请入群'),
 }).describe('群成员增加事件');
 
 export const GroupMemberDecreaseEvent = z.object({
   group_id: ZInt64.describe('群号'),
   user_id: ZInt64.describe('发生变更的用户 QQ 号'),
-  operator_id: ZInt64.optional().describe('管理员 QQ 号，如果是管理员踢出'),
+  operator_id: ZInt64.nullish().describe('管理员 QQ 号，如果是管理员踢出'),
 }).describe('群成员减少事件');
 
 export const GroupNameChangeEvent = z.object({

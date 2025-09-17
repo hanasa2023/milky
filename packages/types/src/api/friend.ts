@@ -4,17 +4,17 @@ import { FriendRequest } from '../common';
 
 export const SendFriendNudgeInput = z.object({
   user_id: ZInt64.describe('好友 QQ 号'),
-  is_self: ZBoolean.default(false).describe('是否戳自己'),
+  is_self: ZBoolean.nullish().default(false).describe('是否戳自己'),
 });
 
 export const SendProfileLikeInput = z.object({
   user_id: ZInt64.describe('好友 QQ 号'),
-  count: ZInt32.default(1).describe('点赞数量'),
+  count: ZInt32.nullish().default(1).describe('点赞数量'),
 });
 
 export const GetFriendRequestsInput = z.object({
-  limit: ZInt32.default(20).describe('获取的最大请求数量'),
-  is_filtered: ZBoolean.default(false).describe('`true` 表示只获取被过滤（由风险账号发起）的通知，`false` 表示只获取未被过滤的通知'),
+  limit: ZInt32.nullish().default(20).describe('获取的最大请求数量'),
+  is_filtered: ZBoolean.nullish().default(false).describe('`true` 表示只获取被过滤（由风险账号发起）的通知，`false` 表示只获取未被过滤的通知'),
 });
 
 export const GetFriendRequestsOutput = z.object({
@@ -23,13 +23,13 @@ export const GetFriendRequestsOutput = z.object({
 
 export const AcceptFriendRequestInput = z.object({
   initiator_uid: ZString.describe('请求发起者 UID'),
-  is_filtered: ZBoolean.default(false).describe('是否是被过滤的请求'),
+  is_filtered: ZBoolean.nullish().default(false).describe('是否是被过滤的请求'),
 });
 
 export const RejectFriendRequestInput = z.object({
   initiator_uid: ZString.describe('请求发起者 UID'),
-  is_filtered: ZBoolean.default(false).describe('是否是被过滤的请求'),
-  reason: ZString.optional().describe('拒绝理由'),
+  is_filtered: ZBoolean.nullish().default(false).describe('是否是被过滤的请求'),
+  reason: ZString.nullish().describe('拒绝理由'),
 });
 
 export type SendFriendNudgeInput = z.infer<typeof SendFriendNudgeInput>;
