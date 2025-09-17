@@ -45,6 +45,9 @@ function getKotlinTypeSpec(type: $ZodType): string {
   if (type instanceof z.ZodNullable) {
     return getKotlinTypeSpec(type.unwrap()); // unwrap only once, since we only use z.nullish()
   }
+  if (type instanceof z.ZodPipe) {
+    return getKotlinTypeSpec(type.def.in);
+  }
   if (type instanceof z.ZodOptional) {
     return `${getKotlinTypeSpec(type.unwrap())}? = null`;
   }

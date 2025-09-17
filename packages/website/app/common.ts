@@ -53,5 +53,6 @@ export const jsonSchemas = {
   packageVersion: types.milkyPackageVersion,
   schemas: z.toJSONSchema(z.globalRegistry, {
     metadata: z.globalRegistry,
+    io: 'input',
   }).schemas,
 };

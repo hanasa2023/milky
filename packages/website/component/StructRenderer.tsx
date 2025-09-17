@@ -28,6 +28,9 @@ function renderTypeName(type: $ZodType): JSX.Element | string {
   if (type instanceof z.ZodNullable) {
     return renderTypeName(type.unwrap());
   }
+  if (type instanceof z.ZodPipe) {
+    return renderTypeName(type.def.in);
+  }
   if (type instanceof z.ZodOptional) {
     return <>{renderTypeName(type.unwrap())} (optional)</>;
   }
