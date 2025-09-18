@@ -139,7 +139,7 @@ export const apiCategories: Record<string, ApiCategory> = {
       },
       {
         endpoint: 'get_history_messages',
-        description: '获取历史消息',
+        description: '获取历史消息列表',
         inputStruct: 'GetHistoryMessagesInput',
         outputStruct: 'GetHistoryMessagesOutput',
       },
@@ -250,10 +250,10 @@ export const apiCategories: Record<string, ApiCategory> = {
         outputStruct: null,
       },
       {
-        endpoint: 'get_group_announcement_list',
+        endpoint: 'get_group_announcements',
         description: '获取群公告列表',
-        inputStruct: 'GetGroupAnnouncementListInput',
-        outputStruct: 'GetGroupAnnouncementListOutput',
+        inputStruct: 'GetGroupAnnouncementsInput',
+        outputStruct: 'GetGroupAnnouncementsOutput',
       },
       {
         endpoint: 'send_group_announcement',

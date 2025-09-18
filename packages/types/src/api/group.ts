@@ -48,11 +48,11 @@ export const KickGroupMemberInput = z.object({
   reject_add_request: ZBooleanWithDefault(false).describe('是否拒绝加群申请，`false` 表示不拒绝'),
 });
 
-export const GetGroupAnnouncementListInput = z.object({
+export const GetGroupAnnouncementsInput = z.object({
   group_id: ZInt64.describe('群号'),
 });
 
-export const GetGroupAnnouncementListOutput = z.object({
+export const GetGroupAnnouncementsOutput = z.object({
   announcements: z.array(z.lazy(() => GroupAnnouncementEntity)).describe('群公告列表'),
 });
 
@@ -144,8 +144,8 @@ export type SetGroupMemberAdminInput = z.infer<typeof SetGroupMemberAdminInput>;
 export type SetGroupMemberMuteInput = z.infer<typeof SetGroupMemberMuteInput>;
 export type SetGroupWholeMuteInput = z.infer<typeof SetGroupWholeMuteInput>;
 export type KickGroupMemberInput = z.infer<typeof KickGroupMemberInput>;
-export type GetGroupAnnouncementListInput = z.infer<typeof GetGroupAnnouncementListInput>;
-export type GetGroupAnnouncementListOutput = z.infer<typeof GetGroupAnnouncementListOutput>;
+export type GetGroupAnnouncementsInput = z.infer<typeof GetGroupAnnouncementsInput>;
+export type GetGroupAnnouncementsOutput = z.infer<typeof GetGroupAnnouncementsOutput>;
 export type SendGroupAnnouncementInput = z.infer<typeof SendGroupAnnouncementInput>;
 export type DeleteGroupAnnouncementInput = z.infer<typeof DeleteGroupAnnouncementInput>;
 export type GetGroupEssenceMessagesInput = z.infer<typeof GetGroupEssenceMessagesInput>;
