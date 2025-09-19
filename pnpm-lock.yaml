@@ -36,8 +36,8 @@ importers:
   packages/node-sdk:
     dependencies:
       '@saltify/milky-types':
-        specifier: ^1.0.0-draft.18
-        version: 1.0.0-draft.18
+        specifier: ^1.0.0-draft.19
+        version: 1.0.0-draft.19
       zod:
         specifier: ^4.1.5
         version: 4.1.5
@@ -899,8 +899,8 @@ packages:
   '@rushstack/eslint-patch@1.12.0':
     resolution: {integrity: sha512-5EwMtOqvJMMa3HbmxLlF74e+3/HhwBTMcvt3nqVJgGCozO6hzIPOBlwm8mGVNR9SN2IJpxSnlxczyDjcn7qIyw==}
 
-  '@saltify/milky-types@1.0.0-draft.18':
-    resolution: {integrity: sha512-gPfglPd2RBan+dBNkWwTcEXLtpXLIN5VDad0og0CtJn43tmHv9JwtuwPbQB+CIHSmLwPNQC7v7IPPhn2rvEXug==}
+  '@saltify/milky-types@1.0.0-draft.19':
+    resolution: {integrity: sha512-7bePU1zA9u1xkq4UXEQRq1VxuyCusE9FDLllmV5ZDnpNX1bdQxTmJOSlzsGOEu9yrIR53u/Yr2XOJ4dMXFo/iQ==}
 
   '@shikijs/core@3.9.2':
     resolution: {integrity: sha512-3q/mzmw09B2B6PgFNeiaN8pkNOixWS726IHmJEpjDAcneDPMQmUg2cweT9cWXY4XcyQS3i6mOOUgQz9RRUP6HA==}
@@ -4364,7 +4364,7 @@ snapshots:
 
   '@rushstack/eslint-patch@1.12.0': {}
 
-  '@saltify/milky-types@1.0.0-draft.18':
+  '@saltify/milky-types@1.0.0-draft.19':
     dependencies:
       zod: 4.1.5
 
