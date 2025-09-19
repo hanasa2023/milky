@@ -31,6 +31,12 @@ Milk 戳了戳 Shama 的……。不许戳啦！
 
 那么其对应的 `message_nudge` 事件中的 `display_action` 字段是 `戳了戳`，`display_suffix` 字段是 `的……。不许戳啦！`。
 
+## `file` 消息段和 `file_upload` 事件是同一个东西吗？
+
+是的，包含在消息中的 [`file` 消息段](../struct/IncomingSegment#type-file)和 [`friend_file_upload`](../struct/Event#type-friend_file_upload)、[`group_file_upload`](../struct/Event#type-group_file_upload) 事件上报的内容是相同的，都是表示好友 / 群成员上传了文件，两者的字段和含义也完全一致。协议端在收到文件消息后，需要**同时**推送包含 `file` 消息段的 [IncomingMessage](../struct/IncomingMessage) 和 `{friend,group}_file_upload` 事件，应用端可以按需处理。
+
+二者的主要不同在于用途：前者方便在拉取消息时获取文件信息，后者方便在 `event` 驱动的应用中处理用户上传的文件。
+
 <!--
 ## `client_seq` 是什么？为什么在有的 API 中我必须提供它？
 
