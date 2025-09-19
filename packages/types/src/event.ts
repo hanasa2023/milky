@@ -56,7 +56,7 @@ export const FriendFileUploadEvent = z.object({
   user_id: ZInt64.describe('好友 QQ 号'),
   file_id: ZString.describe('文件 ID'),
   file_name: ZString.describe('文件名称'),
-  file_size: ZInt64.describe('文件大小'),
+  file_size: ZInt64.describe('文件大小（字节）'),
   file_hash: ZString.describe('文件的 TriSHA1 哈希值'),
   is_self: ZBoolean.describe('是否是自己发送的文件'),
 }).describe('好友文件上传事件');
@@ -127,7 +127,7 @@ export const GroupFileUploadEvent = z.object({
   user_id: ZInt64.describe('发送者 QQ 号'),
   file_id: ZString.describe('文件 ID'),
   file_name: ZString.describe('文件名称'),
-  file_size: ZInt64.describe('文件大小'),
+  file_size: ZInt64.describe('文件大小（字节）'),
 }).describe('群文件上传事件');
 
 export const Event = z.discriminatedUnion('event_type', [

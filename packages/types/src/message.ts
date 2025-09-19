@@ -76,6 +76,16 @@ export const IncomingSegment = z.discriminatedUnion('type', [
   }).describe('视频消息段'),
 
   z.object({
+    type: z.literal('file'),
+    data: z.object({
+      file_id: ZString.describe('文件 ID'),
+      file_name: ZString.describe('文件名称'),
+      file_size: ZInt64.describe('文件大小（字节）'),
+      file_hash: ZString.nullish().describe('文件的 TriSHA1 哈希值，仅在私聊文件中存在'),
+    }).describe('文件消息段'),
+  }).describe('文件消息段'),
+
+  z.object({
     type: z.literal('forward'),
     data: z.object({
       forward_id: ZString.describe('合并转发 ID'),
