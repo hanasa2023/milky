@@ -168,7 +168,7 @@ function renderZodDiscriminatedUnion(name: string, struct: z.ZodDiscriminatedUni
             [`@SerialName("${(option.shape[struct.def.discriminator] as z.ZodLiteral).value}")`]
           ),
           '    '
-        )
+        ) + ` : ${toUpperCamelCase(name)}()`
       );
       if (index !== struct.options.length - 1) {
         l('');
