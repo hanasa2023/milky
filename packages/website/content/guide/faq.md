@@ -37,6 +37,12 @@ Milk 戳了戳 Shama 的……。不许戳啦！
 
 二者的主要不同在于用途：前者方便在拉取消息时获取文件信息，后者方便在 `event` 驱动的应用中处理用户上传的文件。
 
+## `image`、`record` 和 `video` 消息段分别支持哪些格式？
+
+- `image`：协议端至少需要支持 `JPG`、`PNG`、`GIF`、`BMP`、`WEBP` 格式的图片；
+- `record`：QQ 使用的语音格式是 [SILK](https://zh.wikipedia.org/wiki/SILK)。在发送时，协议端至少需要支持 `WAV` 和 `MP3` 格式到 `SILK` 的转码；
+- `video`：协议端至少需要支持 `MP4` 格式的视频，并且在用户未提供 `thumb_uri` 时从视频中截取一帧作为缩略图。
+
 <!--
 ## `client_seq` 是什么？为什么在有的 API 中我必须提供它？
 
