@@ -141,7 +141,13 @@ function renderZodDiscriminatedUnion(name: string, struct: z.ZodDiscriminatedUni
       l('    @Serializable');
       l(`    @SerialName("${(option.shape[struct.def.discriminator] as z.ZodLiteral).value}")`);
       l(`    class ${toUpperCamelCase((option.shape[struct.def.discriminator] as z.ZodLiteral).value as string)}(`);
-      l(`        val data: ${commonStructNames.get(dataField) ?? 'Data'}`);
+      commonKeys.forEach((key) => {
+        const field = firstOption.shape[key];
+        l(`        /** ${field.description ?? ''} */`);
+        l(`        @SerialName("${key}") val ${toLowerCamelCase(key)}: ${getKotlinTypeSpec(field)},`);
+      });
+      l(`        /** 数据字段 */`);
+      l(`        @SerialName("data") val data: ${commonStructNames.get(dataField) ?? 'Data'}`);
       l(`    ) : ${toUpperCamelCase(name)}()`);
       if (!commonStructNames.has(dataField)) {
         a(' {');
