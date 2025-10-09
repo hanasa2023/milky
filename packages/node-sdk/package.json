@@ -1,7 +1,7 @@
 {
   "name": "@saltify/milky-node-sdk",
   "type": "module",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Node.js SDK for Milky protocol",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -22,11 +22,11 @@
   },
   "license": "CC0-1.0",
   "devDependencies": {
-    "@types/node": "^22.17.2",
-    "eventsource-client": "^1.2.0"
+    "@types/node": "^22.17.2"
   },
   "dependencies": {
     "@saltify/milky-types": "^1.0.0",
+    "eventsource-client": "^1.2.0",
     "zod": "^4.1.11"
   }
 }
