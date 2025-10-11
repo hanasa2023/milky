@@ -1,7 +1,7 @@
 {
   "name": "@saltify/milky-node-sdk",
   "type": "module",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Node.js SDK for Milky protocol",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",

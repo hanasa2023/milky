@@ -100,7 +100,7 @@ export class MilkyClient {
 
     sse.connect();
 
-    this.disposeCore = sse.close;
+    this.disposeCore = sse.close.bind(sse);
   }
 
   private createWebsocket() {
@@ -116,7 +116,7 @@ export class MilkyClient {
       this.eventEmitter.emit(data.event_type, data);
     });
 
-    this.disposeCore = ws.close;
+    this.disposeCore = ws.close.bind(ws);
   }
 
   /**
