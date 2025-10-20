@@ -41,3 +41,4 @@
 | Rust       | [vivian-rs](https://crates.io/crates/vivian)                                     | MIT **or** Apache 2.0 |
 | .NET       | [Milky.Net.Client](https://www.nuget.org/packages/Milky.Net.Client)              | MIT                   |
 | Go         | [Milky-go-sdk](https://github.com/Szzrain/Milky-go-sdk)                          | MIT                   |
+| Kotlin     | [milky-kt-sdk](https://github.com/Wesley-Young/milky-kt-sdk)                     | MIT                   |
